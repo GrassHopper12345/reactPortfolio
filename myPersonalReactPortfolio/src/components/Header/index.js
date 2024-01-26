@@ -1,5 +1,5 @@
 import React from "react";
-import Nav from "../Nav";
+import Navi from "../Navi";
 
 function Header() {
     return (
@@ -10,10 +10,10 @@ function Header() {
                         <h1>Brian Hopper's Portfolio</h1>
                     </div>
                     <div>
-                        <Nav
+                        <Navi
                             currentTab={currentTab}
                             handleTabChange={handleTabChange}
-                        ></Nav>
+                        ></Navi>
                     </div>
                 </header>
             </section>
