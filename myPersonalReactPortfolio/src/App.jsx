@@ -3,7 +3,6 @@ import Header from "./components/Header";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Navi from "./components/Navi";
 import Portfolio from "./components/Portfolio";
 import Resume from "./components/Resume";
 import { Helmet } from "react-helmet";
