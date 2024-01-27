@@ -5,7 +5,7 @@ function About() {
     return (
         <section className="my-5 intro" id="about-me">
             <div class="flex-row">
-                <h1 id="about" className="section-title primary-border">About Me</h1>
+                <h1 id="about" className="section-title">About Me</h1>
             </div>
             <div className="flex-row">
                 <div class="introInfo">

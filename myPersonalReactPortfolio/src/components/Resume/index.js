@@ -1,5 +1,5 @@
 import React from "react";
-import resume from "../../assets/files/myPersonalReactPortfolio/src/assets/files/Brian.Hopper.resume.FullStack.doc";
+import resume from "../../assets/files";
 import { BsCloudDownload } from "react-icons/bs";
 import { MdFoundation } from "react-icons/md";
 import { GrTechnology } from "react-icons/gr";
@@ -10,7 +10,7 @@ function Resume() {
         <div>
             <section className="welcome-section" id="download-intro">
                 <div className="flex-row">
-                    <h2 className="section-title primary-border">My Resume</h2>
+                    <h2 className="section-title">My Resume</h2>
                 </div>
                 <div className="flex-row">
                     <div className="download-info">
@@ -45,7 +45,6 @@ function Resume() {
                     <p className="column-text">
                         <ul>
                             <li className="logo"><GrTechnology /></li>
-                            <li></li>
                             <li>Object-Relation--Mapping</li>
                             <li>Object-Oriented Programming</li>
                             <li>Sequelize</li>

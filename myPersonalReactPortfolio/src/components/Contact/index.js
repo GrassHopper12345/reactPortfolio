@@ -30,7 +30,7 @@ function Contact() {
             return;
         }
 
-        if (!setMessage(message)) {
+        if (!message) {
             setErrorMessage('A message is required!');
             return;
         }
@@ -42,7 +42,7 @@ function Contact() {
     return (
         <section id="reach-out" className="contact">
             <div className="flex-row">
-                <h2 className="section-title secondary-border">Reach Out to Connect</h2>
+                <h2 className="section-title">Reach Out to Connect</h2>
             </div>
 
             <div className="cotact-info">
@@ -65,12 +65,12 @@ function Contact() {
                     <form className="form">
                         <label for="contact-name">Your Name</label>
                         <input
-                            value={userName}
-                            name="userName"
+                            value={email}
+                            name="email"
                             onChange={handleInputChange}
                             type="text"
                             id="contact-name"
-                            placeholder="Enter your name"
+                            placeholder="Enter your email"
                         />
 
                         <label for="contact-email">Your Email</label>

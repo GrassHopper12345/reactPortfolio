@@ -1,7 +1,8 @@
 import React from "react";
 import Navi from "../Navi";
 
-function Header() {
+function Header(props) {
+    const { currentTab, handleTabChange } = props;
     return (
         <div>
             <section>
