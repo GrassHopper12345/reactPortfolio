@@ -8,19 +8,26 @@ As a developer, I must present myself as a part of the developer community. This
 ## Table of Contents
 - [Installation](#installation)
 - [Application Overview](#application)
-- [Tech](#tech)
 - [License](#license)
 - [Questions](#questions)
 
 
 ## Installation
-
+1. Clone the repository following the embedded link below.
+2. Install Dependencies by using `npm install` in the command line.
+3. Run `npm start` to start web server and connect.
+4. Or follow the deployment link embedded below.
 
 ## Application Overview
+![Alt text](<Screenshot 2024-01-31 at 4.25.34 PM.png>)
 
+![Alt text](<Screenshot 2024-01-31 at 4.25.52 PM.png>)
 
-## Tech
+![Alt text](<Screenshot 2024-01-31 at 4.26.10 PM.png>)
 
+![Alt text](<Screenshot 2024-01-31 at 4.26.22 PM.png>)
+
+![Alt text](<Screenshot 2024-01-31 at 4.26.34 PM.png>)
 
 ## License
 
