@@ -61,7 +61,7 @@ function Contact() {
 
                 {/* contact form section */}
                 <div className="contact-form">
-                    <h3>Pleaase React Out!</h3>
+                    <h3>Please React Out!</h3>
                     <form className="form">
                         <label for="contact-name">Your Name</label>
                         <input

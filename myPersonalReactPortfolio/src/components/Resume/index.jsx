@@ -1,11 +1,12 @@
 import React from "react";
-import resume from "../../assets/files";
+// import ResumeDoc from "../../assets/files/Brian.Hopper.resume.fullstack.doc"
 import { BsCloudDownload } from "react-icons/bs";
 import { MdFoundation } from "react-icons/md";
 import { GrTechnology } from "react-icons/gr";
 import { GrDocumentPerformance } from "react-icons/gr";
+import ResumeSS from "../../assets/files/ResumeSS.png";
 
-function Resume() {
+function ResumeFunction() {
     return (
         <div>
             <section className="welcome-section" id="download-intro">
@@ -15,7 +16,10 @@ function Resume() {
                 <div className="flex-row">
                     <div className="download-info">
                         <div className="download-text">
-                            <a href={resume} className="download-logo" download><BsCloudDownload /></a>
+                            <a href="/public/Resume.pdf" download="resume.pdf" target="_blank">
+                            <img  src= {ResumeSS} style={{width: '50%', marginLeft: '0%'}} Name="download-logo"/></a>
+                            <BsCloudDownload /> 
+                           
                             <p>Please check out my Proficiencies!</p>
                         </div>
                     </div>
@@ -81,4 +85,4 @@ function Resume() {
     );
 }
 
-export default Resume;
+export default ResumeFunction;

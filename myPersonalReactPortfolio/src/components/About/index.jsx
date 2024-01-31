@@ -1,16 +1,22 @@
 import React from "react";
-import profilePic from "../../assets/profilePic/myPersonalReactPortfolio/src/assets/profilePic/C9A040E7-5C0C-4033-AA29-BE4741219C99_1_105_c.jpeg"
+import profilePic from "../../assets/profilePic/C9A040E7-5C0C-4033-AA29-BE4741219C99_1_105_c.jpeg"
 
 function About() {
     return (
         <section className="my-5 intro" id="about-me">
-            <div class="flex-row">
+            <div className="flex-row">
                 <h1 id="about" className="section-title">About Me</h1>
             </div>
+            <section className="hero">
+                <div className="hero-cta">
+                    <h2>Welcome</h2>
+                    <p>Welcome to Brian Hopper's Portfolio utilizing React. Here, you will find the projects and frameworks I have used throughout my Developer Bootcamp program.</p>
+                </div>
+            </section>
             <div className="flex-row">
-                <div class="introInfo">
-                    <div class="introImg">
-                        <img src={profilePic} style={{ width: '100%'}} alt="profile" />
+                <div className="introInfo">
+                    <div className="introImg">
+                        <img src={profilePic} style={{ width: '50%', marginLeft: '25%'}} alt="profile" />
                     </div>
                     <p>
                         Greetings! I am Brian Hopper,  I reside in Shreveport, Louisiana. I hold a B.A. in Cellular and Molecular Biology, a Masters in Health Science, and an MBA in Project Management all recieved from Louisiana State University Shreveport.  

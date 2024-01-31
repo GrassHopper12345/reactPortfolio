@@ -27,12 +27,12 @@ function App() {
     return <About />;
   };
 
-  return(
+  return (
     <>
       <Helmet>
-        <title> Brian Hopper's Portfolio | {currentTab} </title>  
-      </Helmet> 
-      
+        <title> Brian Hopper's Portfolio | {currentTab} </title>
+      </Helmet>
+
       <Header currentTab={currentTab} handleTabChange={handleTabChange}></Header>
       <main>{renderTab()}</main>
       <Footer></Footer>
