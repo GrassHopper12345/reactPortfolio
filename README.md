@@ -19,15 +19,7 @@ As a developer, I must present myself as a part of the developer community. This
 4. Or follow the deployment link embedded below.
 
 ## Application Overview
-![Alt text](<Screenshot 2024-01-31 at 4.25.34 PM.png>)
 
-![Alt text](<Screenshot 2024-01-31 at 4.25.52 PM.png>)
-
-![Alt text](<Screenshot 2024-01-31 at 4.26.10 PM.png>)
-
-![Alt text](<Screenshot 2024-01-31 at 4.26.22 PM.png>)
-
-![Alt text](<Screenshot 2024-01-31 at 4.26.34 PM.png>)
 
 ## License
 
