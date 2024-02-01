@@ -16,7 +16,7 @@ function ResumeFunction() {
                 <div className="flex-row">
                     <div className="download-info">
                         <div className="download-text">
-                            <a href="/public/Resume.pdf" download="Resume.pdf" target="_blank">
+                            <a href="/Resume.pdf" download="Resume.pdf" target="_blank">
                             <img  src= {ResumeSS} style={{width: '50%', marginLeft: '0%'}} Name="download-logo"/></a>
                             <BsCloudDownload /> 
                            
