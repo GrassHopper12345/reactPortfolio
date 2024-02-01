@@ -595,6 +595,7 @@ footer a:hover {
   text-align: center;
   margin: 0 auto 35px auto;
   width: 50%;
+  text-shadow: #414747 0px 10px 10px;
 }
 
 .primary-border {
@@ -612,6 +613,11 @@ label {
 /*Extra styling*/
 .flex-row {
   display: flex;
+}
+
+#profileImage{
+  border-radius: 15px;
+  box-shadow: #414747 15px -10px 10px 5px;
 }
 
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */

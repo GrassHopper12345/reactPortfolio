@@ -16,7 +16,7 @@ function About() {
             <div className="flex-row">
                 <div className="introInfo">
                     <div className="introImg">
-                        <img src={profilePic} style={{ height: '700px', width: '50%', marginLeft: '25%'}} alt="profile" />
+                        <img id="profileImage" src={profilePic} style={{ height: '700px', width: '50%', marginLeft: '25%'}} alt="profile" />
                     </div>
                     <p>
                         Greetings! I am Brian Hopper,  I reside in Shreveport, Louisiana. I hold a B.A. in Cellular and Molecular Biology, a Masters in Health Science, and an MBA in Project Management all recieved from Louisiana State University Shreveport.  
