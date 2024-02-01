@@ -25,7 +25,7 @@ function Portfolio() {
                                 <img
                                     src={cliLogoGen}
                                     className="my-2"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "" }}
                                     alt="CLI-LogoGenerator" />
                             </a>
                         </div>
@@ -46,7 +46,7 @@ function Portfolio() {
                                 <img
                                     src={codeQuiz}
                                     className="my-2"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "" }}
                                     alt="CodeQuiz" />
                             </a>
                         </div>
@@ -67,7 +67,7 @@ function Portfolio() {
                                 <img
                                     src={eCommerce}
                                     className="my-2"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "" }}
                                     alt="E-Commerce: Back-End" />
                             </a>
                         </div>
@@ -88,7 +88,7 @@ function Portfolio() {
                                 <img
                                     src={fundMyFarm}
                                     className="my-2"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "" }}
                                     alt="Fund My Farm" />
                             </a>
                         </div>
@@ -109,7 +109,7 @@ function Portfolio() {
                                 <img
                                     src={noteTaker}
                                     className="my-2"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "" }}
                                     alt="NoteTaker" />
                             </a>
                         </div>
@@ -130,7 +130,7 @@ function Portfolio() {
                                 <img
                                     src={pwa}
                                     className="my-2"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "" }}
                                     alt="PWA: TextEditor" />
                             </a>
                         </div>
@@ -151,7 +151,7 @@ function Portfolio() {
                                 <img
                                     src={readmeGen}
                                     className="my-2"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "" }}
                                     alt="Readme Generator" />
                             </a>
                         </div>
@@ -172,7 +172,7 @@ function Portfolio() {
                                 <img
                                     src={socialNetwork}
                                     className="my-2"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "" }}
                                     alt="Social-Network: API" />
                             </a>
                         </div>
@@ -193,7 +193,7 @@ function Portfolio() {
                                 <img
                                     src={weatherApp}
                                     className="my-2"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "" }}
                                     alt="WeatherApp" />
                             </a>
                         </div>
@@ -214,7 +214,7 @@ function Portfolio() {
                                 <img
                                     src={weatherWays}
                                     className="my-2"
-                                    style={{ width: "100%" }}
+                                    style={{ width: "" }}
                                     alt="WeatherWays" />
                             </a>
                         </div>

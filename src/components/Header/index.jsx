@@ -18,12 +18,6 @@ function Header(props) {
                     </div>
                 </header>
             </section>
-            {/* <section className="hero">
-                <div className="hero-cta">
-                    <h2>Welcome</h2>
-                    <p>Welcome to Brian Hopper's Portfolio utilizing React. Here, you will find the projects and frameworks I have used throughout my Developer Bootcamp program.</p>
-                </div>
-            </section> */}
         </div>
     );
 }

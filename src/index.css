@@ -334,7 +334,7 @@ header nav ul li a:hover {
 .job-text h4 {
   font-size: 26px;
   line-height: 1.5;
-  color: #7f9591;
+  color: #315750;
 }
 
 
@@ -368,6 +368,8 @@ header nav ul li a:hover {
   -o-transition: all 1s ease;
   -ms-transition: all 1s ease;
   transition: all 1s ease;
+  border-radius: 15px;
+  box-shadow: #414747 15px 15px 10px 5px;
 }
 
 .job-img:hover {

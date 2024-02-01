@@ -16,14 +16,14 @@ function About() {
             <div className="flex-row">
                 <div className="introInfo">
                     <div className="introImg">
-                        <img src={profilePic} style={{ width: '50%', marginLeft: '25%'}} alt="profile" />
+                        <img src={profilePic} style={{ height: '700px', width: '50%', marginLeft: '25%'}} alt="profile" />
                     </div>
                     <p>
                         Greetings! I am Brian Hopper,  I reside in Shreveport, Louisiana. I hold a B.A. in Cellular and Molecular Biology, a Masters in Health Science, and an MBA in Project Management all recieved from Louisiana State University Shreveport.  
                     </p>
                     <p>Furthermore, I have completed my certifications in Lean Six Sigma Green Belt and Lean Practitioner. I am currently working towards my Scrum Master and Six Sigma Black Belt Certifications.</p>
                     <p>Beyond my professional commitments, I am an active outdoorsman whether it be hiking, biking, wheeling, or just plain doing work outside my own home, I personally feel better outdoors.</p>
-                    <p>By embracing this active lifestyle, I strive to put forth the same effort at when I am at work. I have dedicated my life to the pursuit of knowing as much as I can which is evident in my resume. I am always looking to upskill myself to better understand the processes of all things that life has layed infront of me and so much more.</p>
+                    <p>By embracing this active lifestyle, I strive to put forth the same effort when I am at work. I have dedicated my life to the pursuit of knowing as much as I can which is evident in my resume. I am always looking to upskill myself to better understand the processes of all things that life has layed infront of me and so much more.</p>
                 </div>
             </div>
         </section>
