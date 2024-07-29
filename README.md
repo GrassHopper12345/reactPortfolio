@@ -14,10 +14,7 @@ As a developer, I must present myself as a part of the developer community. This
 
 
 ## Installation
-1. Clone the repository following the embedded link below.
-2. Install Dependencies by using `npm install` in the command line.
-3. Run `npm start` to start web server and connect.
-4. Or follow the deployment link embedded below.
+1. Follow the link below to access live site.
 
 ## Application Overview
 
