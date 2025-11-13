@@ -1,11 +1,3 @@
-// Game utility functions for collision detection and game state management
-
-/**
- * Check if two rectangles are colliding
- * @param {Object} rect1 - {x, y, width, height}
- * @param {Object} rect2 - {x, y, width, height}
- * @returns {boolean}
- */
 export function checkCollision(rect1, rect2) {
   return (
     rect1.x < rect2.x + rect2.width &&
@@ -15,13 +7,6 @@ export function checkCollision(rect1, rect2) {
   );
 }
 
-/**
- * Generate random stars for starfield
- * @param {number} count - Number of stars to generate
- * @param {number} width - Canvas width
- * @param {number} height - Canvas height
- * @returns {Array} Array of star objects
- */
 export function generateStars(count, width, height) {
   const stars = [];
   for (let i = 0; i < count; i++) {
@@ -35,11 +20,6 @@ export function generateStars(count, width, height) {
   return stars;
 }
 
-/**
- * Update star positions for scrolling effect
- * @param {Array} stars - Array of star objects
- * @param {number} height - Canvas height
- */
 export function updateStars(stars, height) {
   stars.forEach((star) => {
     star.y += star.speed;
@@ -50,30 +30,15 @@ export function updateStars(stars, height) {
   });
 }
 
-/**
- * Clamp a value between min and max
- * @param {number} value - Value to clamp
- * @param {number} min - Minimum value
- * @param {number} max - Maximum value
- * @returns {number}
- */
 export function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
 }
 
-/**
- * Create explosion particles
- * @param {number} x - X position
- * @param {number} y - Y position
- * @param {number} count - Number of particles
- * @param {number} maxLife - Maximum life of particles
- * @returns {Array} Array of particle objects
- */
 export function createExplosion(x, y, count = 10, maxLife = 30) {
   const particles = [];
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 * i) / count;
-    const speed = Math.random() * 8 + 3; // Increased speed for more pronounced effect
+    const speed = Math.random() * 8 + 3;
     particles.push({
       x,
       y,
@@ -81,16 +46,12 @@ export function createExplosion(x, y, count = 10, maxLife = 30) {
       vy: Math.sin(angle) * speed,
       life: maxLife,
       maxLife: maxLife,
-      size: Math.random() * 6 + 3, // Larger particles for more visibility
+      size: Math.random() * 6 + 3,
     });
   }
   return particles;
 }
 
-/**
- * Update explosion particles
- * @param {Array} particles - Array of particle objects
- */
 export function updateParticles(particles) {
   particles.forEach((particle) => {
     particle.x += particle.vx;

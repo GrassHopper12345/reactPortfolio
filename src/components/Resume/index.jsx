@@ -1,7 +1,6 @@
 import React from "react";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
-// import ResumeDoc from "../../assets/files/Brian.Hopper.resume.fullstack.doc"
 import { BsCloudDownload } from "react-icons/bs";
 import { MdFoundation } from "react-icons/md";
 import { GrTechnology } from "react-icons/gr";

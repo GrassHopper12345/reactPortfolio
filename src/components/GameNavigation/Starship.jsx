@@ -14,7 +14,6 @@ function Starship({ x, y }) {
         zIndex: 100,
       }}
     >
-      {/* Spaceship shape using CSS */}
       <div
         style={{
           width: '0',
@@ -26,7 +25,6 @@ function Starship({ x, y }) {
           position: 'relative',
         }}
       >
-        {/* Ship body detail */}
         <div
           style={{
             position: 'absolute',
@@ -39,7 +37,6 @@ function Starship({ x, y }) {
           }}
         />
       </div>
-      {/* Engine glow */}
       <div
         style={{
           position: 'absolute',

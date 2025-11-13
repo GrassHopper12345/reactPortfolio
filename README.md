@@ -9,7 +9,7 @@
 
 **A unique, interactive portfolio featuring a Galaga-style game navigation system!**
 
-[🎮 Live Demo](#-game-mode) • [📖 Features](#-features) • [🛠️ Installation](#️-installation) • [📱 Screenshots](#-screenshots)
+[🌐 Live Site](https://main--sparkly-cranachan-9f0864.netlify.app/#about) • [🎮 Game Mode](#-game-mode) • [📖 Features](#-features) • [🛠️ Installation](#️-installation) • [📱 Screenshots](#-screenshots)
 
 </div>
 
@@ -23,6 +23,7 @@
 - [📦 Installation](#-installation)
 - [🚀 Usage](#-usage)
 - [📱 Mobile & Tablet Support](#-mobile--tablet-support)
+- [🌐 Live Site](#-live-site)
 - [📸 Screenshots](#-screenshots)
 - [🏗️ Project Structure](#️-project-structure)
 - [📧 Contact](#-contact)
@@ -191,6 +192,14 @@ The built files will be in the `dist` directory, ready for deployment.
 - **Tablet (≤980px)**: Adjusted spacing and font sizes
 - **Mobile (≤768px)**: Stacked layout, optimized touch targets
 - **Small Mobile (≤575px)**: Compact layout with centered content
+
+---
+
+## 🌐 Live Site
+
+**Visit the live portfolio:** [https://main--sparkly-cranachan-9f0864.netlify.app/#about](https://main--sparkly-cranachan-9f0864.netlify.app/#about)
+
+Experience the interactive game navigation and explore all portfolio sections!
 
 ---
 

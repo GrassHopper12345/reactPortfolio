@@ -15,7 +15,6 @@ function Contact() {
     const [successMessage, setSuccessMessage] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    // Check environment variables on mount (for debugging)
     useEffect(() => {
         const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
         const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
@@ -25,10 +24,8 @@ function Contact() {
             publicKey: publicKey ? `${publicKey.substring(0, 5)}... (length: ${publicKey.length})` : 'MISSING',
             serviceId: serviceId || 'MISSING',
             templateId: templateId || 'MISSING',
-            publicKeyFull: publicKey // Log full key for verification (remove in production)
+            publicKeyFull: publicKey
         });
-        
-        // Note: We'll pass public key directly in send() instead of initializing
     }, []);
 
     const handleInputChange = (e, field) => {
@@ -60,15 +57,11 @@ function Contact() {
 
         setIsSubmitting(true);
 
-        // EmailJS configuration - you'll need to set these up
-        // Get these from https://www.emailjs.com after creating an account
         const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
         const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
         const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
 
-        // Check if EmailJS is configured
         if (serviceId === 'YOUR_SERVICE_ID' || templateId === 'YOUR_TEMPLATE_ID' || publicKey === 'YOUR_PUBLIC_KEY') {
-            // Fallback to mailto: if EmailJS is not configured
             const subject = encodeURIComponent(`Portfolio Contact from ${userName}`);
             const body = encodeURIComponent(
                 `Name: ${userName}\nEmail: ${email}\n\nMessage:\n${message}`
@@ -85,22 +78,19 @@ function Contact() {
             return;
         }
 
-        // Send email using EmailJS
         try {
             const templateParams = {
                 from_name: userName,
-                name: userName,  // Used in template message content
+                name: userName,
                 from_email: email,
                 message: message,
-                time: new Date().toLocaleString()  // Timestamp for template
+                time: new Date().toLocaleString()
             };
 
-            // Verify all values are present
             if (!serviceId || !templateId || !publicKey) {
                 throw new Error('Missing EmailJS configuration. Please check your .env file.');
             }
 
-            // Debug: Log the values being used
             console.log('EmailJS Send Attempt:', {
                 serviceId,
                 templateId,
@@ -109,14 +99,11 @@ function Contact() {
                 templateParams
             });
 
-            // Send email with public key as 4th parameter
-            // This is the recommended approach when not using init()
             const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
             console.log('EmailJS Success:', response);
             
             setSuccessMessage('Thank you! Your message has been sent successfully.');
             
-            // Clear form
             setUserName("");
             setEmail("");
             setMessage("");
@@ -132,7 +119,6 @@ function Contact() {
                 publicKeyLength: publicKey?.length
             });
             
-            // Provide more specific error messages
             if (error.status === 404) {
                 setErrorMessage('EmailJS "Account not found" error. This usually means your Public Key is incorrect. Please: 1) Go to EmailJS dashboard > Account > General, 2) Click "Refresh Keys", 3) Copy the new Public Key, 4) Update your .env file, 5) Restart the dev server.');
             } else {
@@ -166,7 +152,6 @@ function Contact() {
                     </div>
                 </Card>
 
-                {/* contact form section */}
                 <Card className="contact-form-card">
                     <h3>Please Reach Out!</h3>
                     <form className="form" onSubmit={handleFormSubmit}>

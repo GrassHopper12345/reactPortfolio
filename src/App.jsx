@@ -16,7 +16,6 @@ function App() {
 
   const handleGameNavigate = (section) => {
     handleTabChange(section);
-    // Exit game mode after navigation so user can see the content
     setGameMode(false);
   };
 

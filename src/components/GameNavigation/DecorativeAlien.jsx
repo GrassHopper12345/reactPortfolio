@@ -1,7 +1,6 @@
 import React from 'react';
 
 function DecorativeAlien({ x, y, variant = 0 }) {
-  // Different alien variants for variety
   const colors = [
     { bg: '#ff6666', border: '#ff0000', glow: '#ff4444' },
     { bg: '#ffaa00', border: '#ff8800', glow: '#ff9900' },
@@ -33,7 +32,6 @@ function DecorativeAlien({ x, y, variant = 0 }) {
           position: 'relative',
         }}
       >
-        {/* Eyes */}
         <div
           style={{
             display: 'flex',
@@ -59,7 +57,6 @@ function DecorativeAlien({ x, y, variant = 0 }) {
             }}
           />
         </div>
-        {/* Body pattern */}
         <div
           style={{
             position: 'absolute',

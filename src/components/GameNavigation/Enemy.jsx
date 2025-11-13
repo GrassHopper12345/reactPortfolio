@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
-  // Calculate health percentage (5 hits = 100%)
   const healthPercent = Math.max(0, (5 - hitCount) / 5);
   const healthColor = healthPercent > 0.5 ? '#00ff00' : healthPercent > 0.25 ? '#ffff00' : '#ff0000';
   const size = isMobile ? { width: '60px', height: '45px' } : { width: '80px', height: '60px' };
@@ -22,8 +21,7 @@ function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
       }}
       onClick={onHit}
     >
-          {/* Alien/enemy shape */}
-          <div
+      <div
             style={{
               ...size,
               backgroundColor: '#ff4444',
@@ -37,7 +35,6 @@ function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
               cursor: 'pointer',
             }}
           >
-        {/* Health bar */}
         {hitCount > 0 && hitCount < 5 && (
           <div
             style={{
@@ -63,7 +60,6 @@ function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
           </div>
         )}
         
-        {/* Eyes */}
         <div
           style={{
             display: 'flex',
@@ -88,7 +84,6 @@ function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
             }}
           />
         </div>
-        {/* Label */}
         <div
           style={{
             position: 'absolute',

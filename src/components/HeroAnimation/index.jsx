@@ -27,7 +27,6 @@ function HeroAnimation() {
     canvas.width = dimensions.width;
     canvas.height = dimensions.height;
 
-    // Game state
     const ship = {
       x: dimensions.width / 2,
       y: dimensions.height - 50,
@@ -44,25 +43,22 @@ function HeroAnimation() {
 
     const projectiles = [];
     let lastShot = 0;
-    const shootInterval = 1500; // Shoot every 1.5 seconds
+    const shootInterval = 1500;
 
     const drawShip = (x, y) => {
       ctx.fillStyle = '#00ff00';
       ctx.beginPath();
-      // Ship body (triangle)
       ctx.moveTo(x, y);
       ctx.lineTo(x - 20, y + 30);
       ctx.lineTo(x + 20, y + 30);
       ctx.closePath();
       ctx.fill();
       
-      // Ship glow
       ctx.shadowBlur = 15;
       ctx.shadowColor = '#00ff00';
       ctx.fill();
       ctx.shadowBlur = 0;
 
-      // Engine glow
       ctx.fillStyle = '#ffff00';
       ctx.beginPath();
       ctx.arc(x, y + 30, 4, 0, Math.PI * 2);
@@ -75,7 +71,6 @@ function HeroAnimation() {
 
     const drawAlien = (x, y) => {
       ctx.fillStyle = '#ff4444';
-      // Draw rounded rectangle manually
       ctx.beginPath();
       const rx = 8;
       const ry = 8;
@@ -91,13 +86,11 @@ function HeroAnimation() {
       ctx.closePath();
       ctx.fill();
       
-      // Alien glow
       ctx.shadowBlur = 15;
       ctx.shadowColor = '#ff4444';
       ctx.fill();
       ctx.shadowBlur = 0;
 
-      // Eyes
       ctx.fillStyle = '#000';
       ctx.beginPath();
       ctx.arc(x - 10, y - 5, 4, 0, Math.PI * 2);
@@ -117,7 +110,6 @@ function HeroAnimation() {
     const animate = (timestamp) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Update aliens (move side to side)
       aliens.forEach((alien) => {
         alien.x += alien.speed * alien.direction;
         if (alien.x < 50 || alien.x > dimensions.width - 50) {
@@ -125,7 +117,6 @@ function HeroAnimation() {
         }
       });
 
-      // Shoot projectiles periodically
       if (timestamp - lastShot > shootInterval) {
         projectiles.push({
           x: ship.x,
@@ -135,12 +126,10 @@ function HeroAnimation() {
         lastShot = timestamp;
       }
 
-      // Update and draw projectiles
       for (let i = projectiles.length - 1; i >= 0; i--) {
         const proj = projectiles[i];
         proj.y -= proj.speed;
 
-        // Check collision with aliens
         let hit = false;
         for (let j = 0; j < aliens.length; j++) {
           const alien = aliens[j];
@@ -150,7 +139,6 @@ function HeroAnimation() {
             proj.y > alien.y - 25 &&
             proj.y < alien.y + 25
           ) {
-            // Reset alien position when hit
             alien.x = Math.random() * (dimensions.width - 100) + 50;
             alien.y = 50 + Math.random() * 100;
             hit = true;
@@ -158,24 +146,19 @@ function HeroAnimation() {
           }
         }
 
-        // Remove projectile if it hit or went off screen
         if (hit || proj.y < 0) {
           projectiles.splice(i, 1);
         }
       }
 
-      // Draw everything in correct order (back to front)
-      // Draw projectiles first (behind aliens)
       projectiles.forEach((proj) => {
         drawProjectile(proj.x, proj.y);
       });
 
-      // Draw aliens
       aliens.forEach((alien) => {
         drawAlien(alien.x, alien.y);
       });
 
-      // Draw ship (in front)
       drawShip(ship.x, ship.y);
 
       animationFrameRef.current = requestAnimationFrame(animate);

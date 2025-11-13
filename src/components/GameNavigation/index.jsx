@@ -16,7 +16,6 @@ const PROJECTILE_SPEED = 10;
 function GameNavigation({ onNavigate, isActive }) {
   const [dimensions, setDimensions] = useState(getGameDimensions());
   
-  // Update dimensions when component mounts or becomes active
   useEffect(() => {
     if (isActive) {
       const newDims = getGameDimensions();
@@ -38,15 +37,14 @@ function GameNavigation({ onNavigate, isActive }) {
   const [explosions, setExplosions] = useState([]);
   const [keys, setKeys] = useState({});
   const [mousePos, setMousePos] = useState({ x: initialShipX, y: initialShipY });
-  const [touchPos, setTouchPos] = useState(null); // Track active touch
+  const [touchPos, setTouchPos] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
   const gameContainerRef = useRef(null);
   const animationFrameRef = useRef(null);
   const shipPosRef = useRef({ x: initialShipX, y: initialShipY });
   const lastShootTimeRef = useRef(0);
-  const SHOOT_COOLDOWN = 150; // Milliseconds between shots
+  const SHOOT_COOLDOWN = 150;
 
-  // Detect mobile device
   useEffect(() => {
     const checkMobile = () => {
       const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
@@ -59,13 +57,12 @@ function GameNavigation({ onNavigate, isActive }) {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  // Handle window resize
   useEffect(() => {
     const handleResize = () => {
       const newDims = getGameDimensions();
       setDimensions(newDims);
       const newX = newDims.width / 2;
-      const newY = newDims.height - 80; // Start at bottom
+      const newY = newDims.height - 80;
       setShipX(newX);
       setShipY(newY);
       shipPosRef.current = { x: newX, y: newY };
@@ -77,25 +74,23 @@ function GameNavigation({ onNavigate, isActive }) {
   }, []);
 
   const [hitEnemies, setHitEnemies] = useState(new Set());
-  const [enemyHitCounts, setEnemyHitCounts] = useState(new Map()); // Track hit counts for each enemy
-  const [decorativeAliens, setDecorativeAliens] = useState([]); // Decorative aliens that move around
-  const decorativeAliensRef = useRef([]); // Ref to track current decorative aliens for collision detection
+  const [enemyHitCounts, setEnemyHitCounts] = useState(new Map());
+  const [decorativeAliens, setDecorativeAliens] = useState([]);
+  const decorativeAliensRef = useRef([]);
   const navigationTimeoutRef = useRef(null);
   const hasNavigatedRef = useRef(false);
-  const [showGameOver, setShowGameOver] = useState(false); // Show "You Died" message
+  const [showGameOver, setShowGameOver] = useState(false);
 
-  // Initialize decorative aliens when game mode is activated
   useEffect(() => {
     if (isActive && dimensions.width > 0 && dimensions.height > 0) {
-      // Create decorative aliens that move around
       const aliens = [];
       for (let i = 0; i < 8; i++) {
         aliens.push({
           id: `decorative-${i}`,
           x: Math.random() * dimensions.width,
-          y: Math.random() * (dimensions.height * 0.6) + dimensions.height * 0.2, // Lower half of screen
-          vx: (Math.random() - 0.5) * 2, // Random horizontal velocity
-          vy: (Math.random() - 0.5) * 1.5, // Random vertical velocity
+          y: Math.random() * (dimensions.height * 0.6) + dimensions.height * 0.2,
+          vx: (Math.random() - 0.5) * 2,
+          vy: (Math.random() - 0.5) * 1.5,
           variant: Math.floor(Math.random() * 3),
         });
       }
@@ -104,41 +99,33 @@ function GameNavigation({ onNavigate, isActive }) {
     }
   }, [isActive, dimensions]);
 
-      // Reset hit enemies when game mode is activated
-      useEffect(() => {
-        if (isActive) {
-          setHitEnemies(new Set());
-          setEnemyHitCounts(new Map());
-          setProjectiles([]);
-          setExplosions([]);
-          setShowGameOver(false);
-          hasNavigatedRef.current = false;
-          // Reset starship to bottom of screen
-          const newDims = getGameDimensions();
-          const newX = newDims.width / 2;
-          const newY = newDims.height - 80; // Start at bottom
-          setShipX(newX);
-          setShipY(newY);
-          shipPosRef.current = { x: newX, y: newY };
-          // Clear any pending navigation timeouts
-          if (navigationTimeoutRef.current) {
-            clearTimeout(navigationTimeoutRef.current);
-            navigationTimeoutRef.current = null;
-          }
-        }
-        // Don't clear timeout when deactivating - let navigation complete
-        // hasNavigatedRef will be reset when game mode is reactivated
-      }, [isActive]);
+  useEffect(() => {
+    if (isActive) {
+      setHitEnemies(new Set());
+      setEnemyHitCounts(new Map());
+      setProjectiles([]);
+      setExplosions([]);
+      setShowGameOver(false);
+      hasNavigatedRef.current = false;
+      const newDims = getGameDimensions();
+      const newX = newDims.width / 2;
+      const newY = newDims.height - 80;
+      setShipX(newX);
+      setShipY(newY);
+      shipPosRef.current = { x: newX, y: newY };
+      if (navigationTimeoutRef.current) {
+        clearTimeout(navigationTimeoutRef.current);
+        navigationTimeoutRef.current = null;
+      }
+    }
+  }, [isActive]);
 
-  // Navigation enemies configuration - recalculate on dimension changes
   const enemies = React.useMemo(() => {
     if (dimensions.width === 0 || dimensions.height === 0) {
       return [];
     }
-    // Adjust enemy positions for mobile
     const isSmallScreen = dimensions.width <= 768;
     if (isSmallScreen) {
-      // Stack enemies vertically on mobile
       return [
         { id: 'About', label: 'About', x: dimensions.width * 0.5, y: dimensions.height * 0.15 },
         { id: 'Portfolio', label: 'Portfolio', x: dimensions.width * 0.5, y: dimensions.height * 0.3 },
@@ -154,8 +141,6 @@ function GameNavigation({ onNavigate, isActive }) {
     ];
   }, [dimensions]);
 
-  // Shoot projectile - use ref to get current position
-  // Define this BEFORE the useEffect hooks that use it
   const shoot = useCallback(() => {
     const currentPos = shipPosRef.current;
     setProjectiles((prev) => [
@@ -197,7 +182,6 @@ function GameNavigation({ onNavigate, isActive }) {
     };
   }, [isActive, shoot]);
 
-  // Handle mouse movement (desktop)
   useEffect(() => {
     if (!isActive || isMobile) return;
 
@@ -231,7 +215,6 @@ function GameNavigation({ onNavigate, isActive }) {
     };
   }, [isActive, isMobile, shoot]);
 
-  // Handle touch events (mobile/tablet)
   useEffect(() => {
     if (!isActive || !isMobile) return;
 
@@ -244,9 +227,8 @@ function GameNavigation({ onNavigate, isActive }) {
         const touchY = touch.clientY - rect.top;
         
         setTouchPos({ x: touchX, y: touchY });
-        setMousePos({ x: touchX, y: touchY }); // Use same system as mouse
+        setMousePos({ x: touchX, y: touchY });
         
-        // Shoot on touch
         const now = Date.now();
         if (now - lastShootTimeRef.current > SHOOT_COOLDOWN) {
           lastShootTimeRef.current = now;
@@ -289,7 +271,6 @@ function GameNavigation({ onNavigate, isActive }) {
     };
   }, [isActive, isMobile, shoot]);
 
-  // Game loop
   useEffect(() => {
     if (!isActive) {
       if (animationFrameRef.current) {
@@ -299,7 +280,6 @@ function GameNavigation({ onNavigate, isActive }) {
     }
 
     const gameLoop = () => {
-      // Update ship position based on keyboard or mouse
       setShipX((prevX) => {
         let newX = prevX;
         if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
@@ -322,7 +302,6 @@ function GameNavigation({ onNavigate, isActive }) {
             return newY;
           });
         }
-        // Mouse following (smooth)
         if (!keys['ArrowLeft'] && !keys['ArrowRight'] && !keys['a'] && !keys['A'] && !keys['d'] && !keys['D']) {
           newX = prevX + (mousePos.x - prevX) * 0.1;
         }
@@ -340,7 +319,6 @@ function GameNavigation({ onNavigate, isActive }) {
         return prevY;
       });
 
-      // Update projectiles
       setProjectiles((prev) =>
         prev
           .map((proj) => ({
@@ -350,7 +328,6 @@ function GameNavigation({ onNavigate, isActive }) {
           .filter((proj) => proj.y > -20)
       );
 
-      // Update decorative aliens movement
       setDecorativeAliens((prevAliens) => {
         if (prevAliens.length === 0) return prevAliens;
         const updated = prevAliens.map((alien) => {
@@ -359,7 +336,6 @@ function GameNavigation({ onNavigate, isActive }) {
           let newVx = alien.vx;
           let newVy = alien.vy;
 
-          // Bounce off edges
           if (newX < 30 || newX > dimensions.width - 30) {
             newVx = -newVx;
             newX = clamp(newX, 30, dimensions.width - 30);
@@ -381,18 +357,15 @@ function GameNavigation({ onNavigate, isActive }) {
         return updated;
       });
 
-      // Check collisions with navigation enemies and decorative aliens
       setProjectiles((prevProjectiles) => {
         const remainingProjectiles = [];
         const newExplosions = [];
 
-        // Use for...of instead of forEach to allow proper break behavior
         for (const proj of prevProjectiles) {
           let hit = false;
           
-          // Check collisions with navigation enemies first
           for (const enemy of enemies) {
-            if (hit) break; // Exit immediately if already hit
+            if (hit) break;
             if (!hitEnemies.has(enemy.id)) {
               const projRect = {
                 x: proj.x - 2,
@@ -408,38 +381,32 @@ function GameNavigation({ onNavigate, isActive }) {
               };
 
               if (checkCollision(projRect, enemyRect)) {
-                hit = true; // Mark as hit immediately
-                // Increment hit count
+                hit = true;
                 setEnemyHitCounts((prev) => {
                   const newCounts = new Map(prev);
                   const currentCount = newCounts.get(enemy.id) || 0;
                   const newCount = currentCount + 1;
                   newCounts.set(enemy.id, newCount);
                   
-                  // If hit 5 times, destroy the enemy and navigate
                   if (newCount >= 5) {
                     setHitEnemies((prevHit) => new Set([...prevHit, enemy.id]));
                     const explosionParticles = createExplosion(enemy.x, enemy.y, 15, 40);
                     if (explosionParticles && explosionParticles.length > 0) {
                       newExplosions.push(explosionParticles);
                     }
-                    // Navigate to the section only if we haven't navigated yet
                     if (!hasNavigatedRef.current) {
                       hasNavigatedRef.current = true;
-                      // Clear any existing timeout
                       if (navigationTimeoutRef.current) {
                         clearTimeout(navigationTimeoutRef.current);
                       }
-                      // Navigate to the section - use a small delay to show explosion
                       navigationTimeoutRef.current = setTimeout(() => {
                         if (onNavigate) {
                           onNavigate(enemy.id);
                         }
                         navigationTimeoutRef.current = null;
-                      }, 300); // Delay to show explosion
+                      }, 300);
                     }
                   } else {
-                    // More pronounced hit effect for non-fatal hits
                     const smallExplosion = createExplosion(enemy.x, enemy.y, 8, 15);
                     if (smallExplosion && smallExplosion.length > 0) {
                       newExplosions.push(smallExplosion);
@@ -448,16 +415,15 @@ function GameNavigation({ onNavigate, isActive }) {
                   
                   return newCounts;
                 });
-                break; // Exit enemy loop immediately after first hit
+                break;
               }
             }
           }
 
-          // Check collisions with decorative aliens (only if projectile hasn't hit anything yet)
           if (!hit) {
             const currentAliens = decorativeAliensRef.current;
             for (const alien of currentAliens) {
-              if (hit) break; // Exit immediately if already hit
+              if (hit) break;
               const projRect = {
                 x: proj.x - 2,
                 y: proj.y - 6,
@@ -472,13 +438,11 @@ function GameNavigation({ onNavigate, isActive }) {
               };
 
               if (checkCollision(projRect, alienRect)) {
-                hit = true; // Mark as hit immediately
-                // Create explosion for decorative alien
+                hit = true;
                 const explosionParticles = createExplosion(alien.x, alien.y, 10, 20);
                 if (explosionParticles && explosionParticles.length > 0) {
                   newExplosions.push(explosionParticles);
                 }
-                // Respawn hit alien somewhere else
                 setDecorativeAliens((prevAliens) => {
                   const updated = prevAliens.map((a) => {
                     if (a.id === alien.id) {
@@ -495,12 +459,11 @@ function GameNavigation({ onNavigate, isActive }) {
                   decorativeAliensRef.current = updated;
                   return updated;
                 });
-                break; // Exit alien loop after first hit
+                break;
               }
             }
           }
 
-          // Only add projectile to remaining if it didn't hit anything
           if (!hit) {
             remainingProjectiles.push(proj);
           }
@@ -513,7 +476,6 @@ function GameNavigation({ onNavigate, isActive }) {
         return remainingProjectiles;
       });
 
-      // Check collision between starship and enemies (game over)
       if (!hasNavigatedRef.current) {
         const shipRect = {
           x: shipPosRef.current.x - 20,
@@ -522,7 +484,6 @@ function GameNavigation({ onNavigate, isActive }) {
           height: 30,
         };
 
-        // Check collision with navigation enemies
         for (const enemy of enemies) {
           if (!hitEnemies.has(enemy.id)) {
             const enemyRect = {
@@ -533,27 +494,23 @@ function GameNavigation({ onNavigate, isActive }) {
             };
 
             if (checkCollision(shipRect, enemyRect)) {
-              // Game over - show message and navigate to About
               hasNavigatedRef.current = true;
               setShowGameOver(true);
-              // Create large explosion at ship position
               const gameOverExplosion = createExplosion(shipPosRef.current.x, shipPosRef.current.y, 20, 50);
               if (gameOverExplosion && gameOverExplosion.length > 0) {
                 setExplosions((prev) => [...prev, gameOverExplosion]);
               }
-              // Navigate to About after showing message
               setTimeout(() => {
                 if (onNavigate) {
                   onNavigate('About');
                 }
                 setShowGameOver(false);
-              }, 2000); // Show message for 2 seconds
-              break; // Exit loop after collision detected
+              }, 2000);
+              break;
             }
           }
         }
 
-        // Check collision with decorative aliens (also game over)
         if (!hasNavigatedRef.current) {
           for (const alien of decorativeAliensRef.current) {
             const alienRect = {
@@ -564,28 +521,24 @@ function GameNavigation({ onNavigate, isActive }) {
             };
 
             if (checkCollision(shipRect, alienRect)) {
-              // Game over - show message and navigate to About
               hasNavigatedRef.current = true;
               setShowGameOver(true);
-              // Create large explosion at ship position
               const gameOverExplosion = createExplosion(shipPosRef.current.x, shipPosRef.current.y, 20, 50);
               if (gameOverExplosion && gameOverExplosion.length > 0) {
                 setExplosions((prev) => [...prev, gameOverExplosion]);
               }
-              // Navigate to About after showing message
               setTimeout(() => {
                 if (onNavigate) {
                   onNavigate('About');
                 }
                 setShowGameOver(false);
-              }, 2000); // Show message for 2 seconds
-              break; // Exit loop after collision detected
+              }, 2000);
+              break;
             }
           }
         }
       }
 
-      // Update explosions
       setExplosions((prev) => {
         const updated = prev.map((explosion) => {
           if (Array.isArray(explosion)) {
@@ -596,7 +549,6 @@ function GameNavigation({ onNavigate, isActive }) {
         return updated;
       });
 
-      // Update stars
       setStars((prevStars) => {
         const updated = [...prevStars];
         updateStars(updated, dimensions.height);
@@ -612,14 +564,11 @@ function GameNavigation({ onNavigate, isActive }) {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
-      // Don't clear navigation timeout here - let it complete if navigation is in progress
-      // It will be cleaned up when game mode is reactivated
     };
     }, [isActive, keys, mousePos, shipX, shipY, hitEnemies, enemyHitCounts, decorativeAliens, onNavigate, dimensions, enemies]);
 
   if (!isActive) return null;
 
-  // Ensure dimensions are valid
   const displayWidth = dimensions.width > 0 ? dimensions.width : window.innerWidth;
   const displayHeight = dimensions.height > 0 ? dimensions.height : window.innerHeight;
 
@@ -636,13 +585,12 @@ function GameNavigation({ onNavigate, isActive }) {
           backgroundColor: '#000',
           zIndex: 9998,
           overflow: 'hidden',
-          touchAction: 'none', // Prevent default touch behaviors
+          touchAction: 'none',
           WebkitOverflowScrolling: 'touch',
         }}
       >
       <GameCanvas stars={stars} width={displayWidth} height={displayHeight} />
       
-      {/* Decorative aliens */}
       {decorativeAliens.map((alien) => (
         <DecorativeAlien
           key={alien.id}
@@ -664,9 +612,7 @@ function GameNavigation({ onNavigate, isActive }) {
             isHit={isDestroyed}
             hitCount={hitCount}
             isMobile={isMobile}
-            onHit={() => {
-              // This is now handled in collision detection
-            }}
+            onHit={() => {}}
           />
         );
       })}
@@ -713,8 +659,7 @@ function GameNavigation({ onNavigate, isActive }) {
         <div style={{ color: '#00ffff', marginTop: '5px' }}>Decorative aliens move around for target practice</div>
       </div>
 
-          {/* Game Over Message */}
-          {showGameOver && (
+      {showGameOver && (
             <div
               style={{
                 position: 'absolute',
