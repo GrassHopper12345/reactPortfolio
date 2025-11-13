@@ -1,8 +1,9 @@
 import React from "react";
+import { Button } from "primereact/button";
 import Navi from "../Navi";
 
 function Header(props) {
-    const { currentTab, handleTabChange } = props;
+    const { currentTab, handleTabChange, gameMode, setGameMode } = props;
     return (
         <div>
             <section>
@@ -10,11 +11,20 @@ function Header(props) {
                     <div>
                         <h1>Brian Hopper's Portfolio</h1>
                     </div>
-                    <div>
-                        <Navi
-                            currentTab={currentTab}
-                            handleTabChange={handleTabChange}
-                        ></Navi>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                        <Button
+                            icon={gameMode ? "pi pi-times" : "pi pi-gamepad"}
+                            label={gameMode ? "Exit Game" : "Game Mode"}
+                            onClick={() => setGameMode(!gameMode)}
+                            className="game-mode-toggle"
+                            severity={gameMode ? "danger" : "success"}
+                        />
+                        {!gameMode && (
+                            <Navi
+                                currentTab={currentTab}
+                                handleTabChange={handleTabChange}
+                            />
+                        )}
                     </div>
                 </header>
             </section>

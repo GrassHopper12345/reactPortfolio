@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-
+import { Card } from "primereact/card";
+import { InputText } from "primereact/inputtext";
+import { InputTextarea } from "primereact/inputtextarea";
+import { Button } from "primereact/button";
+import { Message } from "primereact/message";
 import { validateEmail } from "../../utils/helpers"
 
 function Contact() {
@@ -8,14 +12,12 @@ function Contact() {
     const [message, setMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
 
-    const handleInputChange = (e) => {
-        const { target } = e;
-        const inputType = target.name;
-        const inputValue = target.value;
+    const handleInputChange = (e, field) => {
+        const inputValue = e.target.value;
 
-        if (inputType === "email") {
+        if (field === "email") {
             setEmail(inputValue);
-        } else if (inputType === "userName") {
+        } else if (field === "userName") {
             setUserName(inputValue);
         } else {
             setMessage(inputValue);
@@ -37,6 +39,7 @@ function Contact() {
         setUserName("");
         setEmail("");
         setMessage("");
+        setErrorMessage("");
     };
 
     return (
@@ -45,9 +48,9 @@ function Contact() {
                 <h2 className="section-title">Reach Out to Connect</h2>
             </div>
 
-            <div className="cotact-info">
-                <div>
-                    <h3>Hello {userName}</h3>
+            <div className="contact-info">
+                <Card className="contact-info-card">
+                    <h3>Hello {userName || "there"}!</h3>
                     <p>Would you like to Connect?</p>
                     <address>
                         Bossier City, LA <br />
@@ -57,47 +60,57 @@ function Contact() {
                         <a href="mailto://brian.hopper@live.com">brian.hopper@live.com</a>
                     </address>
                     <p><strong>I would love to hear from you!</strong></p>
-                </div>
+                </Card>
 
                 {/* contact form section */}
-                <div className="contact-form">
-                    <h3>Please React Out!</h3>
-                    <form className="form">
-                        <label for="contact-name">Your Name</label>
-                        <input
-                            value={email}
-                            name="email"
-                            onChange={handleInputChange}
-                            type="text"
-                            id="contact-name"
-                            placeholder="Enter your email"
-                        />
+                <Card className="contact-form-card">
+                    <h3>Please Reach Out!</h3>
+                    <form className="form" onSubmit={handleFormSubmit}>
+                        <div className="p-field" style={{ marginBottom: '1rem' }}>
+                            <label htmlFor="contact-name" style={{ display: 'block', marginBottom: '0.5rem' }}>Your Name</label>
+                            <InputText
+                                value={userName}
+                                onChange={(e) => handleInputChange(e, "userName")}
+                                id="contact-name"
+                                placeholder="Enter your name"
+                                className="w-full"
+                            />
+                        </div>
 
-                        <label for="contact-email">Your Email</label>
-                        <input
-                            value={email}
-                            name="email"
-                            onChange={handleInputChange}
-                            type="text"
-                            id="contact-email"
-                            placeholder="Enter your email"
-                        />
+                        <div className="p-field" style={{ marginBottom: '1rem' }}>
+                            <label htmlFor="contact-email" style={{ display: 'block', marginBottom: '0.5rem' }}>Your Email</label>
+                            <InputText
+                                value={email}
+                                onChange={(e) => handleInputChange(e, "email")}
+                                type="email"
+                                id="contact-email"
+                                placeholder="Enter your email"
+                                className="w-full"
+                            />
+                        </div>
 
-                        <label for="contact-message">Your Message</label>
-                        <input
-                            value={message}
-                            name="message"
-                            onChange={handleInputChange}
-                            type="text"
-                            id="contact-message"
-                            placeholder="Enter your message"
+                        <div className="p-field" style={{ marginBottom: '1rem' }}>
+                            <label htmlFor="contact-message" style={{ display: 'block', marginBottom: '0.5rem' }}>Your Message</label>
+                            <InputTextarea
+                                value={message}
+                                onChange={(e) => handleInputChange(e, "message")}
+                                id="contact-message"
+                                placeholder="Enter your message"
+                                rows={5}
+                                className="w-full"
+                            />
+                        </div>
+                        <Button 
+                            type="submit" 
+                            label="Submit" 
+                            icon="pi pi-send"
+                            className="game-themed-button"
                         />
-                        <button type="button" onClick={handleFormSubmit}>Submit</button>
                     </form>
-                </div>
-                {errorMessage && (
-                    <div><p className="error-text">{errorMessage}</p></div>
-                )}
+                    {errorMessage && (
+                        <Message severity="error" text={errorMessage} style={{ marginTop: '1rem' }} />
+                    )}
+                </Card>
             </div>
         </section>
     );

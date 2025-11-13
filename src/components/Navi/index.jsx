@@ -1,31 +1,28 @@
-import React, { useEffect } from "react";
-import { capitalizeFirstLetter } from "../../utils/helpers";
+import React from "react";
+import { Button } from "primereact/button";
 
 function Nav(props) {
-    const {
-        currentTab, handleChange,
-    } = props;
+    const { currentTab, handleTabChange } = props;
 
-    useEffect(() => {
-        document.title = capitalizeFirstLetter(currentTab.name);
-    }, [currentTab]);
+    const navItems = [
+        { id: "About", label: "About" },
+        { id: "Portfolio", label: "Portfolio" },
+        { id: "Contact", label: "Contact" },
+        { id: "Resume", label: "Resume" },
+    ];
 
     return (
-        <nav>
-            <ul className="nav nav-tabs">
-                <li className="nav-item">
-                    <a href="#about" onClick={() => props.handleTabChange("About")} className={currentTab === "About" ? "nav-link active" : "nav-link"}>About</a>
-                </li>
-                <li className="nav-item">
-                    <a href="#portfolio" onClick={() => props.handleTabChange("Portfolio")} className={currentTab === "Portfolio" ? "nav-link active" : "nav-link"}>Portfolio</a>
-                </li>
-                <li className="nav-link">
-                    <a href="#contact" onClick={() => props.handleTabChange("Contact")} className={currentTab === "Contact" ? "nav-link active" : "nav-link"}>Contact</a>
-                </li>
-                <li className="nav-item">
-                    <a href="#resume" onClick={() => props.handleTabChange("Resume")} className={currentTab === "Resume" ? "nav-link active" : "nav-link"}>Resume</a>
-                </li>
-            </ul>
+        <nav style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+            {navItems.map((item) => (
+                <Button
+                    key={item.id}
+                    label={item.label}
+                    onClick={() => handleTabChange(item.id)}
+                    className={`nav-button game-themed-button ${currentTab === item.id ? 'active' : ''}`}
+                    severity={currentTab === item.id ? "info" : "secondary"}
+                    outlined={currentTab !== item.id}
+                />
+            ))}
         </nav>
     );
 }
