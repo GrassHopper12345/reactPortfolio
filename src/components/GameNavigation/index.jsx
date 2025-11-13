@@ -216,7 +216,10 @@ function GameNavigation({ onNavigate, isActive }) {
                 if (explosionParticles && explosionParticles.length > 0) {
                   newExplosions.push(explosionParticles);
                 }
-                onNavigate(enemy.id);
+                // Navigate to the section
+                setTimeout(() => {
+                  onNavigate(enemy.id);
+                }, 100); // Small delay to show explosion
               }
             }
           });
@@ -296,7 +299,10 @@ function GameNavigation({ onNavigate, isActive }) {
               if (explosionParticles && explosionParticles.length > 0) {
                 setExplosions((prev) => [...prev, explosionParticles]);
               }
-              onNavigate(enemy.id);
+              // Navigate to the section
+              setTimeout(() => {
+                onNavigate(enemy.id);
+              }, 100); // Small delay to show explosion
             }
           }}
         />

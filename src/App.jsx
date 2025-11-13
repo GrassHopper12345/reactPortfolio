@@ -16,8 +16,8 @@ function App() {
 
   const handleGameNavigate = (section) => {
     handleTabChange(section);
-    // Optionally disable game mode after navigation
-    // setGameMode(false);
+    // Exit game mode after navigation so user can see the content
+    setGameMode(false);
   };
 
   const renderTab = () => {
