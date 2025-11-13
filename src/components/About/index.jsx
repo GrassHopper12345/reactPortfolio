@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "primereact/card";
+import HeroAnimation from "../HeroAnimation";
 import profilePic from "../../assets/profilePic/C9A040E7-5C0C-4033-AA29-BE4741219C99_1_105_c.jpeg"
 
 function About() {
@@ -9,6 +10,7 @@ function About() {
                 <h1 id="about" className="section-title">About Me</h1>
             </div>
             <section className="hero">
+                <HeroAnimation />
                 <div className="hero-cta">
                     <h2>Welcome</h2>
                     <p>Welcome to Brian Hopper's Portfolio utilizing React. Here, you will find the projects and frameworks I have used throughout my Developer Bootcamp program.</p>
