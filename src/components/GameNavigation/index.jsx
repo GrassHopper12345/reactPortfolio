@@ -14,12 +14,26 @@ const PROJECTILE_SPEED = 10;
 
 function GameNavigation({ onNavigate, isActive }) {
   const [dimensions, setDimensions] = useState(getGameDimensions());
-  const initialShipX = dimensions.width / 2;
-  const initialShipY = dimensions.height - 100;
+  
+  // Update dimensions when component mounts or becomes active
+  useEffect(() => {
+    if (isActive) {
+      const newDims = getGameDimensions();
+      setDimensions(newDims);
+    }
+  }, [isActive]);
+
+  const initialShipX = dimensions.width > 0 ? dimensions.width / 2 : window.innerWidth / 2;
+  const initialShipY = dimensions.height > 0 ? dimensions.height - 100 : window.innerHeight - 100;
   const [shipX, setShipX] = useState(initialShipX);
   const [shipY, setShipY] = useState(initialShipY);
   const [projectiles, setProjectiles] = useState([]);
-  const [stars, setStars] = useState(generateStars(100, dimensions.width, dimensions.height));
+  const [stars, setStars] = useState(() => {
+    const dims = dimensions.width > 0 && dimensions.height > 0 
+      ? dimensions 
+      : getGameDimensions();
+    return generateStars(100, dims.width, dims.height);
+  });
   const [explosions, setExplosions] = useState([]);
   const [keys, setKeys] = useState({});
   const [mousePos, setMousePos] = useState({ x: initialShipX, y: initialShipY });
@@ -45,14 +59,38 @@ function GameNavigation({ onNavigate, isActive }) {
   }, []);
 
   const [hitEnemies, setHitEnemies] = useState(new Set());
+  const navigationTimeoutRef = useRef(null);
+  const hasNavigatedRef = useRef(false);
+
+  // Reset hit enemies when game mode is activated
+  useEffect(() => {
+    if (isActive) {
+      setHitEnemies(new Set());
+      setProjectiles([]);
+      setExplosions([]);
+      hasNavigatedRef.current = false;
+      // Clear any pending navigation timeouts
+      if (navigationTimeoutRef.current) {
+        clearTimeout(navigationTimeoutRef.current);
+        navigationTimeoutRef.current = null;
+      }
+    }
+    // Don't clear timeout when deactivating - let navigation complete
+    // hasNavigatedRef will be reset when game mode is reactivated
+  }, [isActive]);
 
   // Navigation enemies configuration - recalculate on dimension changes
-  const enemies = React.useMemo(() => [
-    { id: 'About', label: 'About', x: dimensions.width * 0.2, y: 100 },
-    { id: 'Portfolio', label: 'Portfolio', x: dimensions.width * 0.4, y: 100 },
-    { id: 'Contact', label: 'Contact', x: dimensions.width * 0.6, y: 100 },
-    { id: 'Resume', label: 'Resume', x: dimensions.width * 0.8, y: 100 },
-  ], [dimensions]);
+  const enemies = React.useMemo(() => {
+    if (dimensions.width === 0 || dimensions.height === 0) {
+      return [];
+    }
+    return [
+      { id: 'About', label: 'About', x: dimensions.width * 0.2, y: 100 },
+      { id: 'Portfolio', label: 'Portfolio', x: dimensions.width * 0.4, y: 100 },
+      { id: 'Contact', label: 'Contact', x: dimensions.width * 0.6, y: 100 },
+      { id: 'Resume', label: 'Resume', x: dimensions.width * 0.8, y: 100 },
+    ];
+  }, [dimensions]);
 
   // Handle keyboard input
   useEffect(() => {
@@ -216,10 +254,21 @@ function GameNavigation({ onNavigate, isActive }) {
                 if (explosionParticles && explosionParticles.length > 0) {
                   newExplosions.push(explosionParticles);
                 }
-                // Navigate to the section
-                setTimeout(() => {
-                  onNavigate(enemy.id);
-                }, 100); // Small delay to show explosion
+                // Navigate to the section only if we haven't navigated yet
+                if (!hasNavigatedRef.current) {
+                  hasNavigatedRef.current = true;
+                  // Clear any existing timeout
+                  if (navigationTimeoutRef.current) {
+                    clearTimeout(navigationTimeoutRef.current);
+                  }
+                  // Navigate to the section - use a small delay to show explosion
+                  navigationTimeoutRef.current = setTimeout(() => {
+                    if (onNavigate) {
+                      onNavigate(enemy.id);
+                    }
+                    navigationTimeoutRef.current = null;
+                  }, 150); // Small delay to show explosion
+                }
               }
             }
           });
@@ -263,10 +312,16 @@ function GameNavigation({ onNavigate, isActive }) {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
+      // Don't clear navigation timeout here - let it complete if navigation is in progress
+      // It will be cleaned up when game mode is reactivated
     };
     }, [isActive, keys, mousePos, shipX, shipY, hitEnemies, onNavigate, dimensions]);
 
   if (!isActive) return null;
+
+  // Ensure dimensions are valid
+  const displayWidth = dimensions.width > 0 ? dimensions.width : window.innerWidth;
+  const displayHeight = dimensions.height > 0 ? dimensions.height : window.innerHeight;
 
   return (
     <div
@@ -283,7 +338,7 @@ function GameNavigation({ onNavigate, isActive }) {
         overflow: 'hidden',
       }}
     >
-      <GameCanvas stars={stars} width={dimensions.width} height={dimensions.height} />
+      <GameCanvas stars={stars} width={displayWidth} height={displayHeight} />
       
       {enemies.map((enemy) => (
         <Enemy
@@ -293,16 +348,25 @@ function GameNavigation({ onNavigate, isActive }) {
           label={enemy.label}
           isHit={hitEnemies.has(enemy.id)}
           onHit={() => {
-            if (!hitEnemies.has(enemy.id)) {
+            if (!hitEnemies.has(enemy.id) && !hasNavigatedRef.current) {
               setHitEnemies((prev) => new Set([...prev, enemy.id]));
               const explosionParticles = createExplosion(enemy.x, enemy.y);
               if (explosionParticles && explosionParticles.length > 0) {
                 setExplosions((prev) => [...prev, explosionParticles]);
               }
-              // Navigate to the section
-              setTimeout(() => {
-                onNavigate(enemy.id);
-              }, 100); // Small delay to show explosion
+              // Navigate to the section only if we haven't navigated yet
+              hasNavigatedRef.current = true;
+              // Clear any existing timeout
+              if (navigationTimeoutRef.current) {
+                clearTimeout(navigationTimeoutRef.current);
+              }
+              // Navigate to the section - use a small delay to show explosion
+              navigationTimeoutRef.current = setTimeout(() => {
+                if (onNavigate) {
+                  onNavigate(enemy.id);
+                }
+                navigationTimeoutRef.current = null;
+              }, 150); // Small delay to show explosion
             }
           }}
         />
