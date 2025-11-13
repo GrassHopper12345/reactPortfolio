@@ -8,6 +8,67 @@ import { GrTechnology } from "react-icons/gr";
 import { GrDocumentPerformance } from "react-icons/gr";
 import ResumeSS from "../../assets/files/ResumeSS.png";
 
+const proficiencies = {
+    frontEnd: [
+        "HTML5",
+        "CSS3",
+        "Javascript",
+        "ES5-ES7",
+        "React",
+        "RESTful APIs",
+        "Materialize",
+        "Bootstrap",
+        "Handlebars"
+    ],
+    backEnd: [
+        "Node.js",
+        "Express",
+        "Object-Relation--Mapping",
+        "Object-Oriented Programming",
+        "Sequelize",
+        "Jest",
+        "Json Web Tokens (JWT)",
+        "Bcrypt",
+        "Model-View-Controller",
+        "Web-Pack"
+    ],
+    performance: [
+        "MERN Stack",
+        "MongoDB",
+        "Mongoose",
+        "NoSQL",
+        "GraphQL",
+        "Apollo",
+        "State Management",
+        "Progressive Web Apps",
+        "Git Version Control"
+    ]
+};
+
+const ProficiencyCard = ({ title, items, icon: Icon }) => (
+    <Card className="resume-column" title={title}>
+        <div className="column-text">
+            <div style={{ fontSize: '1.5rem', marginBottom: '0.75rem', color: 'var(--neon-cyan)', textAlign: 'center' }}>
+                <Icon />
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+                {items.map((item, index) => (
+                    <div 
+                        key={index}
+                        style={{ 
+                            color: 'var(--neon-cyan)', 
+                            paddingLeft: '1rem',
+                            marginBottom: index === items.length - 1 ? 0 : '0.4rem'
+                        }}
+                    >
+                        {item}
+                    </div>
+                ))}
+            </div>
+        </div>
+    </Card>
+);
+
 function ResumeFunction() {
     return (
         <div>
@@ -34,57 +95,21 @@ function ResumeFunction() {
                 </div>
             </section>
             <section className="resume-body" id="home-page-body" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(300px, 1fr))', gap: '2rem', padding: '0.5rem 2rem 8rem 2rem', maxWidth: '1400px', margin: '0 auto', justifyContent: 'center', alignItems: 'start' }}>
-                <Card className="resume-column" title="Front-End Frameworks">
-                    <div className="column-text">
-                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginBottom: 0 }}>
-                            <li className="logo" style={{ fontSize: '1.5rem', marginBottom: '0.75rem', color: 'var(--neon-cyan)', textAlign: 'center' }}><MdFoundation /></li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>HTML5</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>CSS3</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Javascript</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>ES5-ES7</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>React</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>RESTful APIs</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Materialize</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Bootstrap</li>
-                            <li style={{ marginBottom: 0, color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Handlebars</li>
-                        </ul>
-                    </div>
-                </Card>
-
-                <Card className="resume-column" title="Back-End Frameworks">
-                    <div className="column-text">
-                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginBottom: 0 }}>
-                            <li className="logo" style={{ fontSize: '1.5rem', marginBottom: '0.75rem', color: 'var(--neon-cyan)', textAlign: 'center' }}><GrTechnology /></li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Node.js</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Express</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Object-Relation--Mapping</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Object-Oriented Programming</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Sequelize</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Jest</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Json Web Tokens (JWT)</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Bcrypt</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Model-View-Controller</li>
-                            <li style={{ marginBottom: 0, color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Web-Pack</li>
-                        </ul>
-                    </div>
-                </Card>
-
-                <Card className="resume-column" title="Performance Frameworks">
-                    <div className="column-text">
-                        <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginBottom: 0 }}>
-                            <li className="logo" style={{ fontSize: '1.5rem', marginBottom: '0.75rem', color: 'var(--neon-cyan)', textAlign: 'center' }}><GrDocumentPerformance /></li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>MERN Stack</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>MongoDB</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Mongoose</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>NoSQL</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>GraphQL</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Apollo</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>State Management</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Progressive Web Apps</li>
-                            <li style={{ marginBottom: 0, color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Git Version Control</li>
-                        </ul>
-                    </div>
-                </Card>
+                <ProficiencyCard 
+                    title="Front-End Frameworks" 
+                    items={proficiencies.frontEnd} 
+                    icon={MdFoundation} 
+                />
+                <ProficiencyCard 
+                    title="Back-End Frameworks" 
+                    items={proficiencies.backEnd} 
+                    icon={GrTechnology} 
+                />
+                <ProficiencyCard 
+                    title="Performance Frameworks" 
+                    items={proficiencies.performance} 
+                    icon={GrDocumentPerformance} 
+                />
             </section>
         </div>
     );
