@@ -292,10 +292,14 @@ header nav ul li a:hover {
 
 .contact-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: stretch;
   flex-wrap: wrap;
   gap: 2rem;
   padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .contact-form {
@@ -310,55 +314,57 @@ header nav ul li a:hover {
 }
 
 .contact-form input,
-.contact-form textarea {
-  border: 1px solid var(--neon-cyan);
+.contact-form textarea,
+.contact-form-card input,
+.contact-form-card textarea {
+  border: 1px solid var(--neon-cyan) !important;
   display: block;
   padding: 7px 15px;
   font-size: 16px;
-  color: var(--neon-cyan);
+  color: var(--neon-cyan) !important;
   width: 100%;
   margin-bottom: 15px;
   margin-top: 5px;
   border-radius: 10px;
-  background-color: var(--space-dark);
-  box-shadow: 0 0 5px rgba(0, 255, 255, 0.2);
+  background-color: var(--space-dark) !important;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.2) !important;
 }
 
 
 .contact-form input:focus,
-.contact-form textarea:focus {
-  background-color: var(--space-darker);
-  border-color: var(--neon-green);
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
-  outline: none;
+.contact-form textarea:focus,
+.contact-form-card input:focus,
+.contact-form-card textarea:focus {
+  background-color: var(--space-darker) !important;
+  border-color: var(--neon-green) !important;
+  box-shadow: 0 0 10px rgba(0, 255, 0, 0.4) !important;
+  outline: none !important;
+  color: var(--neon-cyan) !important;
 }
 
 .contact-form button {
-  width: 100%;
   border: 2px solid var(--neon-green);
   background: var(--space-dark);
   color: var(--neon-green);
   text-align: center;
-  padding: 15px 0;
+  padding: 15px 30px;
   font-size: 25px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
   transition: all 0.3s ease;
+  min-width: 150px;
 }
 
 .contact-info>* {
-  flex: 1;
-  margin: 15px;
+  flex: 0 1 auto;
+  margin: 0;
 }
 
 
 .contact-info div {
-  width: 410px;
-  display: inline-block;
-  vertical-align: top;
+  width: auto;
+  display: block;
   text-align: left;
-  margin: 30px 0 0 60px;
-
 }
 
 .contact-info h3 {

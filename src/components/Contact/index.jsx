@@ -11,6 +11,8 @@ function Contact() {
     const [userName, setUserName] = useState("");
     const [message, setMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleInputChange = (e, field) => {
         const inputValue = e.target.value;
@@ -24,8 +26,10 @@ function Contact() {
         }
     };
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
+        setErrorMessage("");
+        setSuccessMessage("");
 
         if (!validateEmail(email) || !userName) {
             setErrorMessage('Please enter a valid Email or Name!');
@@ -36,10 +40,29 @@ function Contact() {
             setErrorMessage('A message is required!');
             return;
         }
-        setUserName("");
-        setEmail("");
-        setMessage("");
-        setErrorMessage("");
+
+        setIsSubmitting(true);
+
+        // Use mailto: as a reliable fallback that works without any setup
+        const subject = encodeURIComponent(`Portfolio Contact from ${userName}`);
+        const body = encodeURIComponent(
+            `Name: ${userName}\nEmail: ${email}\n\nMessage:\n${message}`
+        );
+        const mailtoLink = `mailto:brian.hopper@live.com?subject=${subject}&body=${body}`;
+        
+        // Open email client
+        window.location.href = mailtoLink;
+        
+        // Show success message
+        setSuccessMessage('Your email client should open. If it doesn\'t, please email brian.hopper@live.com directly.');
+        
+        // Clear form after a short delay
+        setTimeout(() => {
+            setUserName("");
+            setEmail("");
+            setMessage("");
+            setIsSubmitting(false);
+        }, 2000);
     };
 
     return (
@@ -50,16 +73,20 @@ function Contact() {
 
             <div className="contact-info">
                 <Card className="contact-info-card">
-                    <h3>Hello {userName || "there"}!</h3>
-                    <p>Would you like to Connect?</p>
-                    <address>
-                        Bossier City, LA <br />
-                        Phone: <a href="tel:318.773.4013">318.773.4013</a>
-                        <br />
-                        Email:{" "}
-                        <a href="mailto://brian.hopper@live.com">brian.hopper@live.com</a>
-                    </address>
-                    <p><strong>I would love to hear from you!</strong></p>
+                    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between' }}>
+                        <div>
+                            <h3>Hello {userName || "there"}!</h3>
+                            <p>Would you like to Connect?</p>
+                            <address>
+                                Bossier City, LA <br />
+                                Phone: <a href="tel:318.773.4013">318.773.4013</a>
+                                <br />
+                                Email:{" "}
+                                <a href="mailto://brian.hopper@live.com">brian.hopper@live.com</a>
+                            </address>
+                        </div>
+                        <p style={{ marginTop: 'auto' }}><strong>I would love to hear from you!</strong></p>
+                    </div>
                 </Card>
 
                 {/* contact form section */}
@@ -100,15 +127,22 @@ function Contact() {
                                 className="w-full"
                             />
                         </div>
-                        <Button 
-                            type="submit" 
-                            label="Submit" 
-                            icon="pi pi-send"
-                            className="game-themed-button"
-                        />
+                        <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '1rem', paddingBottom: '1rem' }}>
+                            <Button 
+                                type="submit" 
+                                label="Submit" 
+                                icon="pi pi-send"
+                                className="game-themed-button"
+                                loading={isSubmitting}
+                                disabled={isSubmitting}
+                            />
+                        </div>
                     </form>
                     {errorMessage && (
                         <Message severity="error" text={errorMessage} style={{ marginTop: '1rem' }} />
+                    )}
+                    {successMessage && (
+                        <Message severity="success" text={successMessage} style={{ marginTop: '1rem' }} />
                     )}
                 </Card>
             </div>
