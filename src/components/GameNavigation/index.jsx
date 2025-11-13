@@ -184,7 +184,7 @@ function GameNavigation({ onNavigate, isActive }) {
       return [];
     }
     const isSmallScreen = dimensions.width <= 768;
-    const baseY = isSmallScreen ? 100 : 180;
+    const baseY = isSmallScreen ? 150 : 180;
     if (isSmallScreen) {
       // Position enemies at the top in a horizontal row on mobile/tablet
       const spacing = dimensions.width / 5;
