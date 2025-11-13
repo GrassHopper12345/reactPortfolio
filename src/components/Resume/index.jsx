@@ -47,13 +47,14 @@ const proficiencies = {
 const ProficiencyCard = ({ title, items, icon: Icon }) => (
     <Card className="resume-column" title={title}>
         <div className="column-text">
-            <div style={{ fontSize: '1.5rem', marginBottom: '0.75rem', color: 'var(--neon-cyan)', textAlign: 'center' }}>
+            <div className="resume-icon" style={{ fontSize: '1.5rem', marginBottom: '0.75rem', color: 'var(--neon-cyan)', textAlign: 'center' }}>
                 <Icon />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                 {items.map((item, index) => (
                     <div 
                         key={index}
+                        className="resume-item"
                         style={{ 
                             color: 'var(--neon-cyan)', 
                             paddingLeft: '1rem',
