@@ -3,7 +3,7 @@ import React from 'react';
 function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
   const healthPercent = Math.max(0, (10 - hitCount) / 10);
   const healthColor = healthPercent > 0.5 ? '#00ff00' : healthPercent > 0.25 ? '#ffff00' : '#ff0000';
-  const size = isMobile ? { width: '60px', height: '45px' } : { width: '80px', height: '60px' };
+  const size = isMobile ? { width: '40px', height: '30px' } : { width: '80px', height: '60px' };
   
   return (
     <div
@@ -63,22 +63,22 @@ function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
         <div
           style={{
             display: 'flex',
-            gap: '15px',
-            marginTop: '-10px',
+            gap: isMobile ? '8px' : '15px',
+            marginTop: isMobile ? '-5px' : '-10px',
           }}
         >
           <div
             style={{
-              width: '12px',
-              height: '12px',
+              width: isMobile ? '8px' : '12px',
+              height: isMobile ? '8px' : '12px',
               backgroundColor: '#000',
               borderRadius: '50%',
             }}
           />
           <div
             style={{
-              width: '12px',
-              height: '12px',
+              width: isMobile ? '8px' : '12px',
+              height: isMobile ? '8px' : '12px',
               backgroundColor: '#000',
               borderRadius: '50%',
             }}
@@ -87,11 +87,11 @@ function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
         <div
           style={{
             position: 'absolute',
-            bottom: '-25px',
+            bottom: isMobile ? '-18px' : '-25px',
             left: '50%',
             transform: 'translateX(-50%)',
             color: '#fff',
-            fontSize: '12px',
+            fontSize: isMobile ? '9px' : '12px',
             fontWeight: 'bold',
             textShadow: '0 0 5px #000',
             whiteSpace: 'nowrap',

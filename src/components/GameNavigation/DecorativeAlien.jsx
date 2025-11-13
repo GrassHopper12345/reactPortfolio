@@ -1,6 +1,6 @@
 import React from 'react';
 
-function DecorativeAlien({ x, y, variant = 0 }) {
+function DecorativeAlien({ x, y, variant = 0, isMobile = false }) {
   const colors = [
     { bg: '#ff6666', border: '#ff0000', glow: '#ff4444' },
     { bg: '#ffaa00', border: '#ff8800', glow: '#ff9900' },
@@ -8,6 +8,7 @@ function DecorativeAlien({ x, y, variant = 0 }) {
   ];
   
   const color = colors[variant % colors.length];
+  const size = isMobile ? { width: '40px', height: '30px' } : { width: '60px', height: '45px' };
   
   return (
     <div
@@ -16,42 +17,40 @@ function DecorativeAlien({ x, y, variant = 0 }) {
         left: `${x}px`,
         top: `${y}px`,
         transform: 'translate(-50%, -50%)',
-        width: '60px',
-        height: '45px',
+        ...size,
         zIndex: 30,
       }}
     >
       <div
         style={{
-          width: '60px',
-          height: '45px',
+          ...size,
           backgroundColor: color.bg,
-          borderRadius: '8px',
+          borderRadius: isMobile ? '6px' : '8px',
           border: `2px solid ${color.border}`,
-          boxShadow: `0 0 15px ${color.glow}, inset 0 0 15px rgba(255, 255, 255, 0.3)`,
+          boxShadow: `0 0 ${isMobile ? '10px' : '15px'} ${color.glow}, inset 0 0 ${isMobile ? '10px' : '15px'} rgba(255, 255, 255, 0.3)`,
           position: 'relative',
         }}
       >
         <div
           style={{
             display: 'flex',
-            gap: '12px',
+            gap: isMobile ? '8px' : '12px',
             justifyContent: 'center',
-            marginTop: '8px',
+            marginTop: isMobile ? '5px' : '8px',
           }}
         >
           <div
             style={{
-              width: '10px',
-              height: '10px',
+              width: isMobile ? '7px' : '10px',
+              height: isMobile ? '7px' : '10px',
               backgroundColor: '#000',
               borderRadius: '50%',
             }}
           />
           <div
             style={{
-              width: '10px',
-              height: '10px',
+              width: isMobile ? '7px' : '10px',
+              height: isMobile ? '7px' : '10px',
               backgroundColor: '#000',
               borderRadius: '50%',
             }}
@@ -60,13 +59,13 @@ function DecorativeAlien({ x, y, variant = 0 }) {
         <div
           style={{
             position: 'absolute',
-            bottom: '8px',
+            bottom: isMobile ? '5px' : '8px',
             left: '50%',
             transform: 'translateX(-50%)',
-            width: '30px',
-            height: '8px',
+            width: isMobile ? '20px' : '30px',
+            height: isMobile ? '5px' : '8px',
             backgroundColor: color.border,
-            borderRadius: '4px',
+            borderRadius: isMobile ? '3px' : '4px',
           }}
         />
       </div>

@@ -107,13 +107,19 @@ function GameNavigation({ onNavigate, isActive }) {
       targetAlienCountRef.current = targetCount;
       
       setDecorativeAliens((prevAliens) => {
+        const isSmallScreen = dimensions.width <= 768;
+        // On small screens, keep decorative aliens below the top navigation area (below 200px)
+        const minY = isSmallScreen ? 200 : dimensions.height * 0.2;
+        const maxY = dimensions.height * 0.8;
+        const availableHeight = maxY - minY;
+        
         if (prevAliens.length === 0) {
           const aliens = [];
           for (let i = 0; i < targetCount; i++) {
             aliens.push({
               id: `decorative-${i}`,
               x: Math.random() * dimensions.width,
-              y: Math.random() * (dimensions.height * 0.6) + dimensions.height * 0.2,
+              y: Math.random() * availableHeight + minY,
               vx: (Math.random() - 0.5) * 2,
               vy: (Math.random() - 0.5) * 1.5,
               variant: Math.floor(Math.random() * 3),
@@ -129,7 +135,7 @@ function GameNavigation({ onNavigate, isActive }) {
             newAliens.push({
               id: `decorative-${Date.now()}-${i}`,
               x: Math.random() * dimensions.width,
-              y: Math.random() * (dimensions.height * 0.6) + dimensions.height * 0.2,
+              y: Math.random() * availableHeight + minY,
               vx: (Math.random() - 0.5) * 2,
               vy: (Math.random() - 0.5) * 1.5,
               variant: Math.floor(Math.random() * 3),
@@ -178,13 +184,15 @@ function GameNavigation({ onNavigate, isActive }) {
       return [];
     }
     const isSmallScreen = dimensions.width <= 768;
-    const baseY = isSmallScreen ? dimensions.height * 0.25 : 180;
+    const baseY = isSmallScreen ? 100 : 180;
     if (isSmallScreen) {
+      // Position enemies at the top in a horizontal row on mobile/tablet
+      const spacing = dimensions.width / 5;
       return [
-        { id: 'About', label: 'About', x: dimensions.width * 0.5, y: baseY },
-        { id: 'Portfolio', label: 'Portfolio', x: dimensions.width * 0.5, y: baseY + 80 },
-        { id: 'Contact', label: 'Contact', x: dimensions.width * 0.5, y: baseY + 160 },
-        { id: 'Resume', label: 'Resume', x: dimensions.width * 0.5, y: baseY + 240 },
+        { id: 'About', label: 'About', x: spacing, y: baseY },
+        { id: 'Portfolio', label: 'Portfolio', x: spacing * 2, y: baseY },
+        { id: 'Contact', label: 'Contact', x: spacing * 3, y: baseY },
+        { id: 'Resume', label: 'Resume', x: spacing * 4, y: baseY },
       ];
     }
     return [
@@ -426,9 +434,12 @@ function GameNavigation({ onNavigate, isActive }) {
             newVx = -newVx;
             newX = clamp(newX, 30, dimensions.width - 30);
           }
-          if (newY < 100 || newY > dimensions.height - 100) {
+          const isSmallScreen = dimensions.width <= 768;
+          const minY = isSmallScreen ? 200 : 100;
+          const maxY = dimensions.height - 100;
+          if (newY < minY || newY > maxY) {
             newVy = -newVy;
-            newY = clamp(newY, 100, dimensions.height - 100);
+            newY = clamp(newY, minY, maxY);
           }
 
           return {
@@ -486,11 +497,13 @@ function GameNavigation({ onNavigate, isActive }) {
                 width: 4,
                 height: 12,
               };
+              const isSmallScreen = dimensions.width <= 768;
+              const enemySize = isSmallScreen ? { width: 40, height: 30 } : { width: 80, height: 60 };
               const enemyRect = {
-                x: enemy.x - 40,
-                y: enemy.y - 30,
-                width: 80,
-                height: 60,
+                x: enemy.x - enemySize.width / 2,
+                y: enemy.y - enemySize.height / 2,
+                width: enemySize.width,
+                height: enemySize.height,
               };
 
               if (checkCollision(projRect, enemyRect)) {
@@ -545,11 +558,13 @@ function GameNavigation({ onNavigate, isActive }) {
                 width: 4,
                 height: 12,
               };
+              const isSmallScreen = dimensions.width <= 768;
+              const alienSize = isSmallScreen ? { width: 40, height: 30 } : { width: 60, height: 45 };
               const alienRect = {
-                x: alien.x - 30,
-                y: alien.y - 22.5,
-                width: 60,
-                height: 45,
+                x: alien.x - alienSize.width / 2,
+                y: alien.y - alienSize.height / 2,
+                width: alienSize.width,
+                height: alienSize.height,
               };
 
               if (checkCollision(projRect, alienRect)) {
@@ -561,12 +576,16 @@ function GameNavigation({ onNavigate, isActive }) {
                   newExplosions.push(explosionParticles);
                 }
                 setDecorativeAliens((prevAliens) => {
+                  const isSmallScreen = dimensions.width <= 768;
+                  const minY = isSmallScreen ? 200 : dimensions.height * 0.2;
+                  const maxY = dimensions.height * 0.8;
+                  const availableHeight = maxY - minY;
                   const updated = prevAliens.map((a) => {
                     if (a.id === alien.id) {
                       return {
                         ...a,
                         x: Math.random() * dimensions.width,
-                        y: Math.random() * (dimensions.height * 0.6) + dimensions.height * 0.2,
+                        y: Math.random() * availableHeight + minY,
                         vx: (Math.random() - 0.5) * 2,
                         vy: (Math.random() - 0.5) * 1.5,
                       };
@@ -603,11 +622,13 @@ function GameNavigation({ onNavigate, isActive }) {
 
         for (const enemy of enemies) {
           if (!hitEnemies.has(enemy.id)) {
+            const isSmallScreen = dimensions.width <= 768;
+            const enemySize = isSmallScreen ? { width: 40, height: 30 } : { width: 80, height: 60 };
             const enemyRect = {
-              x: enemy.x - 40,
-              y: enemy.y - 30,
-              width: 80,
-              height: 60,
+              x: enemy.x - enemySize.width / 2,
+              y: enemy.y - enemySize.height / 2,
+              width: enemySize.width,
+              height: enemySize.height,
             };
 
             if (checkCollision(shipRect, enemyRect)) {
@@ -629,11 +650,13 @@ function GameNavigation({ onNavigate, isActive }) {
 
         if (!hasNavigatedRef.current && !isGamePaused && gameStarted) {
           for (const alien of decorativeAliensRef.current) {
+            const isSmallScreen = dimensions.width <= 768;
+            const alienSize = isSmallScreen ? { width: 40, height: 30 } : { width: 60, height: 45 };
             const alienRect = {
-              x: alien.x - 30,
-              y: alien.y - 22.5,
-              width: 60,
-              height: 45,
+              x: alien.x - alienSize.width / 2,
+              y: alien.y - alienSize.height / 2,
+              width: alienSize.width,
+              height: alienSize.height,
             };
 
             if (checkCollision(shipRect, alienRect)) {
@@ -718,6 +741,7 @@ function GameNavigation({ onNavigate, isActive }) {
           x={alien.x}
           y={alien.y}
           variant={alien.variant}
+          isMobile={isMobile}
         />
       ))}
       
