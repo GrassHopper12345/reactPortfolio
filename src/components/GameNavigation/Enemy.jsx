@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
-  const healthPercent = Math.max(0, (5 - hitCount) / 5);
+  const healthPercent = Math.max(0, (10 - hitCount) / 10);
   const healthColor = healthPercent > 0.5 ? '#00ff00' : healthPercent > 0.25 ? '#ffff00' : '#ff0000';
   const size = isMobile ? { width: '60px', height: '45px' } : { width: '80px', height: '60px' };
   
@@ -35,7 +35,7 @@ function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
               cursor: 'pointer',
             }}
           >
-        {hitCount > 0 && hitCount < 5 && (
+        {hitCount > 0 && hitCount < 10 && (
           <div
             style={{
               position: 'absolute',
@@ -97,7 +97,7 @@ function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
             whiteSpace: 'nowrap',
           }}
         >
-          {label} {hitCount > 0 && hitCount < 5 && `(${hitCount}/5)`}
+          {label} {hitCount > 0 && hitCount < 10 && `(${hitCount}/10)`}
         </div>
       </div>
     </div>

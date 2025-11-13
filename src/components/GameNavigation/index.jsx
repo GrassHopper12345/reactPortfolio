@@ -78,46 +78,88 @@ function GameNavigation({ onNavigate, isActive }) {
 
   const [hitEnemies, setHitEnemies] = useState(new Set());
   const [enemyHitCounts, setEnemyHitCounts] = useState(new Map());
+  const enemyHitCountsRef = useRef(new Map());
   const [decorativeAliens, setDecorativeAliens] = useState([]);
   const decorativeAliensRef = useRef([]);
   const navigationTimeoutRef = useRef(null);
   const hasNavigatedRef = useRef(false);
+  const processedProjectilesRef = useRef(new Set());
   const [showGameOver, setShowGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [showHighScoreModal, setShowHighScoreModal] = useState(false);
   const [showHighScoreDisplay, setShowHighScoreDisplay] = useState(false);
   const [isGamePaused, setIsGamePaused] = useState(false);
   const [gameStarted, setGameStarted] = useState(false);
+  const [enemyRowOffset, setEnemyRowOffset] = useState(0);
+  const enemyRowDirectionRef = useRef(1);
+
+  const getAlienCount = useCallback((currentScore) => {
+    const baseCount = 8;
+    const additionalCount = Math.floor(currentScore / 5000);
+    return Math.min(baseCount + additionalCount, 20);
+  }, []);
+
+  const targetAlienCountRef = useRef(8);
 
   useEffect(() => {
     if (isActive && dimensions.width > 0 && dimensions.height > 0) {
-      const aliens = [];
-      for (let i = 0; i < 8; i++) {
-        aliens.push({
-          id: `decorative-${i}`,
-          x: Math.random() * dimensions.width,
-          y: Math.random() * (dimensions.height * 0.6) + dimensions.height * 0.2,
-          vx: (Math.random() - 0.5) * 2,
-          vy: (Math.random() - 0.5) * 1.5,
-          variant: Math.floor(Math.random() * 3),
-        });
-      }
-      setDecorativeAliens(aliens);
-      decorativeAliensRef.current = aliens;
+      const targetCount = getAlienCount(score);
+      targetAlienCountRef.current = targetCount;
+      
+      setDecorativeAliens((prevAliens) => {
+        if (prevAliens.length === 0) {
+          const aliens = [];
+          for (let i = 0; i < targetCount; i++) {
+            aliens.push({
+              id: `decorative-${i}`,
+              x: Math.random() * dimensions.width,
+              y: Math.random() * (dimensions.height * 0.6) + dimensions.height * 0.2,
+              vx: (Math.random() - 0.5) * 2,
+              vy: (Math.random() - 0.5) * 1.5,
+              variant: Math.floor(Math.random() * 3),
+            });
+          }
+          decorativeAliensRef.current = aliens;
+          return aliens;
+        }
+        
+        if (prevAliens.length < targetCount) {
+          const newAliens = [...prevAliens];
+          for (let i = prevAliens.length; i < targetCount; i++) {
+            newAliens.push({
+              id: `decorative-${Date.now()}-${i}`,
+              x: Math.random() * dimensions.width,
+              y: Math.random() * (dimensions.height * 0.6) + dimensions.height * 0.2,
+              vx: (Math.random() - 0.5) * 2,
+              vy: (Math.random() - 0.5) * 1.5,
+              variant: Math.floor(Math.random() * 3),
+            });
+          }
+          decorativeAliensRef.current = newAliens;
+          return newAliens;
+        }
+        
+        return prevAliens;
+      });
     }
-  }, [isActive, dimensions]);
+  }, [isActive, dimensions, score, getAlienCount]);
 
   useEffect(() => {
     if (isActive) {
       setHitEnemies(new Set());
       setEnemyHitCounts(new Map());
+      enemyHitCountsRef.current = new Map();
       setProjectiles([]);
       setExplosions([]);
       setShowGameOver(false);
       setScore(0);
       setIsGamePaused(false);
       setGameStarted(false);
+      setEnemyRowOffset(0);
+      enemyRowDirectionRef.current = 1;
       hasNavigatedRef.current = false;
+      processedProjectilesRef.current = new Set();
+      targetAlienCountRef.current = 8;
       const newDims = getGameDimensions();
       const newX = newDims.width / 2;
       const newY = newDims.height - 80;
@@ -136,32 +178,35 @@ function GameNavigation({ onNavigate, isActive }) {
       return [];
     }
     const isSmallScreen = dimensions.width <= 768;
+    const baseY = isSmallScreen ? dimensions.height * 0.25 : 180;
     if (isSmallScreen) {
       return [
-        { id: 'About', label: 'About', x: dimensions.width * 0.5, y: dimensions.height * 0.15 },
-        { id: 'Portfolio', label: 'Portfolio', x: dimensions.width * 0.5, y: dimensions.height * 0.3 },
-        { id: 'Contact', label: 'Contact', x: dimensions.width * 0.5, y: dimensions.height * 0.45 },
-        { id: 'Resume', label: 'Resume', x: dimensions.width * 0.5, y: dimensions.height * 0.6 },
+        { id: 'About', label: 'About', x: dimensions.width * 0.5, y: baseY },
+        { id: 'Portfolio', label: 'Portfolio', x: dimensions.width * 0.5, y: baseY + 80 },
+        { id: 'Contact', label: 'Contact', x: dimensions.width * 0.5, y: baseY + 160 },
+        { id: 'Resume', label: 'Resume', x: dimensions.width * 0.5, y: baseY + 240 },
       ];
     }
     return [
-      { id: 'About', label: 'About', x: dimensions.width * 0.2, y: 100 },
-      { id: 'Portfolio', label: 'Portfolio', x: dimensions.width * 0.4, y: 100 },
-      { id: 'Contact', label: 'Contact', x: dimensions.width * 0.6, y: 100 },
-      { id: 'Resume', label: 'Resume', x: dimensions.width * 0.8, y: 100 },
+      { id: 'About', label: 'About', x: dimensions.width * 0.2 + enemyRowOffset, y: baseY },
+      { id: 'Portfolio', label: 'Portfolio', x: dimensions.width * 0.4 + enemyRowOffset, y: baseY },
+      { id: 'Contact', label: 'Contact', x: dimensions.width * 0.6 + enemyRowOffset, y: baseY },
+      { id: 'Resume', label: 'Resume', x: dimensions.width * 0.8 + enemyRowOffset, y: baseY },
     ];
-  }, [dimensions]);
+  }, [dimensions, enemyRowOffset]);
 
   const shoot = useCallback(() => {
     const currentPos = shipPosRef.current;
+    const newProjId = Date.now() + Math.random();
     setProjectiles((prev) => [
       ...prev,
       {
-        id: Date.now() + Math.random(),
+        id: newProjId,
         x: currentPos.x,
         y: currentPos.y - 20,
       },
     ]);
+    processedProjectilesRef.current.delete(newProjId);
   }, []);
 
   // Handle keyboard input
@@ -293,11 +338,16 @@ function GameNavigation({ onNavigate, isActive }) {
       return;
     }
 
-    const gameLoop = () => {
+    let lastTime = performance.now();
+    const gameLoop = (currentTime) => {
       if (isGamePaused || showHighScoreModal || !gameStarted) {
+        animationFrameRef.current = requestAnimationFrame(gameLoop);
         return;
       }
 
+      const deltaTime = Math.min((currentTime - lastTime) / 16.67, 2);
+      lastTime = currentTime;
+      
       setShipX((prevX) => {
         let newX = prevX;
         if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
@@ -346,11 +396,29 @@ function GameNavigation({ onNavigate, isActive }) {
           .filter((proj) => proj.y > -20)
       );
 
+      let speedMultiplier;
+      if (score <= 10000) {
+        speedMultiplier = 1 + (score / 10000) * 1.5;
+      } else {
+        const excessScore = score - 10000;
+        speedMultiplier = 2.5 + Math.pow(excessScore / 10000, 1.5) * 4;
+      }
+      speedMultiplier = Math.min(speedMultiplier, 8);
+      
+      const variantSpeedMap = {
+        0: 1.8,
+        1: 1.2,
+        2: 0.7,
+      };
+
       setDecorativeAliens((prevAliens) => {
         if (prevAliens.length === 0) return prevAliens;
         const updated = prevAliens.map((alien) => {
-          let newX = alien.x + alien.vx;
-          let newY = alien.y + alien.vy;
+          const baseSpeed = variantSpeedMap[alien.variant] || 1.0;
+          const currentSpeed = baseSpeed * speedMultiplier;
+          
+          let newX = alien.x + alien.vx * currentSpeed * deltaTime;
+          let newY = alien.y + alien.vy * currentSpeed * deltaTime;
           let newVx = alien.vx;
           let newVy = alien.vy;
 
@@ -375,11 +443,38 @@ function GameNavigation({ onNavigate, isActive }) {
         return updated;
       });
 
+      if (dimensions.width > 768) {
+        const maxOffset = dimensions.width * 0.12;
+        let rowSpeed;
+        if (score <= 10000) {
+          rowSpeed = 0.4 + (score / 10000) * 1.0;
+        } else {
+          const excessScore = score - 10000;
+          rowSpeed = 1.4 + Math.pow(excessScore / 10000, 1.3) * 2.5;
+        }
+        const baseSpeed = Math.min(rowSpeed, 4.5) * deltaTime;
+        
+        setEnemyRowOffset((prevOffset) => {
+          let newOffset = prevOffset + enemyRowDirectionRef.current * baseSpeed;
+          if (newOffset >= maxOffset || newOffset <= -maxOffset) {
+            enemyRowDirectionRef.current *= -1;
+            newOffset = clamp(newOffset, -maxOffset, maxOffset);
+          }
+          return newOffset;
+        });
+      }
+
       setProjectiles((prevProjectiles) => {
         const remainingProjectiles = [];
         const newExplosions = [];
+        const hitProjectileIds = new Set();
+        const currentHitCounts = new Map(enemyHitCountsRef.current);
 
         for (const proj of prevProjectiles) {
+          if (processedProjectilesRef.current.has(proj.id)) {
+            continue;
+          }
+          
           let hit = false;
           
           for (const enemy of enemies) {
@@ -400,39 +495,41 @@ function GameNavigation({ onNavigate, isActive }) {
 
               if (checkCollision(projRect, enemyRect)) {
                 hit = true;
-                setEnemyHitCounts((prev) => {
-                  const newCounts = new Map(prev);
-                  const currentCount = newCounts.get(enemy.id) || 0;
-                  const newCount = currentCount + 1;
-                  newCounts.set(enemy.id, newCount);
-                  
-                  if (newCount >= 5) {
-                    setHitEnemies((prevHit) => new Set([...prevHit, enemy.id]));
-                    const explosionParticles = createExplosion(enemy.x, enemy.y, 15, 40);
-                    if (explosionParticles && explosionParticles.length > 0) {
-                      newExplosions.push(explosionParticles);
-                    }
-                    if (!hasNavigatedRef.current) {
-                      hasNavigatedRef.current = true;
-                      if (navigationTimeoutRef.current) {
-                        clearTimeout(navigationTimeoutRef.current);
-                      }
-                      navigationTimeoutRef.current = setTimeout(() => {
-                        if (onNavigate) {
-                          onNavigate(enemy.id);
-                        }
-                        navigationTimeoutRef.current = null;
-                      }, 300);
-                    }
-                  } else {
-                    const smallExplosion = createExplosion(enemy.x, enemy.y, 8, 15);
-                    if (smallExplosion && smallExplosion.length > 0) {
-                      newExplosions.push(smallExplosion);
-                    }
+                hitProjectileIds.add(proj.id);
+                processedProjectilesRef.current.add(proj.id);
+                
+                const currentCount = currentHitCounts.get(enemy.id) || 0;
+                const newCount = currentCount + 1;
+                currentHitCounts.set(enemy.id, newCount);
+                enemyHitCountsRef.current.set(enemy.id, newCount);
+                
+                setEnemyHitCounts(new Map(currentHitCounts));
+                
+                if (newCount >= 10) {
+                  setHitEnemies((prevHit) => new Set([...prevHit, enemy.id]));
+                  const explosionParticles = createExplosion(enemy.x, enemy.y, 15, 40);
+                  if (explosionParticles && explosionParticles.length > 0) {
+                    newExplosions.push(explosionParticles);
                   }
-                  
-                  return newCounts;
-                });
+                  if (!hasNavigatedRef.current) {
+                    hasNavigatedRef.current = true;
+                    if (navigationTimeoutRef.current) {
+                      clearTimeout(navigationTimeoutRef.current);
+                    }
+                    navigationTimeoutRef.current = setTimeout(() => {
+                      if (onNavigate) {
+                        onNavigate(enemy.id);
+                      }
+                      navigationTimeoutRef.current = null;
+                    }, 300);
+                  }
+                } else {
+                  const smallExplosion = createExplosion(enemy.x, enemy.y, 8, 15);
+                  if (smallExplosion && smallExplosion.length > 0) {
+                    newExplosions.push(smallExplosion);
+                  }
+                }
+                
                 break;
               }
             }
@@ -457,6 +554,7 @@ function GameNavigation({ onNavigate, isActive }) {
 
               if (checkCollision(projRect, alienRect)) {
                 hit = true;
+                hitProjectileIds.add(proj.id);
                 setScore((prevScore) => prevScore + 100);
                 const explosionParticles = createExplosion(alien.x, alien.y, 10, 20);
                 if (explosionParticles && explosionParticles.length > 0) {
@@ -483,7 +581,7 @@ function GameNavigation({ onNavigate, isActive }) {
             }
           }
 
-          if (!hit) {
+          if (!hit && !hitProjectileIds.has(proj.id)) {
             remainingProjectiles.push(proj);
           }
         }
@@ -720,7 +818,7 @@ function GameNavigation({ onNavigate, isActive }) {
         >
           <div>{isMobile ? 'Touch to Move & Shoot' : 'Use Arrow Keys or Mouse to Move'}</div>
           <div>{isMobile ? 'Touch anywhere to shoot!' : 'Spacebar or Click to Shoot'}</div>
-          <div>Shoot navigation enemies 5 times to navigate!</div>
+          <div>Shoot navigation enemies 10 times to navigate!</div>
           <div style={{ color: '#00ff00', marginTop: '10px', fontSize: isMobile ? '16px' : '18px', fontWeight: 'bold' }}>
             Score: {score.toLocaleString()}
           </div>
