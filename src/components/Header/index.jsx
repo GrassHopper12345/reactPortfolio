@@ -11,7 +11,7 @@ function Header(props) {
                     <div>
                         <h1>Brian Hopper's Portfolio</h1>
                     </div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
                         <Button
                             icon={gameMode ? "pi pi-times" : "pi pi-gamepad"}
                             label={gameMode ? "Exit Game" : "Game Mode"}

@@ -25,7 +25,7 @@ function GameNavigation({ onNavigate, isActive }) {
   }, [isActive]);
 
   const initialShipX = dimensions.width > 0 ? dimensions.width / 2 : window.innerWidth / 2;
-  const initialShipY = dimensions.height > 0 ? dimensions.height - 100 : window.innerHeight - 100;
+  const initialShipY = dimensions.height > 0 ? dimensions.height - 80 : window.innerHeight - 80;
   const [shipX, setShipX] = useState(initialShipX);
   const [shipY, setShipY] = useState(initialShipY);
   const [projectiles, setProjectiles] = useState([]);
@@ -38,9 +38,26 @@ function GameNavigation({ onNavigate, isActive }) {
   const [explosions, setExplosions] = useState([]);
   const [keys, setKeys] = useState({});
   const [mousePos, setMousePos] = useState({ x: initialShipX, y: initialShipY });
+  const [touchPos, setTouchPos] = useState(null); // Track active touch
+  const [isMobile, setIsMobile] = useState(false);
   const gameContainerRef = useRef(null);
   const animationFrameRef = useRef(null);
   const shipPosRef = useRef({ x: initialShipX, y: initialShipY });
+  const lastShootTimeRef = useRef(0);
+  const SHOOT_COOLDOWN = 150; // Milliseconds between shots
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
+        window.innerWidth <= 768 ||
+        ('ontouchstart' in window);
+      setIsMobile(isMobileDevice);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Handle window resize
   useEffect(() => {
@@ -48,7 +65,7 @@ function GameNavigation({ onNavigate, isActive }) {
       const newDims = getGameDimensions();
       setDimensions(newDims);
       const newX = newDims.width / 2;
-      const newY = newDims.height - 100;
+      const newY = newDims.height - 80; // Start at bottom
       setShipX(newX);
       setShipY(newY);
       shipPosRef.current = { x: newX, y: newY };
@@ -96,6 +113,13 @@ function GameNavigation({ onNavigate, isActive }) {
           setExplosions([]);
           setShowGameOver(false);
           hasNavigatedRef.current = false;
+          // Reset starship to bottom of screen
+          const newDims = getGameDimensions();
+          const newX = newDims.width / 2;
+          const newY = newDims.height - 80; // Start at bottom
+          setShipX(newX);
+          setShipY(newY);
+          shipPosRef.current = { x: newX, y: newY };
           // Clear any pending navigation timeouts
           if (navigationTimeoutRef.current) {
             clearTimeout(navigationTimeoutRef.current);
@@ -111,6 +135,17 @@ function GameNavigation({ onNavigate, isActive }) {
     if (dimensions.width === 0 || dimensions.height === 0) {
       return [];
     }
+    // Adjust enemy positions for mobile
+    const isSmallScreen = dimensions.width <= 768;
+    if (isSmallScreen) {
+      // Stack enemies vertically on mobile
+      return [
+        { id: 'About', label: 'About', x: dimensions.width * 0.5, y: dimensions.height * 0.15 },
+        { id: 'Portfolio', label: 'Portfolio', x: dimensions.width * 0.5, y: dimensions.height * 0.3 },
+        { id: 'Contact', label: 'Contact', x: dimensions.width * 0.5, y: dimensions.height * 0.45 },
+        { id: 'Resume', label: 'Resume', x: dimensions.width * 0.5, y: dimensions.height * 0.6 },
+      ];
+    }
     return [
       { id: 'About', label: 'About', x: dimensions.width * 0.2, y: 100 },
       { id: 'Portfolio', label: 'Portfolio', x: dimensions.width * 0.4, y: 100 },
@@ -118,6 +153,20 @@ function GameNavigation({ onNavigate, isActive }) {
       { id: 'Resume', label: 'Resume', x: dimensions.width * 0.8, y: 100 },
     ];
   }, [dimensions]);
+
+  // Shoot projectile - use ref to get current position
+  // Define this BEFORE the useEffect hooks that use it
+  const shoot = useCallback(() => {
+    const currentPos = shipPosRef.current;
+    setProjectiles((prev) => [
+      ...prev,
+      {
+        id: Date.now() + Math.random(),
+        x: currentPos.x,
+        y: currentPos.y - 20,
+      },
+    ]);
+  }, []);
 
   // Handle keyboard input
   useEffect(() => {
@@ -146,11 +195,11 @@ function GameNavigation({ onNavigate, isActive }) {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
     };
-  }, [isActive]);
+  }, [isActive, shoot]);
 
-  // Handle mouse movement
+  // Handle mouse movement (desktop)
   useEffect(() => {
-    if (!isActive) return;
+    if (!isActive || isMobile) return;
 
     const handleMouseMove = (e) => {
       if (gameContainerRef.current) {
@@ -165,7 +214,11 @@ function GameNavigation({ onNavigate, isActive }) {
     const handleClick = (e) => {
       if (isActive) {
         e.preventDefault();
-        shoot();
+        const now = Date.now();
+        if (now - lastShootTimeRef.current > SHOOT_COOLDOWN) {
+          lastShootTimeRef.current = now;
+          shoot();
+        }
       }
     };
 
@@ -176,20 +229,65 @@ function GameNavigation({ onNavigate, isActive }) {
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('click', handleClick);
     };
-  }, [isActive]);
+  }, [isActive, isMobile, shoot]);
 
-  // Shoot projectile - use ref to get current position
-  const shoot = useCallback(() => {
-    const currentPos = shipPosRef.current;
-    setProjectiles((prev) => [
-      ...prev,
-      {
-        id: Date.now() + Math.random(),
-        x: currentPos.x,
-        y: currentPos.y - 20,
-      },
-    ]);
-  }, []);
+  // Handle touch events (mobile/tablet)
+  useEffect(() => {
+    if (!isActive || !isMobile) return;
+
+    const handleTouchStart = (e) => {
+      e.preventDefault();
+      if (gameContainerRef.current && e.touches.length > 0) {
+        const rect = gameContainerRef.current.getBoundingClientRect();
+        const touch = e.touches[0];
+        const touchX = touch.clientX - rect.left;
+        const touchY = touch.clientY - rect.top;
+        
+        setTouchPos({ x: touchX, y: touchY });
+        setMousePos({ x: touchX, y: touchY }); // Use same system as mouse
+        
+        // Shoot on touch
+        const now = Date.now();
+        if (now - lastShootTimeRef.current > SHOOT_COOLDOWN) {
+          lastShootTimeRef.current = now;
+          shoot();
+        }
+      }
+    };
+
+    const handleTouchMove = (e) => {
+      e.preventDefault();
+      if (gameContainerRef.current && e.touches.length > 0) {
+        const rect = gameContainerRef.current.getBoundingClientRect();
+        const touch = e.touches[0];
+        const touchX = touch.clientX - rect.left;
+        const touchY = touch.clientY - rect.top;
+        
+        setTouchPos({ x: touchX, y: touchY });
+        setMousePos({ x: touchX, y: touchY });
+      }
+    };
+
+    const handleTouchEnd = (e) => {
+      e.preventDefault();
+      setTouchPos(null);
+    };
+
+    const container = gameContainerRef.current;
+    if (container) {
+      container.addEventListener('touchstart', handleTouchStart, { passive: false });
+      container.addEventListener('touchmove', handleTouchMove, { passive: false });
+      container.addEventListener('touchend', handleTouchEnd, { passive: false });
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener('touchstart', handleTouchStart);
+        container.removeEventListener('touchmove', handleTouchMove);
+        container.removeEventListener('touchend', handleTouchEnd);
+      }
+    };
+  }, [isActive, isMobile, shoot]);
 
   // Game loop
   useEffect(() => {
@@ -212,14 +310,14 @@ function GameNavigation({ onNavigate, isActive }) {
         }
         if (keys['ArrowUp'] || keys['w'] || keys['W']) {
           setShipY((prevY) => {
-            const newY = clamp(prevY - SHIP_SPEED, 50, dimensions.height - 50);
+            const newY = clamp(prevY - SHIP_SPEED, 50, dimensions.height - 80);
             shipPosRef.current.y = newY;
             return newY;
           });
         }
         if (keys['ArrowDown'] || keys['s'] || keys['S']) {
           setShipY((prevY) => {
-            const newY = clamp(prevY + SHIP_SPEED, 50, dimensions.height - 50);
+            const newY = clamp(prevY + SHIP_SPEED, 50, dimensions.height - 80);
             shipPosRef.current.y = newY;
             return newY;
           });
@@ -235,7 +333,7 @@ function GameNavigation({ onNavigate, isActive }) {
 
       setShipY((prevY) => {
         if (!keys['ArrowUp'] && !keys['ArrowDown'] && !keys['w'] && !keys['W'] && !keys['s'] && !keys['S']) {
-          const newY = prevY + (mousePos.y - prevY) * 0.1;
+          const newY = clamp(prevY + (mousePos.y - prevY) * 0.1, 50, dimensions.height - 80);
           shipPosRef.current.y = newY;
           return newY;
         }
@@ -526,20 +624,22 @@ function GameNavigation({ onNavigate, isActive }) {
   const displayHeight = dimensions.height > 0 ? dimensions.height : window.innerHeight;
 
   return (
-    <div
-      ref={gameContainerRef}
-      className="game-navigation"
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: '#000',
-        zIndex: 9998,
-        overflow: 'hidden',
-      }}
-    >
+      <div
+        ref={gameContainerRef}
+        className="game-navigation"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100vw',
+          height: '100vh',
+          backgroundColor: '#000',
+          zIndex: 9998,
+          overflow: 'hidden',
+          touchAction: 'none', // Prevent default touch behaviors
+          WebkitOverflowScrolling: 'touch',
+        }}
+      >
       <GameCanvas stars={stars} width={displayWidth} height={displayHeight} />
       
       {/* Decorative aliens */}
@@ -563,6 +663,7 @@ function GameNavigation({ onNavigate, isActive }) {
             label={enemy.label}
             isHit={isDestroyed}
             hitCount={hitCount}
+            isMobile={isMobile}
             onHit={() => {
               // This is now handled in collision detection
             }}
@@ -594,22 +695,23 @@ function GameNavigation({ onNavigate, isActive }) {
         />
       ))}
 
-          <div
-            style={{
-              position: 'absolute',
-              top: '20px',
-              left: '20px',
-              color: '#fff',
-              fontSize: '16px',
-              zIndex: 10000,
-              textShadow: '0 0 5px #000',
-            }}
-          >
-            <div>Use Arrow Keys or Mouse to Move</div>
-            <div>Spacebar or Click to Shoot</div>
-            <div>Shoot navigation enemies 5 times to navigate!</div>
-            <div style={{ color: '#00ffff', marginTop: '5px' }}>Decorative aliens move around for target practice</div>
-          </div>
+      <div
+        style={{
+          position: 'absolute',
+          top: '20px',
+          left: '20px',
+          color: '#fff',
+          fontSize: isMobile ? '14px' : '16px',
+          zIndex: 10000,
+          textShadow: '0 0 5px #000',
+          maxWidth: isMobile ? '90%' : 'auto',
+        }}
+      >
+        <div>{isMobile ? 'Touch to Move & Shoot' : 'Use Arrow Keys or Mouse to Move'}</div>
+        <div>{isMobile ? 'Touch anywhere to shoot!' : 'Spacebar or Click to Shoot'}</div>
+        <div>Shoot navigation enemies 5 times to navigate!</div>
+        <div style={{ color: '#00ffff', marginTop: '5px' }}>Decorative aliens move around for target practice</div>
+      </div>
 
           {/* Game Over Message */}
           {showGameOver && (
@@ -620,13 +722,15 @@ function GameNavigation({ onNavigate, isActive }) {
                 left: '50%',
                 transform: 'translate(-50%, -50%)',
                 color: '#ff0000',
-                fontSize: '72px',
+                fontSize: isMobile ? '48px' : '72px',
                 fontWeight: 'bold',
                 zIndex: 10001,
                 textShadow: 
                   '0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000',
                 animation: 'pulse 0.5s ease-in-out infinite alternate',
                 pointerEvents: 'none',
+                textAlign: 'center',
+                padding: '0 20px',
               }}
             >
               YOU DIED

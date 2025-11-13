@@ -1,9 +1,10 @@
 import React from 'react';
 
-function Enemy({ x, y, label, isHit, hitCount = 0, onHit }) {
+function Enemy({ x, y, label, isHit, hitCount = 0, onHit, isMobile = false }) {
   // Calculate health percentage (5 hits = 100%)
   const healthPercent = Math.max(0, (5 - hitCount) / 5);
   const healthColor = healthPercent > 0.5 ? '#00ff00' : healthPercent > 0.25 ? '#ffff00' : '#ff0000';
+  const size = isMobile ? { width: '60px', height: '45px' } : { width: '80px', height: '60px' };
   
   return (
     <div
@@ -13,30 +14,29 @@ function Enemy({ x, y, label, isHit, hitCount = 0, onHit }) {
         left: `${x}px`,
         top: `${y}px`,
         transform: 'translate(-50%, -50%)',
-        width: '80px',
-        height: '60px',
+        ...size,
         zIndex: 50,
         opacity: isHit ? 0 : 1,
         transition: isHit ? 'opacity 0.3s' : 'none',
+        touchAction: 'none',
       }}
       onClick={onHit}
     >
-      {/* Alien/enemy shape */}
-      <div
-        style={{
-          width: '80px',
-          height: '60px',
-          backgroundColor: '#ff4444',
-          borderRadius: '10px',
-          border: '3px solid #ff0000',
-          boxShadow: '0 0 20px #ff4444, inset 0 0 20px rgba(255, 0, 0, 0.5)',
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-        }}
-      >
+          {/* Alien/enemy shape */}
+          <div
+            style={{
+              ...size,
+              backgroundColor: '#ff4444',
+              borderRadius: '10px',
+              border: '3px solid #ff0000',
+              boxShadow: '0 0 20px #ff4444, inset 0 0 20px rgba(255, 0, 0, 0.5)',
+              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+            }}
+          >
         {/* Health bar */}
         {hitCount > 0 && hitCount < 5 && (
           <div

@@ -49,28 +49,31 @@ code {
     monospace;
 }
 
-header {
-  padding: 20px 35px;
-  background: linear-gradient(135deg, var(--space-dark) 0%, var(--space-darker) 100%);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  border-bottom: 2px solid var(--neon-cyan);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-  z-index: 9999;
-}
+    header {
+      padding: 15px 20px;
+      background: linear-gradient(135deg, var(--space-dark) 0%, var(--space-darker) 100%);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      border-bottom: 2px solid var(--neon-cyan);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+      z-index: 9999;
+      gap: 10px;
+    }
 
-header h1 {
-  font-weight: bold;
-  margin: 0;
-  font-size: 36px;
-  color: var(--neon-green);
-  text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
-}
+    header h1 {
+      font-weight: bold;
+      margin: 0;
+      font-size: clamp(20px, 5vw, 36px);
+      color: var(--neon-green);
+      text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+      flex: 1;
+      min-width: 0;
+    }
 
 
 
@@ -700,16 +703,17 @@ footer a:hover {
 
 
 /* extra titles stylings */
-.section-title {
-  font-size: 48px;
-  color: var(--neon-green);
-  border-bottom: 3px solid var(--neon-cyan);
-  padding-bottom: 20px;
-  text-align: center;
-  margin: 0 auto 35px auto;
-  width: 50%;
-  text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
-}
+    .section-title {
+      font-size: clamp(28px, 6vw, 48px);
+      color: var(--neon-green);
+      border-bottom: 3px solid var(--neon-cyan);
+      padding-bottom: 20px;
+      text-align: center;
+      margin: 0 auto 35px auto;
+      width: 90%;
+      max-width: 600px;
+      text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+    }
 
 .primary-border {
   border-color: #959898;
@@ -804,9 +808,30 @@ label {
 }
 
 @media screen and (max-width: 768px) {
-  /* section {
-    padding: 30px 15px;
-  } */
+  header {
+    padding: 10px 12px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  header > div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .hero {
+    height: 300px;
+  }
+
+  .hero-cta h2 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+  }
+
+  .hero-cta p {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    padding: 0 15px;
+  }
 
   .job h3 {
     flex: 1 100%;
@@ -828,7 +853,7 @@ label {
   }
 
   .job-img {
-    margin-right: 100px;
+    margin-right: 0;
   }
 
   .job-text {
@@ -839,52 +864,99 @@ label {
     display: block;
     justify-content: space-around;
     flex-wrap: wrap;
+  }
 
+  .contact-info {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .introInfo p {
+    padding: 0 15px;
+    font-size: 1rem;
+  }
+
+  #profileImage {
+    max-width: 250px;
   }
 }
 
 @media screen and (max-width: 575px) {
+  header {
+    padding: 8px 10px;
+  }
 
+  header h1 {
+    font-size: clamp(16px, 4vw, 24px);
+  }
 
   .section-title {
     width: 95%;
+    font-size: clamp(20px, 5vw, 28px);
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+  }
+
+  .hero {
+    height: 250px;
   }
 
   .intro p,
   .download-intro p {
     width: 100%;
-    padding: 30px 15px;
+    padding: 20px 15px;
+    font-size: 0.95rem;
   }
 
   .job-img {
-    margin-right: 100px;
+    margin-right: 0;
+    width: 100%;
   }
 
   .contact-info {
     text-align: center;
-
+    padding: 0.5rem;
+    gap: 1rem;
   }
 
   .contact-info li {
-    font-size: 25px;
+    font-size: 18px;
     justify-content: space-between;
-
-
   }
 
   #contact-list {
-    font-size: 25px;
+    font-size: 18px;
     display: block;
     justify-content: space-around;
     flex-wrap: wrap;
-    margin-bottom: 25px;
-    margin-right: 120px;
-
+    margin-bottom: 20px;
+    margin-right: 0;
   }
 
   .contact-info>* {
     flex: 0 100%;
   }
 
+  .introInfo p {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
 
+  #profileImage {
+    max-width: 200px;
+    width: 80%;
+  }
+
+  footer {
+    padding: 15px 10px;
+    height: auto;
+    min-height: 80px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  footer h2,
+  footer p {
+    font-size: 14px;
+  }
 }

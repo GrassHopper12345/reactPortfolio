@@ -92,7 +92,7 @@ function Portfolio() {
                     <h2 className="section-title secondary-border">Work</h2>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '2rem', padding: '2rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '1.5rem', padding: '1rem' }}>
                     {projects.map((project, index) => (
                         <Card key={index} className="project-card" title={project.title}>
                             <a href={project.link} target="_blank" rel="noopener noreferrer">

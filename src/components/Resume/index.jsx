@@ -38,12 +38,12 @@ function ResumeFunction() {
                     <div className="column-text">
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginBottom: 0 }}>
                             <li className="logo" style={{ fontSize: '1.5rem', marginBottom: '0.75rem', color: 'var(--neon-cyan)', textAlign: 'center' }}><MdFoundation /></li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>HTML</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>CSS</li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>HTML5</li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>CSS3</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Javascript</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>ES5-ES7</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>GIT</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>APIs</li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>React</li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>RESTful APIs</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Materialize</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Bootstrap</li>
                             <li style={{ marginBottom: 0, color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Handlebars</li>
@@ -55,13 +55,13 @@ function ResumeFunction() {
                     <div className="column-text">
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginBottom: 0 }}>
                             <li className="logo" style={{ fontSize: '1.5rem', marginBottom: '0.75rem', color: 'var(--neon-cyan)', textAlign: 'center' }}><GrTechnology /></li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Node.js</li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Express</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Object-Relation--Mapping</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Object-Oriented Programming</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Sequelize</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Express</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Jest</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Node.Js</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Json Web Tokens</li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Json Web Tokens (JWT)</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Bcrypt</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Model-View-Controller</li>
                             <li style={{ marginBottom: 0, color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Web-Pack</li>
@@ -73,15 +73,15 @@ function ResumeFunction() {
                     <div className="column-text">
                         <ul style={{ listStyle: 'none', padding: 0, margin: 0, marginBottom: 0 }}>
                             <li className="logo" style={{ fontSize: '1.5rem', marginBottom: '0.75rem', color: 'var(--neon-cyan)', textAlign: 'center' }}><GrDocumentPerformance /></li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>NoSQL</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Mongoose</li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>MERN Stack</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>MongoDB</li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Mongoose</li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>NoSQL</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>GraphQL</li>
                             <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Apollo</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>MERN</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>State</li>
-                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>React</li>
-                            <li style={{ marginBottom: 0, color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Progressive Web Applications</li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>State Management</li>
+                            <li style={{ marginBottom: '0.4rem', color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Progressive Web Apps</li>
+                            <li style={{ marginBottom: 0, color: 'var(--neon-cyan)', paddingLeft: '1rem' }}>Git Version Control</li>
                         </ul>
                     </div>
                 </Card>

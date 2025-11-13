@@ -11,19 +11,19 @@ function Nav(props) {
         { id: "Resume", label: "Resume" },
     ];
 
-    return (
-        <nav style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-            {navItems.map((item) => (
-                <Button
-                    key={item.id}
-                    label={item.label}
-                    onClick={() => handleTabChange(item.id)}
-                    className={`nav-button game-themed-button ${currentTab === item.id ? 'active' : ''}`}
-                    severity={currentTab === item.id ? "info" : "secondary"}
-                    outlined={currentTab !== item.id}
-                />
-            ))}
-        </nav>
-    );
+        return (
+            <nav style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
+                {navItems.map((item) => (
+                    <Button
+                        key={item.id}
+                        label={item.label}
+                        onClick={() => handleTabChange(item.id)}
+                        className={`nav-button game-themed-button ${currentTab === item.id ? 'active' : ''}`}
+                        severity={currentTab === item.id ? "info" : "secondary"}
+                        outlined={currentTab !== item.id}
+                    />
+                ))}
+            </nav>
+        );
 }
 export default Nav;
