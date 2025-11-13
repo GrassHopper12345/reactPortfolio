@@ -105,17 +105,75 @@
 .resume-column {
   transition: transform 0.3s ease;
   background: var(--space-dark) !important;
-  border: 1px solid var(--neon-cyan) !important;
+  border: 2px solid var(--neon-cyan) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  width: 100%;
+  max-width: 100%;
+  height: fit-content;
+  justify-self: center;
 }
 
 .resume-column:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4) !important;
+  border-color: var(--neon-green) !important;
 }
 
 .resume-column .p-card-title {
   color: var(--neon-green) !important;
   text-shadow: 0 0 5px var(--neon-green);
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+  padding: 0 1rem;
+}
+
+.resume-column .p-card-body {
+  background: var(--space-dark) !important;
+  padding: 1rem 1.5rem 1rem 1.5rem !important;
+  flex: 0 1 auto;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start;
+}
+
+.resume-column .p-card-content {
+  background: transparent !important;
+  padding: 0 !important;
+  width: 100%;
+  flex: 0 1 auto;
+}
+
+.resume-column .column-text {
+  color: var(--neon-cyan) !important;
+  font-size: 1rem;
+  line-height: 1.5;
+  width: 100%;
+}
+
+.resume-column .column-text ul {
+  width: 100%;
+}
+
+.resume-column .column-text ul li {
+  color: var(--neon-cyan) !important;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.resume-column .column-text ul li:hover {
+  color: var(--neon-green) !important;
+  text-shadow: 0 0 5px var(--neon-green);
+}
+
+.resume-column .column-text .logo {
+  color: var(--neon-cyan) !important;
+  filter: drop-shadow(0 0 5px var(--neon-cyan));
+  display: block;
 }
 
 /* Contact form cards */
@@ -198,6 +256,12 @@
 }
 
 /* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+  .resume-body {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .game-themed-button {
     clip-path: polygon(
@@ -216,6 +280,14 @@
   
   .nav-button.game-themed-button {
     min-width: 100px;
+  }
+  
+  .resume-body {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .resume-column {
+    max-width: 100% !important;
   }
 }
 
