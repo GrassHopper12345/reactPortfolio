@@ -733,6 +733,18 @@ label {
   box-shadow: 0 2px 8px rgba(0, 255, 255, 0.2);
 }
 
+/* Game Over Animation */
+@keyframes pulse {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.9;
+  }
+}
+
 /* MEDIA QUERY FOR SMALLER DESKTOP SCREENS AND SMALLER */
 
 @media screen and (max-width: 980px) {

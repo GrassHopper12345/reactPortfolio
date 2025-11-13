@@ -66,21 +66,22 @@ export function clamp(value, min, max) {
  * @param {number} x - X position
  * @param {number} y - Y position
  * @param {number} count - Number of particles
+ * @param {number} maxLife - Maximum life of particles
  * @returns {Array} Array of particle objects
  */
-export function createExplosion(x, y, count = 10) {
+export function createExplosion(x, y, count = 10, maxLife = 30) {
   const particles = [];
   for (let i = 0; i < count; i++) {
     const angle = (Math.PI * 2 * i) / count;
-    const speed = Math.random() * 5 + 2;
+    const speed = Math.random() * 8 + 3; // Increased speed for more pronounced effect
     particles.push({
       x,
       y,
       vx: Math.cos(angle) * speed,
       vy: Math.sin(angle) * speed,
-      life: 30,
-      maxLife: 30,
-      size: Math.random() * 4 + 2,
+      life: maxLife,
+      maxLife: maxLife,
+      size: Math.random() * 6 + 3, // Larger particles for more visibility
     });
   }
   return particles;

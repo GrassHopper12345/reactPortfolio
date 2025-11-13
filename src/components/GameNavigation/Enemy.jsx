@@ -1,6 +1,10 @@
 import React from 'react';
 
-function Enemy({ x, y, label, isHit, onHit }) {
+function Enemy({ x, y, label, isHit, hitCount = 0, onHit }) {
+  // Calculate health percentage (5 hits = 100%)
+  const healthPercent = Math.max(0, (5 - hitCount) / 5);
+  const healthColor = healthPercent > 0.5 ? '#00ff00' : healthPercent > 0.25 ? '#ffff00' : '#ff0000';
+  
   return (
     <div
       className="enemy"
@@ -33,6 +37,32 @@ function Enemy({ x, y, label, isHit, onHit }) {
           cursor: 'pointer',
         }}
       >
+        {/* Health bar */}
+        {hitCount > 0 && hitCount < 5 && (
+          <div
+            style={{
+              position: 'absolute',
+              top: '-8px',
+              left: '0',
+              width: '100%',
+              height: '4px',
+              backgroundColor: '#333',
+              borderRadius: '2px',
+              overflow: 'hidden',
+            }}
+          >
+            <div
+              style={{
+                width: `${healthPercent * 100}%`,
+                height: '100%',
+                backgroundColor: healthColor,
+                transition: 'width 0.2s, background-color 0.2s',
+                boxShadow: `0 0 5px ${healthColor}`,
+              }}
+            />
+          </div>
+        )}
+        
         {/* Eyes */}
         <div
           style={{
@@ -72,7 +102,7 @@ function Enemy({ x, y, label, isHit, onHit }) {
             whiteSpace: 'nowrap',
           }}
         >
-          {label}
+          {label} {hitCount > 0 && hitCount < 5 && `(${hitCount}/5)`}
         </div>
       </div>
     </div>
