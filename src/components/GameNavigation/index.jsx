@@ -4,6 +4,9 @@ import Projectile from './Projectile';
 import Enemy from './Enemy';
 import DecorativeAlien from './DecorativeAlien';
 import GameCanvas from './GameCanvas';
+import HighScoreModal from './HighScoreModal';
+import HighScoreDisplay from './HighScoreDisplay';
+import { Button } from 'primereact/button';
 import { checkCollision, generateStars, updateStars, clamp, createExplosion, updateParticles } from '../../utils/gameUtils';
 
 const getGameDimensions = () => ({
@@ -80,6 +83,11 @@ function GameNavigation({ onNavigate, isActive }) {
   const navigationTimeoutRef = useRef(null);
   const hasNavigatedRef = useRef(false);
   const [showGameOver, setShowGameOver] = useState(false);
+  const [score, setScore] = useState(0);
+  const [showHighScoreModal, setShowHighScoreModal] = useState(false);
+  const [showHighScoreDisplay, setShowHighScoreDisplay] = useState(false);
+  const [isGamePaused, setIsGamePaused] = useState(false);
+  const [gameStarted, setGameStarted] = useState(false);
 
   useEffect(() => {
     if (isActive && dimensions.width > 0 && dimensions.height > 0) {
@@ -106,6 +114,9 @@ function GameNavigation({ onNavigate, isActive }) {
       setProjectiles([]);
       setExplosions([]);
       setShowGameOver(false);
+      setScore(0);
+      setIsGamePaused(false);
+      setGameStarted(false);
       hasNavigatedRef.current = false;
       const newDims = getGameDimensions();
       const newX = newDims.width / 2;
@@ -155,9 +166,10 @@ function GameNavigation({ onNavigate, isActive }) {
 
   // Handle keyboard input
   useEffect(() => {
-    if (!isActive) return;
+    if (!isActive || isGamePaused || showHighScoreModal || !gameStarted) return;
 
     const handleKeyDown = (e) => {
+      if (isGamePaused || showHighScoreModal || !gameStarted) return;
       setKeys((prev) => ({ ...prev, [e.key]: true }));
       if (e.key === ' ' || e.key === 'Spacebar') {
         e.preventDefault();
@@ -177,15 +189,16 @@ function GameNavigation({ onNavigate, isActive }) {
     window.addEventListener('keyup', handleKeyUp);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('keyup', handleKeyUp);
-    };
-  }, [isActive, shoot]);
+        window.removeEventListener('keydown', handleKeyDown);
+        window.removeEventListener('keyup', handleKeyUp);
+      };
+    }, [isActive, shoot, isGamePaused, showHighScoreModal, gameStarted]);
 
   useEffect(() => {
-    if (!isActive || isMobile) return;
+    if (!isActive || isMobile || isGamePaused || showHighScoreModal || !gameStarted) return;
 
     const handleMouseMove = (e) => {
+      if (isGamePaused || showHighScoreModal || !gameStarted) return;
       if (gameContainerRef.current) {
         const rect = gameContainerRef.current.getBoundingClientRect();
         setMousePos({
@@ -196,7 +209,7 @@ function GameNavigation({ onNavigate, isActive }) {
     };
 
     const handleClick = (e) => {
-      if (isActive) {
+      if (isActive && !isGamePaused && !showHighScoreModal && gameStarted) {
         e.preventDefault();
         const now = Date.now();
         if (now - lastShootTimeRef.current > SHOOT_COOLDOWN) {
@@ -210,15 +223,16 @@ function GameNavigation({ onNavigate, isActive }) {
     window.addEventListener('click', handleClick);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('click', handleClick);
-    };
-  }, [isActive, isMobile, shoot]);
+        window.removeEventListener('mousemove', handleMouseMove);
+        window.removeEventListener('click', handleClick);
+      };
+    }, [isActive, isMobile, shoot, isGamePaused, showHighScoreModal, gameStarted]);
 
   useEffect(() => {
-    if (!isActive || !isMobile) return;
+    if (!isActive || !isMobile || isGamePaused || showHighScoreModal || !gameStarted) return;
 
     const handleTouchStart = (e) => {
+      if (isGamePaused || showHighScoreModal || !gameStarted) return;
       e.preventDefault();
       if (gameContainerRef.current && e.touches.length > 0) {
         const rect = gameContainerRef.current.getBoundingClientRect();
@@ -269,7 +283,7 @@ function GameNavigation({ onNavigate, isActive }) {
         container.removeEventListener('touchend', handleTouchEnd);
       }
     };
-  }, [isActive, isMobile, shoot]);
+  }, [isActive, isMobile, shoot, isGamePaused, showHighScoreModal, gameStarted]);
 
   useEffect(() => {
     if (!isActive) {
@@ -280,6 +294,10 @@ function GameNavigation({ onNavigate, isActive }) {
     }
 
     const gameLoop = () => {
+      if (isGamePaused || showHighScoreModal || !gameStarted) {
+        return;
+      }
+
       setShipX((prevX) => {
         let newX = prevX;
         if (keys['ArrowLeft'] || keys['a'] || keys['A']) {
@@ -290,14 +308,14 @@ function GameNavigation({ onNavigate, isActive }) {
         }
         if (keys['ArrowUp'] || keys['w'] || keys['W']) {
           setShipY((prevY) => {
-            const newY = clamp(prevY - SHIP_SPEED, 50, dimensions.height - 80);
+            const newY = clamp(prevY - SHIP_SPEED, 30, dimensions.height - 30);
             shipPosRef.current.y = newY;
             return newY;
           });
         }
         if (keys['ArrowDown'] || keys['s'] || keys['S']) {
           setShipY((prevY) => {
-            const newY = clamp(prevY + SHIP_SPEED, 50, dimensions.height - 80);
+            const newY = clamp(prevY + SHIP_SPEED, 30, dimensions.height - 30);
             shipPosRef.current.y = newY;
             return newY;
           });
@@ -312,7 +330,7 @@ function GameNavigation({ onNavigate, isActive }) {
 
       setShipY((prevY) => {
         if (!keys['ArrowUp'] && !keys['ArrowDown'] && !keys['w'] && !keys['W'] && !keys['s'] && !keys['S']) {
-          const newY = clamp(prevY + (mousePos.y - prevY) * 0.1, 50, dimensions.height - 80);
+          const newY = clamp(prevY + (mousePos.y - prevY) * 0.1, 30, dimensions.height - 30);
           shipPosRef.current.y = newY;
           return newY;
         }
@@ -439,6 +457,7 @@ function GameNavigation({ onNavigate, isActive }) {
 
               if (checkCollision(projRect, alienRect)) {
                 hit = true;
+                setScore((prevScore) => prevScore + 100);
                 const explosionParticles = createExplosion(alien.x, alien.y, 10, 20);
                 if (explosionParticles && explosionParticles.length > 0) {
                   newExplosions.push(explosionParticles);
@@ -476,7 +495,7 @@ function GameNavigation({ onNavigate, isActive }) {
         return remainingProjectiles;
       });
 
-      if (!hasNavigatedRef.current) {
+      if (!hasNavigatedRef.current && !isGamePaused && gameStarted) {
         const shipRect = {
           x: shipPosRef.current.x - 20,
           y: shipPosRef.current.y - 15,
@@ -495,23 +514,22 @@ function GameNavigation({ onNavigate, isActive }) {
 
             if (checkCollision(shipRect, enemyRect)) {
               hasNavigatedRef.current = true;
+              setIsGamePaused(true);
               setShowGameOver(true);
               const gameOverExplosion = createExplosion(shipPosRef.current.x, shipPosRef.current.y, 20, 50);
               if (gameOverExplosion && gameOverExplosion.length > 0) {
                 setExplosions((prev) => [...prev, gameOverExplosion]);
               }
               setTimeout(() => {
-                if (onNavigate) {
-                  onNavigate('About');
-                }
                 setShowGameOver(false);
+                setShowHighScoreModal(true);
               }, 2000);
               break;
             }
           }
         }
 
-        if (!hasNavigatedRef.current) {
+        if (!hasNavigatedRef.current && !isGamePaused && gameStarted) {
           for (const alien of decorativeAliensRef.current) {
             const alienRect = {
               x: alien.x - 30,
@@ -522,16 +540,15 @@ function GameNavigation({ onNavigate, isActive }) {
 
             if (checkCollision(shipRect, alienRect)) {
               hasNavigatedRef.current = true;
+              setIsGamePaused(true);
               setShowGameOver(true);
               const gameOverExplosion = createExplosion(shipPosRef.current.x, shipPosRef.current.y, 20, 50);
               if (gameOverExplosion && gameOverExplosion.length > 0) {
                 setExplosions((prev) => [...prev, gameOverExplosion]);
               }
               setTimeout(() => {
-                if (onNavigate) {
-                  onNavigate('About');
-                }
                 setShowGameOver(false);
+                setShowHighScoreModal(true);
               }, 2000);
               break;
             }
@@ -549,23 +566,29 @@ function GameNavigation({ onNavigate, isActive }) {
         return updated;
       });
 
-      setStars((prevStars) => {
-        const updated = [...prevStars];
-        updateStars(updated, dimensions.height);
-        return updated;
-      });
+      if (!isGamePaused && !showHighScoreModal && gameStarted) {
+        setStars((prevStars) => {
+          const updated = [...prevStars];
+          updateStars(updated, dimensions.height);
+          return updated;
+        });
+      }
 
-      animationFrameRef.current = requestAnimationFrame(gameLoop);
+      if (!isGamePaused && !showHighScoreModal && gameStarted) {
+        animationFrameRef.current = requestAnimationFrame(gameLoop);
+      }
     };
 
-    animationFrameRef.current = requestAnimationFrame(gameLoop);
+    if (!isGamePaused && !showHighScoreModal && gameStarted) {
+      animationFrameRef.current = requestAnimationFrame(gameLoop);
+    }
 
     return () => {
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-    }, [isActive, keys, mousePos, shipX, shipY, hitEnemies, enemyHitCounts, decorativeAliens, onNavigate, dimensions, enemies]);
+    }, [isActive, keys, mousePos, shipX, shipY, hitEnemies, enemyHitCounts, decorativeAliens, onNavigate, dimensions, enemies, isGamePaused, showHighScoreModal, gameStarted]);
 
   if (!isActive) return null;
 
@@ -619,6 +642,47 @@ function GameNavigation({ onNavigate, isActive }) {
 
       <Starship x={shipX} y={shipY} />
 
+      {!gameStarted && (
+        <div
+          style={{
+            position: 'absolute',
+            left: `${shipX}px`,
+            top: `${shipY}px`,
+            transform: 'translate(-50%, -50%)',
+            zIndex: 10003,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: '10px',
+          }}
+        >
+          <Button
+            label="START GAME"
+            onClick={() => setGameStarted(true)}
+            className="game-themed-button"
+            style={{
+              fontSize: isMobile ? '16px' : '20px',
+              padding: '1rem 2rem',
+              fontWeight: 'bold',
+              background: 'linear-gradient(135deg, rgba(0, 255, 0, 0.4), rgba(0, 200, 0, 0.5))',
+              border: '3px solid #00ff00',
+              boxShadow: '0 0 20px #00ff00, inset 0 0 20px rgba(0, 255, 0, 0.3)',
+            }}
+          />
+          <div
+            style={{
+              color: '#00ffff',
+              fontSize: isMobile ? '12px' : '14px',
+              textAlign: 'center',
+              textShadow: '0 0 5px #000',
+              maxWidth: '200px',
+            }}
+          >
+            Click to begin your mission!
+          </div>
+        </div>
+      )}
+
       {projectiles.map((proj) => (
         <Projectile key={proj.id} x={proj.x} y={proj.y} />
       ))}
@@ -641,49 +705,97 @@ function GameNavigation({ onNavigate, isActive }) {
         />
       ))}
 
-      <div
-        style={{
-          position: 'absolute',
-          top: '20px',
-          left: '20px',
-          color: '#fff',
-          fontSize: isMobile ? '14px' : '16px',
-          zIndex: 10000,
-          textShadow: '0 0 5px #000',
-          maxWidth: isMobile ? '90%' : 'auto',
-        }}
-      >
-        <div>{isMobile ? 'Touch to Move & Shoot' : 'Use Arrow Keys or Mouse to Move'}</div>
-        <div>{isMobile ? 'Touch anywhere to shoot!' : 'Spacebar or Click to Shoot'}</div>
-        <div>Shoot navigation enemies 5 times to navigate!</div>
-        <div style={{ color: '#00ffff', marginTop: '5px' }}>Decorative aliens move around for target practice</div>
-      </div>
+      {gameStarted && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '20px',
+            left: '20px',
+            color: '#fff',
+            fontSize: isMobile ? '14px' : '16px',
+            zIndex: 10000,
+            textShadow: '0 0 5px #000',
+            maxWidth: isMobile ? '90%' : 'auto',
+          }}
+        >
+          <div>{isMobile ? 'Touch to Move & Shoot' : 'Use Arrow Keys or Mouse to Move'}</div>
+          <div>{isMobile ? 'Touch anywhere to shoot!' : 'Spacebar or Click to Shoot'}</div>
+          <div>Shoot navigation enemies 5 times to navigate!</div>
+          <div style={{ color: '#00ff00', marginTop: '10px', fontSize: isMobile ? '16px' : '18px', fontWeight: 'bold' }}>
+            Score: {score.toLocaleString()}
+          </div>
+        </div>
+      )}
+
+      {gameStarted && (
+        <div
+          style={{
+            position: 'absolute',
+            top: '20px',
+            right: '20px',
+            zIndex: 10000,
+          }}
+        >
+          <Button
+            icon="pi pi-trophy"
+            label="High Scores"
+            onClick={() => setShowHighScoreDisplay(true)}
+            className="game-themed-button"
+            size="small"
+            style={{ fontSize: isMobile ? '12px' : '14px', padding: '0.5rem 1rem' }}
+          />
+        </div>
+      )}
 
       {showGameOver && (
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                color: '#ff0000',
-                fontSize: isMobile ? '48px' : '72px',
-                fontWeight: 'bold',
-                zIndex: 10001,
-                textShadow: 
-                  '0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000',
-                animation: 'pulse 0.5s ease-in-out infinite alternate',
-                pointerEvents: 'none',
-                textAlign: 'center',
-                padding: '0 20px',
-              }}
-            >
-              YOU DIED
-            </div>
-          )}
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            color: '#ff0000',
+            fontSize: isMobile ? '48px' : '72px',
+            fontWeight: 'bold',
+            zIndex: 10001,
+            textShadow: 
+              '0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 0 0 40px #ff0000',
+            animation: 'pulse 0.5s ease-in-out infinite alternate',
+            pointerEvents: 'none',
+            textAlign: 'center',
+            padding: '0 20px',
+          }}
+        >
+          YOU DIED
         </div>
-      );
-    }
+      )}
 
-    export default GameNavigation;
+      <HighScoreModal
+        visible={showHighScoreModal}
+        score={score}
+        onClose={() => {
+          setShowHighScoreModal(false);
+          setIsGamePaused(false);
+          if (onNavigate) {
+            onNavigate('About');
+          }
+        }}
+        onSave={() => {
+          setShowHighScoreModal(false);
+          setIsGamePaused(false);
+          if (onNavigate) {
+            onNavigate('About');
+          }
+        }}
+      />
+
+      <HighScoreDisplay
+        visible={showHighScoreDisplay}
+        onClose={() => setShowHighScoreDisplay(false)}
+      />
+    </div>
+  );
+}
+
+export default GameNavigation;
 

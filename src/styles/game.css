@@ -253,6 +253,82 @@
   user-select: none;
 }
 
+/* High Score Modal Styling */
+.p-dialog-mask {
+  z-index: 10001 !important;
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.high-score-dialog .p-dialog,
+.high-score-display-dialog .p-dialog {
+  background: var(--space-dark) !important;
+  border: 2px solid var(--neon-cyan) !important;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.5) !important;
+  border-radius: 10px !important;
+  z-index: 10002 !important;
+}
+
+.high-score-dialog .p-dialog-header,
+.high-score-display-dialog .p-dialog-header {
+  background: var(--space-darker) !important;
+  border-bottom: 2px solid var(--neon-cyan) !important;
+  color: var(--neon-green) !important;
+  text-shadow: 0 0 10px var(--neon-green) !important;
+}
+
+.high-score-dialog .p-dialog-header .p-dialog-title,
+.high-score-display-dialog .p-dialog-header .p-dialog-title {
+  color: var(--neon-green) !important;
+  font-weight: bold !important;
+}
+
+.high-score-dialog .p-dialog-content,
+.high-score-display-dialog .p-dialog-content {
+  background: var(--space-dark) !important;
+  color: var(--neon-cyan) !important;
+  padding: 1.5rem !important;
+}
+
+.high-score-dialog .p-inputtext {
+  background: var(--space-darker) !important;
+  border: 2px solid var(--neon-cyan) !important;
+  color: var(--neon-cyan) !important;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3) !important;
+}
+
+.high-score-dialog .p-inputtext:focus {
+  border-color: var(--neon-green) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5) !important;
+  outline: none !important;
+}
+
+.high-score-dialog table,
+.high-score-display-dialog table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.high-score-dialog table th,
+.high-score-display-dialog table th {
+  padding: 0.75rem;
+  color: var(--neon-cyan);
+  text-align: left;
+  border-bottom: 2px solid var(--neon-cyan);
+  font-weight: bold;
+}
+
+.high-score-dialog table td,
+.high-score-display-dialog table td {
+  padding: 0.75rem;
+  color: var(--neon-cyan);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.high-score-dialog table tr:hover,
+.high-score-display-dialog table tr:hover {
+  background: rgba(0, 255, 255, 0.1) !important;
+}
+
 /* Responsive adjustments */
 @media screen and (max-width: 1200px) {
   .resume-body {
