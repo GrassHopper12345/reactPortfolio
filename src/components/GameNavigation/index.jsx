@@ -23,6 +23,13 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
     if (isActive) {
       const newDims = getGameDimensions();
       setDimensions(newDims);
+      // Update ship position when dimensions change
+      const newX = newDims.width / 2;
+      const newY = newDims.height - 80;
+      setShipX(newX);
+      setShipY(newY);
+      shipPosRef.current = { x: newX, y: newY };
+      setMousePos({ x: newX, y: newY });
     }
   }, [isActive]);
 
@@ -166,15 +173,23 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
       hasNavigatedRef.current = false;
       processedProjectilesRef.current = new Set();
       targetAlienCountRef.current = 8;
+      setShowHighScoreModal(false);
+      setShowHighScoreDisplay(false);
       const newDims = getGameDimensions();
       const newX = newDims.width / 2;
       const newY = newDims.height - 80;
       setShipX(newX);
       setShipY(newY);
       shipPosRef.current = { x: newX, y: newY };
+      setMousePos({ x: newX, y: newY });
       if (navigationTimeoutRef.current) {
         clearTimeout(navigationTimeoutRef.current);
         navigationTimeoutRef.current = null;
+      }
+      // Cancel any running animation frames
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+        animationFrameRef.current = null;
       }
     }
   }, [isActive]);
@@ -792,14 +807,15 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
         <div
           style={{
             position: 'absolute',
-            left: `${shipX}px`,
-            top: `${shipY}px`,
+            left: '50%',
+            top: '50%',
             transform: 'translate(-50%, -50%)',
             zIndex: 10003,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             gap: '10px',
+            pointerEvents: 'auto',
           }}
         >
           <Button
@@ -813,6 +829,7 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
               background: 'linear-gradient(135deg, rgba(0, 255, 0, 0.4), rgba(0, 200, 0, 0.5))',
               border: '3px solid #00ff00',
               boxShadow: '0 0 20px #00ff00, inset 0 0 20px rgba(0, 255, 0, 0.3)',
+              cursor: 'pointer',
             }}
           />
           <div
