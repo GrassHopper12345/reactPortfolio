@@ -113,7 +113,13 @@ function EngineeringExperiments() {
       )}
 
       {gameActive && (
-        <div style={{ position: 'relative', marginBottom: '2rem' }}>
+        <div style={{ 
+          position: 'relative', 
+          marginBottom: '2rem',
+          width: '100%',
+          maxWidth: '100%',
+          overflow: 'hidden'
+        }}>
           <div style={{ 
             position: 'absolute', 
             top: '1rem', 

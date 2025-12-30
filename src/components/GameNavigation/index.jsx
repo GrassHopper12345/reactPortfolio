@@ -9,49 +9,72 @@ import HighScoreDisplay from './HighScoreDisplay';
 import { Button } from 'primereact/button';
 import { checkCollision, generateStars, updateStars, clamp, createExplosion, updateParticles } from '../../utils/gameUtils';
 
-const getGameDimensions = () => ({
-  width: window.innerWidth,
-  height: window.innerHeight,
-});
 const SHIP_SPEED = 5;
 const PROJECTILE_SPEED = 10;
 
 function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) {
-  const [dimensions, setDimensions] = useState(getGameDimensions());
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const gameContainerRef = useRef(null);
   
-  useEffect(() => {
-    if (isActive) {
-      const newDims = getGameDimensions();
+  // Update dimensions based on container size
+  const updateDimensions = useCallback(() => {
+    if (gameContainerRef.current && isActive) {
+      const rect = gameContainerRef.current.getBoundingClientRect();
+      const newDims = {
+        width: rect.width,
+        height: Math.min(rect.height, window.innerHeight * 0.85)
+      };
       setDimensions(newDims);
-      // Update ship position when dimensions change
       const newX = newDims.width / 2;
       const newY = newDims.height - 80;
       setShipX(newX);
       setShipY(newY);
       shipPosRef.current = { x: newX, y: newY };
       setMousePos({ x: newX, y: newY });
+      setStars(generateStars(100, newDims.width, newDims.height));
     }
   }, [isActive]);
+  
+  useEffect(() => {
+    if (isActive && gameContainerRef.current) {
+      // Initial measurement
+      updateDimensions();
+      
+      // Use ResizeObserver to track container size changes
+      const resizeObserver = new ResizeObserver(() => {
+        updateDimensions();
+      });
+      
+      resizeObserver.observe(gameContainerRef.current);
+      
+      // Update on window resize as well
+      const handleResize = () => {
+        updateDimensions();
+      };
+      
+      window.addEventListener('resize', handleResize);
+      // Also check after a short delay to ensure container is rendered
+      const timeoutId = setTimeout(updateDimensions, 100);
+      
+      return () => {
+        resizeObserver.disconnect();
+        window.removeEventListener('resize', handleResize);
+        clearTimeout(timeoutId);
+      };
+    }
+  }, [isActive, updateDimensions]);
 
-  const initialShipX = dimensions.width > 0 ? dimensions.width / 2 : window.innerWidth / 2;
-  const initialShipY = dimensions.height > 0 ? dimensions.height - 80 : window.innerHeight - 80;
-  const [shipX, setShipX] = useState(initialShipX);
-  const [shipY, setShipY] = useState(initialShipY);
+  const [shipX, setShipX] = useState(0);
+  const [shipY, setShipY] = useState(0);
   const [projectiles, setProjectiles] = useState([]);
-  const [stars, setStars] = useState(() => {
-    const dims = dimensions.width > 0 && dimensions.height > 0 
-      ? dimensions 
-      : getGameDimensions();
-    return generateStars(100, dims.width, dims.height);
-  });
+  const [stars, setStars] = useState(() => generateStars(100, 800, 600));
   const [explosions, setExplosions] = useState([]);
   const [keys, setKeys] = useState({});
-  const [mousePos, setMousePos] = useState({ x: initialShipX, y: initialShipY });
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [touchPos, setTouchPos] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
-  const gameContainerRef = useRef(null);
   const animationFrameRef = useRef(null);
-  const shipPosRef = useRef({ x: initialShipX, y: initialShipY });
+  const shipPosRef = useRef({ x: 0, y: 0 });
   const lastShootTimeRef = useRef(0);
   const SHOOT_COOLDOWN = 150;
 
@@ -67,21 +90,7 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const newDims = getGameDimensions();
-      setDimensions(newDims);
-      const newX = newDims.width / 2;
-      const newY = newDims.height - 80;
-      setShipX(newX);
-      setShipY(newY);
-      shipPosRef.current = { x: newX, y: newY };
-      setStars(generateStars(100, newDims.width, newDims.height));
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  // Resize handler is now in the updateDimensions callback above
 
   const [hitEnemies, setHitEnemies] = useState(new Set());
   const [enemyHitCounts, setEnemyHitCounts] = useState(new Map());
@@ -175,13 +184,7 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
       targetAlienCountRef.current = 8;
       setShowHighScoreModal(false);
       setShowHighScoreDisplay(false);
-      const newDims = getGameDimensions();
-      const newX = newDims.width / 2;
-      const newY = newDims.height - 80;
-      setShipX(newX);
-      setShipY(newY);
-      shipPosRef.current = { x: newX, y: newY };
-      setMousePos({ x: newX, y: newY });
+      // Dimensions will be updated by updateDimensions callback
       if (navigationTimeoutRef.current) {
         clearTimeout(navigationTimeoutRef.current);
         navigationTimeoutRef.current = null;
@@ -196,25 +199,39 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
 
   const enemies = React.useMemo(() => {
     if (dimensions.width === 0 || dimensions.height === 0) {
-      return [];
+      // Return default positions if dimensions not ready yet
+      return [
+        { id: 'About', label: 'About', x: 200, y: 180 },
+        { id: 'Portfolio', label: 'Portfolio', x: 400, y: 180 },
+        { id: 'Contact', label: 'Contact', x: 600, y: 180 },
+        { id: 'Resume', label: 'Resume', x: 800, y: 180 },
+      ];
     }
     const isSmallScreen = dimensions.width <= 768;
     const baseY = isSmallScreen ? 150 : 180;
+    const enemyWidth = isSmallScreen ? 40 : 80; // Account for enemy size
+    const padding = 20; // Padding from edges
+    
     if (isSmallScreen) {
       // Position enemies at the top in a horizontal row on mobile/tablet
-      const spacing = dimensions.width / 5;
+      const spacing = (dimensions.width - padding * 2) / 4; // Divide by 4 for 4 enemies
       return [
-        { id: 'About', label: 'About', x: spacing, y: baseY },
-        { id: 'Portfolio', label: 'Portfolio', x: spacing * 2, y: baseY },
-        { id: 'Contact', label: 'Contact', x: spacing * 3, y: baseY },
-        { id: 'Resume', label: 'Resume', x: spacing * 4, y: baseY },
+        { id: 'About', label: 'About', x: padding + spacing * 0.5, y: baseY },
+        { id: 'Portfolio', label: 'Portfolio', x: padding + spacing * 1.5, y: baseY },
+        { id: 'Contact', label: 'Contact', x: padding + spacing * 2.5, y: baseY },
+        { id: 'Resume', label: 'Resume', x: padding + spacing * 3.5, y: baseY },
       ];
     }
+    
+    // For desktop, ensure all enemies fit within bounds
+    const availableWidth = dimensions.width - padding * 2 - enemyWidth;
+    const spacing = availableWidth / 3; // Space between 4 enemies = 3 gaps
+    
     return [
-      { id: 'About', label: 'About', x: dimensions.width * 0.2 + enemyRowOffset, y: baseY },
-      { id: 'Portfolio', label: 'Portfolio', x: dimensions.width * 0.4 + enemyRowOffset, y: baseY },
-      { id: 'Contact', label: 'Contact', x: dimensions.width * 0.6 + enemyRowOffset, y: baseY },
-      { id: 'Resume', label: 'Resume', x: dimensions.width * 0.8 + enemyRowOffset, y: baseY },
+      { id: 'About', label: 'About', x: padding + spacing * 0 + enemyRowOffset, y: baseY },
+      { id: 'Portfolio', label: 'Portfolio', x: padding + spacing * 1 + enemyRowOffset, y: baseY },
+      { id: 'Contact', label: 'Contact', x: padding + spacing * 2 + enemyRowOffset, y: baseY },
+      { id: 'Resume', label: 'Resume', x: padding + spacing * 3 + enemyRowOffset, y: baseY },
     ];
   }, [dimensions, enemyRowOffset]);
 
@@ -403,14 +420,16 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
         }
         if (keys['ArrowUp'] || keys['w'] || keys['W']) {
           setShipY((prevY) => {
-            const newY = clamp(prevY - SHIP_SPEED, 30, dimensions.height - 30);
+            const maxY = dimensions.height > 0 ? dimensions.height - 30 : window.innerHeight - 30;
+            const newY = clamp(prevY - SHIP_SPEED, 30, maxY);
             shipPosRef.current.y = newY;
             return newY;
           });
         }
         if (keys['ArrowDown'] || keys['s'] || keys['S']) {
           setShipY((prevY) => {
-            const newY = clamp(prevY + SHIP_SPEED, 30, dimensions.height - 30);
+            const maxY = dimensions.height > 0 ? dimensions.height - 30 : window.innerHeight - 30;
+            const newY = clamp(prevY + SHIP_SPEED, 30, maxY);
             shipPosRef.current.y = newY;
             return newY;
           });
@@ -418,14 +437,16 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
         if (!keys['ArrowLeft'] && !keys['ArrowRight'] && !keys['a'] && !keys['A'] && !keys['d'] && !keys['D']) {
           newX = prevX + (mousePos.x - prevX) * 0.1;
         }
-        const finalX = clamp(newX, 20, dimensions.width - 20);
+        const maxX = dimensions.width > 0 ? dimensions.width - 20 : window.innerWidth - 20;
+        const finalX = clamp(newX, 20, maxX);
         shipPosRef.current.x = finalX;
         return finalX;
       });
 
       setShipY((prevY) => {
         if (!keys['ArrowUp'] && !keys['ArrowDown'] && !keys['w'] && !keys['W'] && !keys['s'] && !keys['S']) {
-          const newY = clamp(prevY + (mousePos.y - prevY) * 0.1, 30, dimensions.height - 30);
+          const maxY = dimensions.height > 0 ? dimensions.height - 30 : window.innerHeight - 30;
+          const newY = clamp(prevY + (mousePos.y - prevY) * 0.1, 30, maxY);
           shipPosRef.current.y = newY;
           return newY;
         }
@@ -492,7 +513,12 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
       });
 
       if (dimensions.width > 768) {
-        const maxOffset = dimensions.width * 0.12;
+        const enemyWidth = 80;
+        const padding = 20;
+        const availableWidth = dimensions.width - padding * 2 - enemyWidth;
+        const spacing = availableWidth / 3; // Space between 4 enemies = 3 gaps
+        const maxOffset = spacing * 0.3; // Limit movement to 30% of spacing
+        
         let rowSpeed;
         if (score <= 10000) {
           rowSpeed = 0.4 + (score / 10000) * 1.0;
@@ -750,9 +776,8 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
 
   if (!isActive) return null;
 
-  const displayWidth = dimensions.width > 0 ? dimensions.width : window.innerWidth;
-  // Use viewport height but allow for section context
-  const displayHeight = Math.min(dimensions.height > 0 ? dimensions.height : window.innerHeight, window.innerHeight * 0.9);
+  const displayWidth = dimensions.width > 0 ? dimensions.width : 800;
+  const displayHeight = dimensions.height > 0 ? dimensions.height : 600;
 
   return (
       <div
@@ -762,14 +787,15 @@ function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) 
           position: 'relative',
           width: '100%',
           minHeight: '600px',
-          height: displayHeight,
-          maxHeight: '90vh',
+          height: displayHeight > 0 ? displayHeight : '600px',
+          maxHeight: '85vh',
           backgroundColor: '#000',
           borderRadius: '10px',
           overflow: 'hidden',
           touchAction: 'none',
           border: '2px solid var(--neon-cyan)',
           boxShadow: '0 0 20px rgba(0, 255, 255, 0.3)',
+          margin: '0 auto',
         }}
       >
       <GameCanvas stars={stars} width={displayWidth} height={displayHeight} />
