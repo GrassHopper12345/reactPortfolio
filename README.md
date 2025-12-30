@@ -9,7 +9,7 @@
 
 **A unique, interactive portfolio featuring a Galaga-style game navigation system!**
 
-[🌐 Live Site](https://main--sparkly-cranachan-9f0864.netlify.app/#about) • [🎮 Game Mode](#-game-mode) • [📖 Features](#-features) • [🛠️ Installation](#️-installation) • [📱 Screenshots](#-screenshots)
+[🌐 Live Site](https://sparkly-cranachan-9f0864.netlify.app) • [🎮 Game Mode](#-game-mode) • [📖 Features](#-features) • [🛠️ Installation](#️-installation) • [📱 Screenshots](#-screenshots)
 
 </div>
 
@@ -197,9 +197,47 @@ The built files will be in the `dist` directory, ready for deployment.
 
 ## 🌐 Live Site
 
-**Visit the live portfolio:** [https://main--sparkly-cranachan-9f0864.netlify.app/#about](https://main--sparkly-cranachan-9f0864.netlify.app/#about)
+**Visit the live portfolio:** [https://sparkly-cranachan-9f0864.netlify.app](https://sparkly-cranachan-9f0864.netlify.app)
 
 Experience the interactive game navigation and explore all portfolio sections!
+
+---
+
+## 🔗 LinkedIn Link Preview
+
+This portfolio uses **static Open Graph and Twitter meta tags** in the HTML head to ensure proper link previews on LinkedIn, Twitter, and other social platforms. LinkedIn does not execute JavaScript, so static tags in `index.html` are required.
+
+### Preview Image
+
+- **Location:** `/public/preview.png`
+- **Recommended Size:** 1200x630 pixels (Open Graph standard)
+- **Format:** PNG or JPG
+- **Current Status:** Placeholder file (see TODO below)
+
+### TODO: Replace Preview Image
+
+The current `preview.png` is a placeholder. To create a proper preview image:
+
+1. Create a 1200x630px image showcasing your portfolio
+2. Save it as `preview.png` in the `/public` directory
+3. The image will be automatically served at the root URL
+
+### Refreshing LinkedIn Cache
+
+After updating the preview image or meta tags:
+
+1. Use [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) to refresh the cache
+2. Enter your site URL: `https://sparkly-cranachan-9f0864.netlify.app`
+3. Click "Inspect" to update LinkedIn's cached preview
+
+### Meta Tags Included
+
+- Open Graph tags (og:title, og:description, og:image, og:url, og:type)
+- Twitter Card tags (twitter:card, twitter:title, twitter:description, twitter:image)
+- Canonical URL
+- Robots meta tag
+
+---
 
 ---
 
