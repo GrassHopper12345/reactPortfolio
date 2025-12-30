@@ -10,7 +10,7 @@ function ProjectCard({ project }) {
       className="project-card case-study-card"
       style={{ 
         background: 'var(--space-dark)', 
-        border: '2px solid var(--neon-cyan)', 
+        border: '2px solid rgba(0, 255, 255, 0.8)', 
         borderRadius: '10px',
         height: '100%',
         display: 'flex',
@@ -64,7 +64,7 @@ function ProjectCard({ project }) {
         }}>
           {project.title}
         </h3>
-        <p style={{ color: '#b0e0e6', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1rem' }}>
+        <p style={{ color: '#b0e0e6', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1rem', textShadow: 'none' }}>
           {project.shortPitch}
         </p>
       </div>
@@ -75,7 +75,7 @@ function ProjectCard({ project }) {
             <h4 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>
               Problem
             </h4>
-            <p style={{ color: '#b0e0e6', fontSize: '0.95rem', lineHeight: '1.6' }}>
+            <p style={{ color: '#b0e0e6', fontSize: '0.95rem', lineHeight: '1.6', textShadow: 'none' }}>
               {project.problem}
             </p>
           </div>
@@ -94,7 +94,8 @@ function ProjectCard({ project }) {
                     paddingLeft: '1.5rem',
                     position: 'relative',
                     fontSize: '0.95rem',
-                    lineHeight: '1.5'
+                    lineHeight: '1.5',
+                    textShadow: 'none'
                   }}
                 >
                   <span style={{ position: 'absolute', left: 0, color: 'var(--neon-green)' }}>•</span>
@@ -118,7 +119,8 @@ function ProjectCard({ project }) {
                     paddingLeft: '1.5rem',
                     position: 'relative',
                     fontSize: '0.95rem',
-                    lineHeight: '1.5'
+                    lineHeight: '1.5',
+                    textShadow: 'none'
                   }}
                 >
                   <span style={{ position: 'absolute', left: 0, color: 'var(--neon-green)' }}>•</span>
@@ -138,10 +140,11 @@ function ProjectCard({ project }) {
               style={{
                 padding: '0.25rem 0.75rem',
                 background: 'rgba(0, 255, 255, 0.1)',
-                border: '1px solid var(--neon-cyan)',
+                border: '1px solid rgba(0, 255, 255, 0.8)',
                 borderRadius: '15px',
-                color: 'var(--neon-cyan)',
-                fontSize: '0.85rem'
+                color: '#b0e0e6',
+                fontSize: '0.85rem',
+                textShadow: 'none'
               }}
             >
               {tech}

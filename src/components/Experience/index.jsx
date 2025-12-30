@@ -27,7 +27,7 @@ function Experience() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginTop: '2rem' }}>
         {experience.length > 0 ? (
           experience.map((job, index) => (
-            <Card key={index} className="experience-card" style={{ background: 'var(--space-dark)', border: '2px solid var(--neon-cyan)', borderRadius: '10px' }}>
+            <Card key={index} className="experience-card" style={{ background: 'var(--space-dark)', border: '2px solid rgba(0, 255, 255, 0.8)', borderRadius: '10px' }}>
               <div style={{ marginBottom: '1rem' }}>
                 <h3 style={{ color: 'var(--neon-green)', fontSize: '1.5rem', marginBottom: '0.5rem', textShadow: '0 0 5px var(--neon-green)' }}>
                   {job.title}
@@ -47,7 +47,8 @@ function Experience() {
                       color: '#b0e0e6', 
                       marginBottom: '0.75rem',
                       paddingLeft: '1.5rem',
-                      position: 'relative'
+                      position: 'relative',
+                      textShadow: 'none'
                     }}
                   >
                     <span style={{ position: 'absolute', left: 0, color: 'var(--neon-green)' }}>•</span>
@@ -62,10 +63,11 @@ function Experience() {
                     style={{
                       padding: '0.25rem 0.75rem',
                       background: 'rgba(0, 255, 255, 0.1)',
-                      border: '1px solid var(--neon-cyan)',
+                      border: '1px solid rgba(0, 255, 255, 0.8)',
                       borderRadius: '15px',
-                      color: 'var(--neon-cyan)',
-                      fontSize: '0.85rem'
+                      color: '#b0e0e6',
+                      fontSize: '0.85rem',
+                      textShadow: 'none'
                     }}
                   >
                     {tech}

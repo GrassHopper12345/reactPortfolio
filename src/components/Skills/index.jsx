@@ -74,7 +74,7 @@ function Skills() {
               className="skills-card"
               style={{ 
                 background: 'var(--space-dark)', 
-                border: '2px solid var(--neon-cyan)', 
+                border: '2px solid rgba(0, 255, 255, 0.8)', 
                 borderRadius: '10px',
                 padding: '1.5rem'
               }}
@@ -106,11 +106,12 @@ function Skills() {
                     style={{
                       padding: '0.4rem 0.8rem',
                       background: 'rgba(0, 255, 255, 0.1)',
-                      border: '1px solid var(--neon-cyan)',
+                      border: '1px solid rgba(0, 255, 255, 0.8)',
                       borderRadius: '20px',
                       color: '#b0e0e6',
                       fontSize: '0.9rem',
-                      transition: 'all 0.3s ease'
+                      transition: 'all 0.3s ease',
+                      textShadow: 'none'
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.background = 'rgba(0, 255, 255, 0.2)';
@@ -119,7 +120,7 @@ function Skills() {
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.background = 'rgba(0, 255, 255, 0.1)';
-                      e.target.style.borderColor = 'var(--neon-cyan)';
+                      e.target.style.borderColor = 'rgba(0, 255, 255, 0.8)';
                       e.target.style.color = '#b0e0e6';
                     }}
                   >

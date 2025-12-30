@@ -142,7 +142,8 @@ function Contact() {
                 marginBottom: '2rem',
                 maxWidth: '700px',
                 marginLeft: 'auto',
-                marginRight: 'auto'
+                marginRight: 'auto',
+                textShadow: 'none'
             }}>
                 Let's connect! I'm open to remote opportunities and collaboration.
             </p>

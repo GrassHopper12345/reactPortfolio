@@ -71,27 +71,27 @@ function EngineeringExperiments() {
           maxWidth: '700px',
           margin: '0 auto'
         }}>
-          <p style={{ marginBottom: '1rem' }}>
+          <p style={{ marginBottom: '1rem', textShadow: 'none' }}>
             This interactive game demonstrates core engineering principles:
           </p>
           <ul style={{ listStyle: 'none', padding: 0 }}>
-            <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+            <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative', textShadow: 'none' }}>
               <span style={{ position: 'absolute', left: 0, color: 'var(--neon-green)' }}>•</span>
               <strong>Game Loop & Timing:</strong> Uses requestAnimationFrame for smooth 60fps rendering with delta time calculations
             </li>
-            <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+            <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative', textShadow: 'none' }}>
               <span style={{ position: 'absolute', left: 0, color: 'var(--neon-green)' }}>•</span>
               <strong>Input Handling:</strong> Supports keyboard, mouse, and touch events with proper event delegation
             </li>
-            <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+            <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative', textShadow: 'none' }}>
               <span style={{ position: 'absolute', left: 0, color: 'var(--neon-green)' }}>•</span>
               <strong>Collision Detection:</strong> Axis-aligned bounding box (AABB) algorithms for efficient hit detection
             </li>
-            <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+            <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative', textShadow: 'none' }}>
               <span style={{ position: 'absolute', left: 0, color: 'var(--neon-green)' }}>•</span>
               <strong>State Management:</strong> React hooks for game state, refs for performance-critical values
             </li>
-            <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative' }}>
+            <li style={{ marginBottom: '0.75rem', paddingLeft: '1.5rem', position: 'relative', textShadow: 'none' }}>
               <span style={{ position: 'absolute', left: 0, color: 'var(--neon-green)' }}>•</span>
               <strong>Performance:</strong> Lazy loading, optimized re-renders, and frame rate management
             </li>
@@ -158,7 +158,8 @@ function EngineeringExperiments() {
           fontSize: '0.9rem', 
           textAlign: 'center',
           fontStyle: 'italic',
-          marginTop: '1rem'
+          marginTop: '1rem',
+          textShadow: 'none'
         }}>
           Reduced motion mode detected. Animations are minimized.
         </p>

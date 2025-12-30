@@ -103,9 +103,9 @@
 .resume-column {
   transition: transform 0.3s ease;
   background: var(--space-dark) !important;
-  border: 2px solid var(--neon-cyan) !important;
+  border: 2px solid rgba(0, 255, 255, 0.8) !important;
   border-radius: 10px !important;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2) !important;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.15) !important;
   display: flex !important;
   flex-direction: column !important;
   width: 100%;
@@ -116,7 +116,7 @@
 
 .resume-column:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4) !important;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3) !important;
   border-color: var(--neon-green) !important;
 }
 
@@ -177,10 +177,10 @@
 /* Contact form cards */
 .contact-info-card,
 .contact-form-card {
-  border: 2px solid var(--neon-cyan) !important;
+  border: 2px solid rgba(0, 255, 255, 0.8) !important;
   border-radius: 10px;
   background: var(--space-dark) !important;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2) !important;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.15) !important;
   width: 100%;
   min-width: 450px;
   max-width: 500px;

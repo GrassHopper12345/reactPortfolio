@@ -24,6 +24,7 @@ function Hero() {
       <div className="hero-content">
         <h1 className="hero-name">Brian Hopper</h1>
         <h2 className="hero-title">Mid-Level Remote Software Engineer</h2>
+        <p className="hero-micro-label">Production-focused engineer · Enterprise systems</p>
         <p className="hero-value">
           Full-stack developer building enterprise web applications with TypeScript, Next.js, React, and C# REST APIs.
         </p>
@@ -33,24 +34,24 @@ function Hero() {
         </div>
         <div className="hero-cta-group">
           <Button
-            label="View Projects"
-            icon="pi pi-code"
-            onClick={() => scrollToSection('projects')}
-            className="game-themed-button hero-cta"
-            aria-label="View projects section"
-          />
-          <Button
             label="Download Resume"
             icon="pi pi-download"
             onClick={handleDownloadResume}
-            className="game-themed-button hero-cta"
+            className="game-themed-button hero-cta hero-cta-primary"
             aria-label="Download resume PDF"
+          />
+          <Button
+            label="View Projects"
+            icon="pi pi-code"
+            onClick={() => scrollToSection('projects')}
+            className="game-themed-button hero-cta hero-cta-secondary"
+            aria-label="View projects section"
           />
           <Button
             label="Play Galaga"
             icon="pi pi-gamepad"
             onClick={() => scrollToSection('experiments')}
-            className="game-themed-button hero-cta"
+            className="game-themed-button hero-cta hero-cta-tertiary"
             aria-label="Play Galaga game in engineering experiments section"
           />
         </div>

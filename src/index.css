@@ -15,6 +15,7 @@
   --space-darker: #0f0f1e;
   --neon-green: #00ff00;
   --neon-cyan: #00ffff;
+  --neon-cyan-border: rgba(0, 255, 255, 0.8);
   --neon-pink: #ff00ff;
   --neon-yellow: #ffff00;
 }
@@ -59,7 +60,7 @@ code {
       position: -webkit-sticky;
       position: sticky;
       top: 0;
-      border-bottom: 2px solid var(--neon-cyan);
+      border-bottom: 2px solid var(--neon-cyan-border);
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
       z-index: 9999;
       gap: 10px;
@@ -272,7 +273,7 @@ header nav ul li a:hover {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   color: var(--neon-cyan);
   text-shadow: 0 0 10px var(--neon-cyan);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   font-weight: 600;
 }
 
@@ -280,10 +281,20 @@ header nav ul li a:hover {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   color: #b0e0e6;
   line-height: 1.6;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  text-shadow: none;
+}
+
+.hero-micro-label {
+  font-size: clamp(0.85rem, 2vw, 0.9rem);
+  color: #b0e0e6;
+  opacity: 0.85;
+  margin-bottom: 1.5rem;
+  text-shadow: none;
+  font-weight: 400;
 }
 
 .hero-tech-stack {
@@ -316,6 +327,33 @@ header nav ul li a:hover {
   min-width: 180px;
   width: auto;
   margin: 0;
+}
+
+/* CTA Hierarchy Styles */
+.hero-cta-primary {
+  box-shadow: 
+    0 0 15px #00ff00,
+    0 0 25px rgba(0, 255, 0, 0.4),
+    inset 0 0 12px rgba(0, 255, 0, 0.35);
+  border: 2px solid #00ff00;
+}
+
+/* .hero-cta-secondary uses standard styling - no overrides needed */
+
+.hero-cta-tertiary {
+  border: 2px solid rgba(0, 255, 0, 0.6);
+  background: linear-gradient(135deg, rgba(0, 255, 0, 0.1), rgba(0, 200, 0, 0.15));
+  box-shadow: 
+    0 0 8px rgba(0, 255, 0, 0.5),
+    inset 0 0 8px rgba(0, 255, 0, 0.2);
+  opacity: 0.9;
+}
+
+.hero-cta-tertiary:hover {
+  opacity: 1;
+  box-shadow: 
+    0 0 12px rgba(0, 255, 0, 0.6),
+    inset 0 0 10px rgba(0, 255, 0, 0.3);
 }
 
 @media screen and (max-width: 768px) {
@@ -354,7 +392,7 @@ header nav ul li a:hover {
   text-align: center;
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 2px solid var(--neon-cyan);
+  border-bottom: 2px solid var(--neon-cyan-border);
 }
 
 /* Accessibility improvements */
@@ -400,11 +438,11 @@ button:focus {
 /* Recruiter Quick Scan Styles */
 .recruiter-quick-scan {
   background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(15, 15, 30, 0.9));
-  border-top: 2px solid var(--neon-cyan);
-  border-bottom: 2px solid var(--neon-cyan);
+  border-top: 2px solid var(--neon-cyan-border);
+  border-bottom: 2px solid var(--neon-cyan-border);
   padding: 2rem 2rem;
   margin-top: 3rem;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.15);
 }
 
 .quick-scan-container {
@@ -431,6 +469,7 @@ button:focus {
   color: #b0e0e6;
   font-size: 1.1rem;
   flex: 1;
+  text-shadow: none;
 }
 
 .quick-scan-badge {
@@ -470,6 +509,7 @@ button:focus {
   color: #b0e0e6;
   font-size: 1rem;
   line-height: 1.6;
+  text-shadow: none;
 }
 
 .highlight-icon {
@@ -502,10 +542,11 @@ button:focus {
 /*Intro*/
 .intro p {
   line-height: 1.7;
-  color: var(--neon-cyan);
+  color: #b0e0e6;
   width: 80%;
   font-size: 20px;
   margin: 0 auto;
+  text-shadow: none;
 }
 
 .intro-info {
@@ -531,8 +572,9 @@ button:focus {
 }
 
 .intro-text p {
-  color: var(--neon-cyan);
+  color: #b0e0e6;
   font-size: 18px;
+  text-shadow: none;
 }
 
 /*end intro*/
@@ -542,7 +584,7 @@ button:focus {
 #reach-out {
   /* margin-top: 5px; */
   background: var(--space-dark);
-  border-top: 2px solid var(--neon-cyan);
+  border-top: 2px solid var(--neon-cyan-border);
 }
 
 #reach-out h2 {
@@ -582,7 +624,7 @@ button:focus {
 .contact-form textarea,
 .contact-form-card input,
 .contact-form-card textarea {
-  border: 1px solid var(--neon-cyan) !important;
+  border: 1px solid rgba(0, 255, 255, 0.8) !important;
   display: block;
   padding: 7px 15px;
   font-size: 16px;
@@ -643,6 +685,8 @@ button:focus {
   margin: 20px 0;
   line-height: 1.5;
   font-size: 25px;
+  color: #b0e0e6;
+  text-shadow: none;
   font-style: normal;
   color: var(--neon-cyan);
 }
@@ -673,7 +717,7 @@ button:focus {
 
 .jobs {
   background: var(--space-dark);
-  border-top: 2px solid var(--neon-cyan);
+  border-top: 2px solid var(--neon-cyan-border);
 }
 
 
@@ -763,8 +807,9 @@ button:focus {
 }
 
 .job-text p {
-  color: var(--neon-cyan);
+  color: #b0e0e6;
   font-size: 18px;
+  text-shadow: none;
 }
 
 /*End Jobs section*/
@@ -776,9 +821,10 @@ button:focus {
 
 .download-intro p {
   line-height: 1.7;
-  color: var(--neon-cyan);
+  color: #b0e0e6;
   width: 95%;
   font-size: 30px;
+  text-shadow: none;
   margin: 0 auto;
   justify-content: center;
 }
@@ -868,9 +914,10 @@ button:focus {
 }
 
 .column-text {
-  color: var(--neon-cyan);
+  color: #b0e0e6;
   font-size: 20px;
   padding: 5px;
+  text-shadow: none;
 }
 
 .column-text ul li {
@@ -888,8 +935,8 @@ button:focus {
 /* start styles to <footer> */
 footer {
   background: var(--space-darker);
-  border-top: 2px solid var(--neon-cyan);
-  box-shadow: 0 -5px 20px rgba(0, 255, 255, 0.2);
+  border-top: 2px solid var(--neon-cyan-border);
+  box-shadow: 0 -5px 20px rgba(0, 255, 255, 0.15);
   font-weight: bold;
   width: 100%;
   height: 100px;
@@ -909,9 +956,10 @@ footer h2 {
 }
 
 footer p {
-  color: var(--neon-cyan);
+  color: #b0e0e6;
   font-size: 15px;
   margin: 0;
+  text-shadow: none;
   text-align: center;
 }
 
