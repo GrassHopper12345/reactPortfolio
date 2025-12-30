@@ -156,18 +156,22 @@ function Contact() {
                             <p>Would you like to Connect?</p>
                             <address style={{ fontStyle: 'normal', marginBottom: '1.5rem' }}>
                                 Bossier City, LA <br />
-                                Phone: <a href="tel:318.773.4013" aria-label="Call 318.773.4013">318.773.4013</a>
+                                <span style={{ opacity: 0.6, fontSize: '0.9rem' }}>
+                                  Phone: <a href="tel:318.773.4013" aria-label="Call 318.773.4013" style={{ color: 'rgba(176, 224, 230, 0.6)' }}>318.773.4013</a>
+                                </span>
                                 <br />
-                                Email:{" "}
-                                <a href="mailto:brian.hopper@live.com" aria-label="Email brian.hopper@live.com">brian.hopper@live.com</a>
+                                <strong style={{ color: 'var(--neon-cyan)', fontSize: '1.05rem' }}>
+                                  Email:{" "}
+                                  <a href="mailto:brian.hopper@live.com" aria-label="Email brian.hopper@live.com" style={{ color: 'var(--neon-cyan)' }}>brian.hopper@live.com</a>
+                                </strong>
                             </address>
                             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                                 <Button
-                                    label="Send Email"
+                                    label="Email Me"
                                     icon="pi pi-envelope"
                                     onClick={() => window.open('mailto:brian.hopper@live.com?subject=Portfolio Contact', '_blank')}
                                     className="game-themed-button"
-                                    style={{ width: '100%' }}
+                                    style={{ width: '100%', fontWeight: '600' }}
                                     aria-label="Open email client to send message"
                                 />
                                 <Button
@@ -175,9 +179,17 @@ function Contact() {
                                     icon="pi pi-linkedin"
                                     onClick={() => window.open('https://www.linkedin.com/in/mrhopper/', '_blank', 'noopener,noreferrer')}
                                     className="game-themed-button"
-                                    outlined
-                                    style={{ width: '100%' }}
+                                    style={{ width: '100%', fontWeight: '600' }}
                                     aria-label="Visit LinkedIn profile"
+                                />
+                                <Button
+                                    label="Download Resume"
+                                    icon="pi pi-download"
+                                    onClick={() => window.open('/Resume.pdf', '_blank', 'noopener,noreferrer')}
+                                    className="game-themed-button"
+                                    outlined
+                                    style={{ width: '100%', fontWeight: '600' }}
+                                    aria-label="Download resume PDF"
                                 />
                                 <Button
                                     label="GitHub"
@@ -185,7 +197,7 @@ function Contact() {
                                     onClick={() => window.open('https://github.com/GrassHopper12345', '_blank', 'noopener,noreferrer')}
                                     className="game-themed-button"
                                     outlined
-                                    style={{ width: '100%' }}
+                                    style={{ width: '100%', opacity: 0.7 }}
                                     aria-label="Visit GitHub profile"
                                 />
                             </div>

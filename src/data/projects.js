@@ -14,6 +14,7 @@ export const projects = [
   {
     id: "cli-logo-generator",
     title: "CLI Logo Generator",
+    roleLabel: "CLI",
     shortPitch: "Command-line tool that generates custom SVG logos through interactive prompts. Demonstrates Node.js CLI development, file system operations, and input validation.",
     problem: "Designers and developers needed a quick way to generate simple SVG logos without opening design software.",
     whatIBuilt: [
@@ -43,6 +44,7 @@ export const projects = [
   {
     id: "code-quiz",
     title: "Code Quiz",
+    roleLabel: "Frontend",
     shortPitch: "Interactive web-based quiz application for testing coding knowledge. Demonstrates DOM manipulation, state management, and client-side data persistence.",
     problem: "Students needed a way to test their web development knowledge with immediate feedback.",
     whatIBuilt: [
@@ -72,6 +74,7 @@ export const projects = [
   {
     id: "ecommerce-backend",
     title: "E-Commerce Back-End",
+    roleLabel: "Backend",
     shortPitch: "RESTful API backend for e-commerce platform with full CRUD operations. Demonstrates SQL database design, ORM integration, and REST API architecture.",
     problem: "E-commerce applications require robust backend systems to manage products, categories, and inventory.",
     whatIBuilt: [
@@ -103,6 +106,7 @@ export const projects = [
   {
     id: "fund-my-farm",
     title: "Fund My Farm",
+    roleLabel: "Full-stack",
     shortPitch: "Full-stack e-commerce platform connecting investors with agricultural opportunities. Demonstrates MERN stack, JWT authentication, and full-stack data flow.",
     problem: "Farmers needed a modern platform to showcase their agriculture and accept investments online.",
     whatIBuilt: [
@@ -135,6 +139,7 @@ export const projects = [
   {
     id: "note-taker",
     title: "Note Taker",
+    roleLabel: "Backend",
     shortPitch: "Express.js-powered note-taking application with persistent storage. Demonstrates REST API development, file-based data persistence, and route handling.",
     problem: "Users needed a simple, fast way to create and manage notes without complex features.",
     whatIBuilt: [
@@ -164,6 +169,7 @@ export const projects = [
   {
     id: "pwa-text-editor",
     title: "PWA Text Editor",
+    roleLabel: "Frontend",
     shortPitch: "Progressive Web Application for code snippets and notes with offline functionality. Demonstrates service workers, client-side storage, and PWA architecture.",
     problem: "Developers needed a text editor that works offline and syncs when connection is restored.",
     whatIBuilt: [
@@ -194,6 +200,7 @@ export const projects = [
   {
     id: "readme-generator",
     title: "README Generator",
+    roleLabel: "CLI",
     shortPitch: "CLI tool that generates professional README files from user prompts. Demonstrates Node.js CLI development, template generation, and file system operations.",
     problem: "Developers spend significant time writing README files, often with inconsistent formatting.",
     whatIBuilt: [
@@ -223,6 +230,7 @@ export const projects = [
   {
     id: "social-network-api",
     title: "Social Network API",
+    roleLabel: "Backend",
     shortPitch: "NoSQL-based RESTful API for social networking features including thoughts, reactions, and friends. Demonstrates MongoDB data modeling, REST API design, and NoSQL database operations.",
     problem: "Social applications need scalable APIs to handle user interactions, thoughts, and relationships.",
     whatIBuilt: [
@@ -255,6 +263,7 @@ export const projects = [
   {
     id: "weather-app",
     title: "Weather App",
+    roleLabel: "Frontend",
     shortPitch: "Global weather application providing 6-day forecasts for any city worldwide. Demonstrates third-party API integration, data visualization, and error handling.",
     problem: "Users needed quick access to weather information for multiple cities with extended forecasts.",
     whatIBuilt: [
@@ -285,6 +294,7 @@ export const projects = [
   {
     id: "weather-ways",
     title: "WeatherWays",
+    roleLabel: "Frontend",
     shortPitch: "Web application combining 7-day weather forecasts with current traffic information. Demonstrates multiple API integrations, data aggregation, and user interface design.",
     problem: "Travelers need both weather and traffic data to plan trips effectively.",
     whatIBuilt: [

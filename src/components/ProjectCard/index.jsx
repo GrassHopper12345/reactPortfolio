@@ -102,17 +102,46 @@ function ProjectCard({ project }) {
             }}
           />
         </a>
-        <h3 style={{ 
-          color: 'var(--neon-green)', 
-          fontSize: '1.5rem', 
-          marginBottom: '0.75rem',
-          textShadow: '0 1px 3px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 255, 0, 0.3)'
-        }}>
-          {project.title}
-        </h3>
-        <p style={{ color: '#b0e0e6', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1rem', textShadow: 'none' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
+          <h3 style={{ 
+            color: 'var(--neon-green)', 
+            fontSize: '1.5rem', 
+            margin: 0,
+            textShadow: '0 1px 3px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 255, 0, 0.3)'
+          }}>
+            {project.title}
+          </h3>
+          {project.roleLabel && (
+            <span style={{
+              padding: '0.25rem 0.6rem',
+              background: 'rgba(0, 255, 255, 0.15)',
+              border: '1px solid var(--neon-cyan-border)',
+              borderRadius: '12px',
+              color: 'var(--neon-cyan)',
+              fontSize: '0.75rem',
+              fontWeight: '600',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px'
+            }}>
+              {project.roleLabel}
+            </span>
+          )}
+        </div>
+        <p style={{ color: '#b0e0e6', fontSize: '1rem', lineHeight: '1.6', marginBottom: '0.75rem', textShadow: 'none' }}>
           {project.shortPitch}
         </p>
+        {project.impact && project.impact.length > 0 && (
+          <p style={{ 
+            color: '#b0e0e6', 
+            fontSize: '0.95rem', 
+            lineHeight: '1.6', 
+            marginBottom: '1rem', 
+            textShadow: 'none',
+            fontWeight: '600'
+          }}>
+            <strong style={{ color: 'var(--neon-green)' }}>Impact:</strong> {project.impact[0]}
+          </p>
+        )}
         
         {/* Highlights section - show if available */}
         {project.highlights && project.highlights.length > 0 && (
@@ -205,22 +234,36 @@ function ProjectCard({ project }) {
 
       <div style={{ marginTop: '1rem', marginBottom: '1rem' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
-          {project.techStack.map((tech, index) => (
+          {project.techStack.slice(0, 6).map((tech, index) => (
             <span 
               key={index}
               style={{
-                padding: '0.25rem 0.75rem',
+                padding: '0.4rem 0.8rem',
                 background: 'rgba(0, 255, 255, 0.1)',
                 border: '1px solid rgba(0, 255, 255, 0.8)',
                 borderRadius: '15px',
                 color: '#b0e0e6',
                 fontSize: '0.85rem',
-                textShadow: 'none'
+                textShadow: 'none',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 255, 255, 0.1)'
               }}
             >
               {tech}
             </span>
           ))}
+          {project.techStack.length > 6 && (
+            <span style={{
+              padding: '0.4rem 0.8rem',
+              background: 'rgba(0, 255, 255, 0.05)',
+              border: '1px solid rgba(0, 255, 255, 0.4)',
+              borderRadius: '15px',
+              color: 'rgba(176, 224, 230, 0.7)',
+              fontSize: '0.85rem',
+              textShadow: 'none'
+            }}>
+              +{project.techStack.length - 6} more
+            </span>
+          )}
         </div>
       </div>
 

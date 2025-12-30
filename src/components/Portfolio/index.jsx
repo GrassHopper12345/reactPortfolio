@@ -4,7 +4,7 @@ import ProjectCard from "../ProjectCard";
 import { projects } from "../../data/projects";
 
 function Portfolio() {
-  const [filter, setFilter] = useState("all");
+  const [filter, setFilter] = useState("most-relevant");
 
   // Sorting function: featured first, then by tier priority, then by recency
   const sortedProjects = useMemo(() => {

@@ -24,13 +24,27 @@ function Hero() {
       <div className="hero-content">
         <h1 className="hero-name">Brian Hopper</h1>
         <h2 className="hero-title">Mid-Level Remote Software Engineer</h2>
-        <p className="hero-micro-label">Production-focused engineer · Enterprise systems</p>
-        <p className="hero-value">
-          Full-stack developer building enterprise web applications with TypeScript, Next.js, React, and C# REST APIs.
-        </p>
-        <div className="hero-tech-stack">
-          <span className="tech-label">Tech Stack:</span>
-          <span className="tech-items">TypeScript • Next.js • React • PrimeReact • C# (.NET) • REST APIs • SQL • AWS</span>
+        <div className="hero-recruiter-strip">
+          <span>📍 Bossier City, LA</span>
+          <span>•</span>
+          <span>🌐 Remote</span>
+          <span>•</span>
+          <span>CityTeleCoin</span>
+          <span>•</span>
+          <span>Feb 2023 – Present</span>
+          <span>•</span>
+          <span>TypeScript • Next.js • React • C# • REST APIs • SQL</span>
+        </div>
+        <div className="hero-bullets">
+          <div className="hero-bullet">
+            <strong>Outcome:</strong> Building production-ready enterprise web applications with full-stack TypeScript and C# REST APIs
+          </div>
+          <div className="hero-bullet">
+            <strong>Scope:</strong> Frontend architecture, API integration, data modeling, and cross-functional collaboration
+          </div>
+          <div className="hero-bullet">
+            <strong>Ownership:</strong> Leading feature development from requirements to deployment in agile environment
+          </div>
         </div>
         <div className="hero-cta-group">
           <Button
