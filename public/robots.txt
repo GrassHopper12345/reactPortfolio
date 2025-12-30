@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://sparkly-cranachan-9f0864.netlify.app/sitemap.xml
+
