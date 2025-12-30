@@ -14,16 +14,17 @@ const skills = {
     "React",
     "Next.js",
     "PrimeReact",
-    "PHP",
     "JavaScript (ES6+)"
   ],
   backend: [
     "C# (.NET)",
-    "REST API Design",
+    "REST API Development",
     "Node.js",
     "Express",
     "Golang",
-    "MERN Stack"
+    "MERN Stack",
+    "PHP"
+
   ],
   data: [
     "SQL",
