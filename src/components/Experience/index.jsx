@@ -27,9 +27,9 @@ function Experience() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginTop: '2rem' }}>
         {experience.length > 0 ? (
           experience.map((job, index) => (
-            <Card key={index} className="experience-card" style={{ background: 'var(--space-dark)', border: '2px solid rgba(0, 255, 255, 0.8)', borderRadius: '10px' }}>
+            <Card key={index} className="experience-card" style={{ background: 'var(--space-dark)', border: '2px solid rgba(0, 255, 255, 0.8)', borderRadius: '10px', boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 255, 255, 0.15)' }}>
               <div style={{ marginBottom: '1rem' }}>
-                <h3 style={{ color: 'var(--neon-green)', fontSize: '1.5rem', marginBottom: '0.5rem', textShadow: '0 0 5px var(--neon-green)' }}>
+                <h3 style={{ color: 'var(--neon-green)', fontSize: '1.5rem', marginBottom: '0.75rem', textShadow: '0 1px 3px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 255, 0, 0.3)' }}>
                   {job.title}
                 </h3>
                 <p style={{ color: '#b0e0e6', fontSize: '1.1rem', fontWeight: '600', marginBottom: '0.25rem' }}>
@@ -39,15 +39,17 @@ function Experience() {
                   {job.dates}
                 </p>
               </div>
-              <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1rem' }}>
+              <ul style={{ listStyle: 'none', padding: 0, marginBottom: '1.25rem' }}>
                 {job.bullets.map((bullet, bulletIndex) => (
                   <li 
                     key={bulletIndex}
                     style={{ 
                       color: '#b0e0e6', 
-                      marginBottom: '0.75rem',
+                      marginBottom: '0.6rem',
                       paddingLeft: '1.5rem',
                       position: 'relative',
+                      fontSize: '0.95rem',
+                      lineHeight: '1.6',
                       textShadow: 'none'
                     }}
                   >
@@ -56,18 +58,19 @@ function Experience() {
                   </li>
                 ))}
               </ul>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginTop: '1rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', marginTop: '1rem' }}>
                 {job.techStack.map((tech, techIndex) => (
                   <span 
                     key={techIndex}
                     style={{
-                      padding: '0.25rem 0.75rem',
+                      padding: '0.5rem 0.9rem',
                       background: 'rgba(0, 255, 255, 0.1)',
                       border: '1px solid rgba(0, 255, 255, 0.8)',
-                      borderRadius: '15px',
+                      borderRadius: '20px',
                       color: '#b0e0e6',
-                      fontSize: '0.85rem',
-                      textShadow: 'none'
+                      fontSize: '0.9rem',
+                      textShadow: 'none',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 255, 255, 0.1)'
                     }}
                   >
                     {tech}

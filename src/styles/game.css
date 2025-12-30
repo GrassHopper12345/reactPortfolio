@@ -108,6 +108,11 @@
   padding: 1.75rem !important;
 }
 
+/* Experience card */
+.experience-card .p-card-body {
+  padding: 1.75rem !important;
+}
+
 /* Resume column cards */
 .resume-column {
   transition: transform 0.3s ease;
