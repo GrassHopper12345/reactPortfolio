@@ -5,25 +5,43 @@ import { MdFoundation } from "react-icons/md";
 import { GrTechnology } from "react-icons/gr";
 import { BsCloud, BsTools } from "react-icons/bs";
 import { FaDatabase } from "react-icons/fa";
+import { FaCode } from "react-icons/fa";
 
-// Authoritative stack only
+// Production engineering skills
 const skills = {
   frontend: [
     "TypeScript",
-    "Next.js",
     "React",
-    "PrimeReact"
+    "Next.js",
+    "PrimeReact",
+    "JavaScript (ES6+)"
   ],
   backend: [
     "C# (.NET)",
-    "REST APIs"
+    "REST API Design",
+    "Node.js",
+    "Express",
+    "MERN Stack"
   ],
   data: [
-    "SQL"
+    "SQL",
+    "PostgreSQL",
+    "MongoDB",
+    "Data Modeling"
   ],
   cloudTools: [
-    "AWS (Basic/Exposure)",
-    "Git"
+    "Docker",
+    "AWS (Basic / Hands-on Exposure)",
+    "Git",
+    "Bitbucket",
+    "Jira"
+  ],
+  engineeringPractices: [
+    "Agile / Scrum",
+    "Cross-functional Collaboration",
+    "Debugging & Troubleshooting",
+    "Code Reviews",
+    "Continuous Learning"
   ]
 };
 
@@ -47,10 +65,16 @@ const skillCategories = [
     color: "var(--neon-cyan)"
   },
   { 
-    title: "Cloud/Tools", 
+    title: "Cloud & Engineering Tools", 
     items: skills.cloudTools, 
     icon: BsCloud,
     color: "var(--neon-green)"
+  },
+  { 
+    title: "Engineering Practices", 
+    items: skills.engineeringPractices, 
+    icon: FaCode,
+    color: "var(--neon-cyan)"
   }
 ];
 

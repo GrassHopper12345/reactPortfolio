@@ -18,25 +18,65 @@ function ProjectCard({ project }) {
       }}
     >
       <div style={{ marginBottom: '1rem', position: 'relative' }}>
-        {project.mostRelevant && (
-          <div style={{
-            position: 'absolute',
-            top: '10px',
-            right: '10px',
-            background: 'linear-gradient(135deg, var(--neon-green), var(--neon-cyan))',
-            color: 'var(--space-dark)',
-            padding: '0.4rem 0.8rem',
-            borderRadius: '20px',
-            fontSize: '0.75rem',
-            fontWeight: 'bold',
-            zIndex: 10,
-            boxShadow: '0 0 10px rgba(0, 255, 0, 0.5)',
-            textTransform: 'uppercase',
-            letterSpacing: '0.5px'
-          }}>
-            ⭐ Most Relevant
-          </div>
-        )}
+        {/* Badge container - supports multiple badges */}
+        <div style={{
+          position: 'absolute',
+          top: '10px',
+          right: '10px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.5rem',
+          zIndex: 10,
+          alignItems: 'flex-end'
+        }}>
+          {project.featured && (
+            <div style={{
+              background: 'linear-gradient(135deg, var(--neon-green), var(--neon-cyan))',
+              color: 'var(--space-dark)',
+              padding: '0.4rem 0.8rem',
+              borderRadius: '20px',
+              fontSize: '0.75rem',
+              fontWeight: 'bold',
+              boxShadow: '0 0 10px rgba(0, 255, 0, 0.5)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px'
+            }}>
+              ⭐ Most Relevant
+            </div>
+          )}
+          {project.relevanceTier === "primary" && !project.featured && (
+            <div style={{
+              background: 'rgba(0, 255, 255, 0.15)',
+              color: 'var(--neon-cyan)',
+              padding: '0.4rem 0.8rem',
+              borderRadius: '20px',
+              fontSize: '0.7rem',
+              fontWeight: '600',
+              border: '1px solid var(--neon-cyan-border)',
+              boxShadow: '0 0 8px rgba(0, 255, 255, 0.3)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px'
+            }}>
+              Production-style
+            </div>
+          )}
+          {(project.relevanceTier === "experimental" || project.relevanceTier === "legacy") && (
+            <div style={{
+              background: 'rgba(255, 255, 0, 0.1)',
+              color: 'var(--neon-yellow)',
+              padding: '0.4rem 0.8rem',
+              borderRadius: '20px',
+              fontSize: '0.7rem',
+              fontWeight: '600',
+              border: '1px solid rgba(255, 255, 0, 0.5)',
+              boxShadow: '0 0 8px rgba(255, 255, 0, 0.2)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px'
+            }}>
+              {project.status === "Legacy" ? "Legacy" : "Updating"}
+            </div>
+          )}
+        </div>
         <a 
           href={project.links.github} 
           target="_blank" 
@@ -67,6 +107,31 @@ function ProjectCard({ project }) {
         <p style={{ color: '#b0e0e6', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1rem', textShadow: 'none' }}>
           {project.shortPitch}
         </p>
+        
+        {/* Highlights section - show if available */}
+        {project.highlights && project.highlights.length > 0 && (
+          <div style={{ marginTop: '0.75rem', marginBottom: '0.5rem' }}>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+              {project.highlights.map((highlight, index) => (
+                <li 
+                  key={index}
+                  style={{ 
+                    color: '#b0e0e6', 
+                    marginBottom: '0.4rem',
+                    paddingLeft: '1.2rem',
+                    position: 'relative',
+                    fontSize: '0.9rem',
+                    lineHeight: '1.5',
+                    textShadow: 'none'
+                  }}
+                >
+                  <span style={{ position: 'absolute', left: 0, color: 'var(--neon-cyan)' }}>▸</span>
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
 
       {isExpanded && (
