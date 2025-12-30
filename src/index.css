@@ -264,7 +264,7 @@ header nav ul li a:hover {
   font-size: clamp(2.5rem, 8vw, 4.5rem);
   font-weight: bold;
   color: var(--neon-green);
-  text-shadow: 0 0 20px var(--neon-green), 0 0 40px var(--neon-green);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 255, 0, 0.4);
   margin-bottom: 1rem;
   line-height: 1.2;
 }
@@ -272,7 +272,7 @@ header nav ul li a:hover {
 .hero-title {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   color: var(--neon-cyan);
-  text-shadow: 0 0 10px var(--neon-cyan);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5), 0 0 8px rgba(0, 255, 255, 0.3);
   margin-bottom: 1rem;
   font-weight: 600;
 }

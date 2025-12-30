@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
+import { Star } from "lucide-react";
 
 function ProjectCard({ project }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -14,7 +15,8 @@ function ProjectCard({ project }) {
         borderRadius: '10px',
         height: '100%',
         display: 'flex',
-        flexDirection: 'column'
+        flexDirection: 'column',
+        boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 255, 255, 0.15)'
       }}
     >
       <div style={{ marginBottom: '1rem', position: 'relative' }}>
@@ -37,11 +39,15 @@ function ProjectCard({ project }) {
               borderRadius: '20px',
               fontSize: '0.75rem',
               fontWeight: 'bold',
-              boxShadow: '0 0 10px rgba(0, 255, 0, 0.5)',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 6px rgba(0, 255, 0, 0.3)',
               textTransform: 'uppercase',
-              letterSpacing: '0.5px'
+              letterSpacing: '0.5px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.4rem'
             }}>
-              ⭐ Most Relevant
+              <Star size={14} fill="currentColor" />
+              Most Relevant
             </div>
           )}
           {project.relevanceTier === "primary" && !project.featured && (
@@ -53,7 +59,7 @@ function ProjectCard({ project }) {
               fontSize: '0.7rem',
               fontWeight: '600',
               border: '1px solid var(--neon-cyan-border)',
-              boxShadow: '0 0 8px rgba(0, 255, 255, 0.3)',
+              boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2), 0 0 6px rgba(0, 255, 255, 0.2)',
               textTransform: 'uppercase',
               letterSpacing: '0.5px'
             }}>
@@ -69,7 +75,7 @@ function ProjectCard({ project }) {
               fontSize: '0.7rem',
               fontWeight: '600',
               border: '1px solid rgba(255, 255, 0, 0.5)',
-              boxShadow: '0 0 8px rgba(255, 255, 0, 0.2)',
+              boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2), 0 0 6px rgba(255, 255, 0, 0.15)',
               textTransform: 'uppercase',
               letterSpacing: '0.5px'
             }}>
@@ -91,7 +97,7 @@ function ProjectCard({ project }) {
               height: 'auto', 
               borderRadius: '8px', 
               marginBottom: '1rem', 
-              boxShadow: '0 2px 8px rgba(0, 255, 255, 0.2)',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 6px rgba(0, 255, 255, 0.15)',
               cursor: 'pointer'
             }}
           />
@@ -99,8 +105,8 @@ function ProjectCard({ project }) {
         <h3 style={{ 
           color: 'var(--neon-green)', 
           fontSize: '1.5rem', 
-          marginBottom: '0.5rem',
-          textShadow: '0 0 5px var(--neon-green)'
+          marginBottom: '0.75rem',
+          textShadow: '0 1px 3px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 255, 0, 0.3)'
         }}>
           {project.title}
         </h3>
@@ -110,18 +116,18 @@ function ProjectCard({ project }) {
         
         {/* Highlights section - show if available */}
         {project.highlights && project.highlights.length > 0 && (
-          <div style={{ marginTop: '0.75rem', marginBottom: '0.5rem' }}>
+          <div style={{ marginTop: '1rem', marginBottom: '0.75rem' }}>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {project.highlights.map((highlight, index) => (
                 <li 
                   key={index}
                   style={{ 
                     color: '#b0e0e6', 
-                    marginBottom: '0.4rem',
-                    paddingLeft: '1.2rem',
+                    marginBottom: '0.6rem',
+                    paddingLeft: '1.4rem',
                     position: 'relative',
                     fontSize: '0.9rem',
-                    lineHeight: '1.5',
+                    lineHeight: '1.6',
                     textShadow: 'none'
                   }}
                 >
@@ -135,18 +141,18 @@ function ProjectCard({ project }) {
       </div>
 
       {isExpanded && (
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1.25rem', marginTop: '0.5rem' }}>
           <div>
-            <h4 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>
+            <h4 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.75rem', textShadow: '0 1px 2px rgba(0, 0, 0, 0.5), 0 0 3px rgba(0, 255, 0, 0.2)' }}>
               Problem
             </h4>
-            <p style={{ color: '#b0e0e6', fontSize: '0.95rem', lineHeight: '1.6', textShadow: 'none' }}>
+            <p style={{ color: '#b0e0e6', fontSize: '0.95rem', lineHeight: '1.7', textShadow: 'none', marginBottom: '0.5rem' }}>
               {project.problem}
             </p>
           </div>
 
           <div>
-            <h4 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>
+            <h4 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.75rem', textShadow: '0 1px 2px rgba(0, 0, 0, 0.5), 0 0 3px rgba(0, 255, 0, 0.2)' }}>
               What I Built
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
@@ -155,11 +161,11 @@ function ProjectCard({ project }) {
                   key={index}
                   style={{ 
                     color: '#b0e0e6', 
-                    marginBottom: '0.5rem',
+                    marginBottom: '0.6rem',
                     paddingLeft: '1.5rem',
                     position: 'relative',
                     fontSize: '0.95rem',
-                    lineHeight: '1.5',
+                    lineHeight: '1.6',
                     textShadow: 'none'
                   }}
                 >
@@ -171,7 +177,7 @@ function ProjectCard({ project }) {
           </div>
 
           <div>
-            <h4 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>
+            <h4 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.75rem', textShadow: '0 1px 2px rgba(0, 0, 0, 0.5), 0 0 3px rgba(0, 255, 0, 0.2)' }}>
               Impact
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
@@ -180,11 +186,11 @@ function ProjectCard({ project }) {
                   key={index}
                   style={{ 
                     color: '#b0e0e6', 
-                    marginBottom: '0.5rem',
+                    marginBottom: '0.6rem',
                     paddingLeft: '1.5rem',
                     position: 'relative',
                     fontSize: '0.95rem',
-                    lineHeight: '1.5',
+                    lineHeight: '1.6',
                     textShadow: 'none'
                   }}
                 >

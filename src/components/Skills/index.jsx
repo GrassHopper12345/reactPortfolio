@@ -103,21 +103,22 @@ function Skills() {
                 background: 'var(--space-dark)', 
                 border: '2px solid rgba(0, 255, 255, 0.8)', 
                 borderRadius: '10px',
-                padding: '1.5rem'
+                padding: '1.75rem',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 255, 255, 0.15)'
               }}
             >
               <div style={{ 
                 display: 'flex', 
                 alignItems: 'center', 
                 gap: '0.75rem', 
-                marginBottom: '1rem' 
+                marginBottom: '1.25rem' 
               }}>
-                <Icon style={{ fontSize: '1.5rem', color: category.color }} />
+                <Icon style={{ fontSize: '20px', width: '20px', height: '20px', color: category.color, flexShrink: 0 }} />
                 <h3 style={{ 
                   color: category.color, 
                   fontSize: '1.2rem', 
                   margin: 0,
-                  textShadow: `0 0 5px ${category.color}`
+                  textShadow: '0 1px 3px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 255, 255, 0.3)'
                 }}>
                   {category.title}
                 </h3>
@@ -125,30 +126,33 @@ function Skills() {
               <div style={{ 
                 display: 'flex', 
                 flexWrap: 'wrap', 
-                gap: '0.5rem' 
+                gap: '0.6rem' 
               }}>
                 {category.items.map((skill, skillIndex) => (
                   <span 
                     key={skillIndex}
                     style={{
-                      padding: '0.4rem 0.8rem',
+                      padding: '0.5rem 0.9rem',
                       background: 'rgba(0, 255, 255, 0.1)',
                       border: '1px solid rgba(0, 255, 255, 0.8)',
                       borderRadius: '20px',
                       color: '#b0e0e6',
                       fontSize: '0.9rem',
                       transition: 'all 0.3s ease',
-                      textShadow: 'none'
+                      textShadow: 'none',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 255, 255, 0.1)'
                     }}
                     onMouseEnter={(e) => {
                       e.target.style.background = 'rgba(0, 255, 255, 0.2)';
                       e.target.style.borderColor = 'var(--neon-green)';
                       e.target.style.color = 'var(--neon-green)';
+                      e.target.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.3), 0 0 6px rgba(0, 255, 0, 0.2)';
                     }}
                     onMouseLeave={(e) => {
                       e.target.style.background = 'rgba(0, 255, 255, 0.1)';
                       e.target.style.borderColor = 'rgba(0, 255, 255, 0.8)';
                       e.target.style.color = '#b0e0e6';
+                      e.target.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.2), 0 0 4px rgba(0, 255, 255, 0.1)';
                     }}
                   >
                     {skill}

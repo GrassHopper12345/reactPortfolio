@@ -92,12 +92,12 @@ function Portfolio() {
               cursor: 'pointer',
               transition: 'all 0.3s ease',
               textTransform: 'none',
-              boxShadow: filter === btn.id ? '0 0 10px rgba(0, 255, 0, 0.5)' : 'none'
+              boxShadow: filter === btn.id ? '0 2px 6px rgba(0, 0, 0, 0.3), 0 0 8px rgba(0, 255, 0, 0.3)' : 'none'
             }}
             onMouseEnter={(e) => {
               if (filter !== btn.id) {
                 e.target.style.borderColor = 'var(--neon-green)';
-                e.target.style.boxShadow = '0 0 8px rgba(0, 255, 255, 0.3)';
+                e.target.style.boxShadow = '0 2px 6px rgba(0, 0, 0, 0.2), 0 0 6px rgba(0, 255, 255, 0.25)';
               }
             }}
             onMouseLeave={(e) => {
