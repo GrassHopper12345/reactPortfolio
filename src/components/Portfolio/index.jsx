@@ -10,7 +10,7 @@ function Portfolio() {
         <h2 className="section-title">Projects</h2>
       </div>
       <p style={{ 
-        color: 'var(--neon-cyan)', 
+        color: '#b0e0e6', 
         fontSize: '1.1rem', 
         textAlign: 'center', 
         marginBottom: '2rem',

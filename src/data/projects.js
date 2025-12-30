@@ -24,12 +24,11 @@ export const projects = [
     ],
     techStack: ["Node.js", "Inquirer.js", "SVG", "File System"],
     impact: [
-      "TODO: Add measurable impact (e.g., time saved, usage metrics)",
       "Enables rapid logo prototyping for projects"
     ],
     links: {
       github: "https://github.com/GrassHopper12345/logoGenerator",
-      live: null // TODO: Add live demo if available
+      live: null
     },
     image: cliLogoGen,
     alt: "CLI Logo Generator"
@@ -47,12 +46,11 @@ export const projects = [
     ],
     techStack: ["HTML5", "CSS3", "JavaScript", "LocalStorage"],
     impact: [
-      "TODO: Add user engagement metrics",
       "Helps students assess their coding knowledge"
     ],
     links: {
       github: "https://github.com/GrassHopper12345/codeQuiz",
-      live: null // TODO: Add live demo if available
+      live: null
     },
     image: codeQuiz,
     alt: "Code Quiz Application"
@@ -70,12 +68,11 @@ export const projects = [
     ],
     techStack: ["Node.js", "Express.js", "Sequelize", "MySQL", "dotenv"],
     impact: [
-      "TODO: Add API performance metrics",
       "Provides scalable foundation for e-commerce operations"
     ],
     links: {
       github: "https://github.com/GrassHopper12345/ORM-E-Commerce-BE",
-      live: null // TODO: Add API documentation link if available
+      live: null
     },
     image: eCommerce,
     alt: "E-Commerce Back-End API",
@@ -95,12 +92,11 @@ export const projects = [
     ],
     techStack: ["MERN Stack", "MongoDB", "Express.js", "React", "Node.js", "JWT", "Bcrypt"],
     impact: [
-      "TODO: Add user registration numbers or transaction volume",
       "Enables farmers to reach broader investor base"
     ],
     links: {
       github: "https://github.com/GrassHopper12345/fund-my-farm",
-      live: null // TODO: Add live demo if available
+      live: null
     },
     image: fundMyFarm,
     alt: "Fund My Farm E-Commerce Platform",
@@ -119,12 +115,11 @@ export const projects = [
     ],
     techStack: ["Node.js", "Express.js", "JSON", "File System"],
     impact: [
-      "TODO: Add usage statistics",
       "Provides lightweight alternative to complex note apps"
     ],
     links: {
       github: "https://github.com/GrassHopper12345/NoteTaker",
-      live: null // TODO: Add live demo if available
+      live: null
     },
     image: noteTaker,
     alt: "Note Taker Application"
@@ -143,12 +138,11 @@ export const projects = [
     ],
     techStack: ["JavaScript", "Service Workers", "Cache API", "IndexedDB", "Webpack", "PWA"],
     impact: [
-      "TODO: Add offline usage metrics",
       "Enables productivity without internet connection"
     ],
     links: {
       github: "https://github.com/GrassHopper12345/progressiveWebApplication-TextEditor",
-      live: null // TODO: Add live demo if available
+      live: null
     },
     image: pwa,
     alt: "PWA Text Editor",
@@ -167,7 +161,6 @@ export const projects = [
     ],
     techStack: ["Node.js", "Inquirer.js", "File System", "Markdown"],
     impact: [
-      "TODO: Add time saved metrics",
       "Standardizes README quality across projects"
     ],
     links: {
@@ -191,12 +184,11 @@ export const projects = [
     ],
     techStack: ["Node.js", "Express.js", "MongoDB", "Mongoose", "Moment.js"],
     impact: [
-      "TODO: Add API response time metrics",
       "Provides foundation for social networking features"
     ],
     links: {
       github: "https://github.com/GrassHopper12345/Social-Network-API",
-      live: null // TODO: Add API documentation if available
+      live: null
     },
     image: socialNetwork,
     alt: "Social Network API"
@@ -215,12 +207,11 @@ export const projects = [
     ],
     techStack: ["HTML5", "CSS3", "JavaScript", "Weather API", "LocalStorage"],
     impact: [
-      "TODO: Add user engagement metrics",
       "Provides accessible weather information globally"
     ],
     links: {
       github: "https://github.com/GrassHopper12345/weatherApp",
-      live: null // TODO: Add live demo if available
+      live: null
     },
     image: weatherApp,
     alt: "Weather Application"
@@ -239,12 +230,11 @@ export const projects = [
     ],
     techStack: ["HTML5", "CSS3", "JavaScript", "Weather API", "Traffic API"],
     impact: [
-      "TODO: Add usage statistics",
       "Combines essential travel planning information"
     ],
     links: {
       github: "https://github.com/GrassHopper12345/WeatherWays",
-      live: null // TODO: Add live demo if available
+      live: null
     },
     image: weatherWays,
     alt: "WeatherWays Application"

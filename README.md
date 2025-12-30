@@ -123,7 +123,7 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/reactPortfolio.git
+   git clone https://github.com/GrassHopper12345/reactPortfolio.git
    cd reactPortfolio
    ```
 

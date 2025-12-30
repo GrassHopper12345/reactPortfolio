@@ -136,7 +136,7 @@ function Contact() {
                 <h2 className="section-title">Contact</h2>
             </div>
             <p style={{ 
-                color: 'var(--neon-cyan)', 
+                color: '#b0e0e6', 
                 fontSize: '1.1rem', 
                 textAlign: 'center', 
                 marginBottom: '2rem',

@@ -2,59 +2,28 @@ import React from "react";
 import Section from "../Section";
 import { Card } from "primereact/card";
 import { MdFoundation } from "react-icons/md";
-import { GrTechnology, GrDocumentPerformance } from "react-icons/gr";
+import { GrTechnology } from "react-icons/gr";
 import { BsCloud, BsTools } from "react-icons/bs";
-import { GiTestTubes } from "react-icons/gi";
+import { FaDatabase } from "react-icons/fa";
 
-// Reuse skills from Resume component
+// Authoritative stack only
 const skills = {
   frontend: [
-    "HTML5",
-    "CSS3",
-    "Javascript",
-    "ES5-ES7",
+    "TypeScript",
+    "Next.js",
     "React",
-    "RESTful APIs",
-    "Materialize",
-    "Bootstrap",
-    "Handlebars"
+    "PrimeReact"
   ],
   backend: [
-    "Node.js",
-    "Express",
-    "Object-Relational Mapping",
-    "Object-Oriented Programming",
-    "Sequelize",
-    "Jest",
-    "Json Web Tokens (JWT)",
-    "Bcrypt",
-    "Model-View-Controller",
-    "Webpack"
+    "C# (.NET)",
+    "REST APIs"
   ],
-  cloudDevOps: [
-    // TODO: Add actual cloud/DevOps skills if available
-    "AWS (Basic)",
-    "Git Version Control"
+  data: [
+    "SQL"
   ],
-  testing: [
-    "Jest",
-    // TODO: Add more testing frameworks if available
-  ],
-  performance: [
-    "MERN Stack",
-    "MongoDB",
-    "Mongoose",
-    "NoSQL",
-    "GraphQL",
-    "Apollo",
-    "State Management",
-    "Progressive Web Apps"
-  ],
-  tools: [
-    "Git",
-    "Webpack",
-    "Insomnia",
-    // TODO: Add more tools if available
+  cloudTools: [
+    "AWS (Basic/Exposure)",
+    "Git"
   ]
 };
 
@@ -72,27 +41,15 @@ const skillCategories = [
     color: "var(--neon-green)"
   },
   { 
-    title: "Cloud/DevOps", 
-    items: skills.cloudDevOps, 
+    title: "Data", 
+    items: skills.data, 
+    icon: FaDatabase,
+    color: "var(--neon-cyan)"
+  },
+  { 
+    title: "Cloud/Tools", 
+    items: skills.cloudTools, 
     icon: BsCloud,
-    color: "var(--neon-cyan)"
-  },
-  { 
-    title: "Testing", 
-    items: skills.testing, 
-    icon: GiTestTubes,
-    color: "var(--neon-green)"
-  },
-  { 
-    title: "Performance", 
-    items: skills.performance, 
-    icon: GrDocumentPerformance,
-    color: "var(--neon-cyan)"
-  },
-  { 
-    title: "Tools", 
-    items: skills.tools, 
-    icon: BsTools,
     color: "var(--neon-green)"
   }
 ];
@@ -151,7 +108,7 @@ function Skills() {
                       background: 'rgba(0, 255, 255, 0.1)',
                       border: '1px solid var(--neon-cyan)',
                       borderRadius: '20px',
-                      color: 'var(--neon-cyan)',
+                      color: '#b0e0e6',
                       fontSize: '0.9rem',
                       transition: 'all 0.3s ease'
                     }}
@@ -163,7 +120,7 @@ function Skills() {
                     onMouseLeave={(e) => {
                       e.target.style.background = 'rgba(0, 255, 255, 0.1)';
                       e.target.style.borderColor = 'var(--neon-cyan)';
-                      e.target.style.color = 'var(--neon-cyan)';
+                      e.target.style.color = '#b0e0e6';
                     }}
                   >
                     {skill}
@@ -179,4 +136,3 @@ function Skills() {
 }
 
 export default Skills;
-

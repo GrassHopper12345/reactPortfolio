@@ -2,16 +2,15 @@ import React from "react";
 import Section from "../Section";
 
 function RecruiterQuickScan() {
-  // TODO: Replace with actual values from resume/experience
   const quickScanData = {
     location: "Bossier City, LA",
     remote: "Remote Available",
-    yearsExperience: "TODO: Add years of experience",
-    primaryStack: "React • Node.js • Express • MongoDB • TypeScript • AWS",
+    yearsExperience: "2+ years (production software, enterprise systems)",
+    primaryStack: "TypeScript • Next.js • React • PrimeReact • C# (.NET) • REST APIs • SQL • AWS",
     highlights: [
-      "TODO: Add strongest highlight (e.g., 'Built admin tooling used by X users')",
-      "TODO: Add second highlight (e.g., 'Reduced page load by Y%')",
-      "TODO: Add third highlight (e.g., 'Implemented role-based permissions')"
+      "Building a net-new commissary web application using Next.js, TypeScript, and React, backed by a C# REST API, preparing the system for production launch.",
+      "Implementing complex enterprise UI workflows with PrimeReact, including forms, validation, data tables, and state-driven interactions.",
+      "Owning features end-to-end: frontend architecture, API integration, debugging, and cross-team collaboration."
     ]
   };
 

@@ -64,7 +64,7 @@ function EngineeringExperiments() {
           Galaga-Inspired Real-Time Interactive Game Loop
         </h3>
         <div style={{ 
-          color: 'var(--neon-cyan)', 
+          color: '#b0e0e6', 
           fontSize: '1rem', 
           lineHeight: '1.8',
           textAlign: 'left',
@@ -154,7 +154,7 @@ function EngineeringExperiments() {
 
       {prefersReducedMotion && (
         <p style={{ 
-          color: 'var(--neon-cyan)', 
+          color: '#b0e0e6', 
           fontSize: '0.9rem', 
           textAlign: 'center',
           fontStyle: 'italic',

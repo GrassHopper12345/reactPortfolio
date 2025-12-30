@@ -64,7 +64,7 @@ function ProjectCard({ project }) {
         }}>
           {project.title}
         </h3>
-        <p style={{ color: 'var(--neon-cyan)', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1rem' }}>
+        <p style={{ color: '#b0e0e6', fontSize: '1rem', lineHeight: '1.6', marginBottom: '1rem' }}>
           {project.shortPitch}
         </p>
       </div>
@@ -75,7 +75,7 @@ function ProjectCard({ project }) {
             <h4 style={{ color: 'var(--neon-green)', fontSize: '1.1rem', marginBottom: '0.5rem' }}>
               Problem
             </h4>
-            <p style={{ color: 'var(--neon-cyan)', fontSize: '0.95rem', lineHeight: '1.6' }}>
+            <p style={{ color: '#b0e0e6', fontSize: '0.95rem', lineHeight: '1.6' }}>
               {project.problem}
             </p>
           </div>
@@ -89,7 +89,7 @@ function ProjectCard({ project }) {
                 <li 
                   key={index}
                   style={{ 
-                    color: 'var(--neon-cyan)', 
+                    color: '#b0e0e6', 
                     marginBottom: '0.5rem',
                     paddingLeft: '1.5rem',
                     position: 'relative',
@@ -113,7 +113,7 @@ function ProjectCard({ project }) {
                 <li 
                   key={index}
                   style={{ 
-                    color: 'var(--neon-cyan)', 
+                    color: '#b0e0e6', 
                     marginBottom: '0.5rem',
                     paddingLeft: '1.5rem',
                     position: 'relative',

@@ -11,7 +11,6 @@ function Hero() {
   };
 
   const handleDownloadResume = () => {
-    // Check if resume exists, otherwise show TODO
     const resumePath = '/Resume.pdf';
     window.open(resumePath, '_blank', 'noopener,noreferrer');
   };
@@ -26,12 +25,11 @@ function Hero() {
         <h1 className="hero-name">Brian Hopper</h1>
         <h2 className="hero-title">Mid-Level Remote Software Engineer</h2>
         <p className="hero-value">
-          Full-stack developer specializing in building scalable web applications 
-          with modern JavaScript frameworks and cloud technologies.
+          Full-stack developer building enterprise web applications with TypeScript, Next.js, React, and C# REST APIs.
         </p>
         <div className="hero-tech-stack">
           <span className="tech-label">Tech Stack:</span>
-          <span className="tech-items">React • Node.js • Express • MongoDB • GraphQL • AWS</span>
+          <span className="tech-items">TypeScript • Next.js • React • PrimeReact • C# (.NET) • REST APIs • SQL • AWS</span>
         </div>
         <div className="hero-cta-group">
           <Button
