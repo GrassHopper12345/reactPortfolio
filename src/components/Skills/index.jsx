@@ -14,6 +14,7 @@ const skills = {
     "React",
     "Next.js",
     "PrimeReact",
+    "PHP",
     "JavaScript (ES6+)"
   ],
   backend: [
@@ -21,6 +22,7 @@ const skills = {
     "REST API Design",
     "Node.js",
     "Express",
+    "Golang",
     "MERN Stack"
   ],
   data: [
