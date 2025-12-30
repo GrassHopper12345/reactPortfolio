@@ -78,7 +78,8 @@ export const projects = [
       live: null // TODO: Add API documentation link if available
     },
     image: eCommerce,
-    alt: "E-Commerce Back-End API"
+    alt: "E-Commerce Back-End API",
+    mostRelevant: true // Top project for remote SWE roles
   },
   {
     id: "fund-my-farm",
@@ -102,7 +103,8 @@ export const projects = [
       live: null // TODO: Add live demo if available
     },
     image: fundMyFarm,
-    alt: "Fund My Farm E-Commerce Platform"
+    alt: "Fund My Farm E-Commerce Platform",
+    mostRelevant: true // Top project for remote SWE roles
   },
   {
     id: "note-taker",
@@ -149,7 +151,8 @@ export const projects = [
       live: null // TODO: Add live demo if available
     },
     image: pwa,
-    alt: "PWA Text Editor"
+    alt: "PWA Text Editor",
+    mostRelevant: true // Top project for remote SWE roles
   },
   {
     id: "readme-generator",

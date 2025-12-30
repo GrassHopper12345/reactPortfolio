@@ -308,8 +308,8 @@ reactPortfolio/
 - 📍 Location: Shreveport, Louisiana
 - 📧 Email: [brian.hopper@live.com](mailto:brian.hopper@live.com)
 - 📱 Phone: [318.773.4013](tel:318.773.4013)
-- 💼 LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
-- 🐙 GitHub: [Your GitHub Profile](https://github.com/yourusername)
+- 💼 LinkedIn: [Brian Hopper](https://www.linkedin.com/in/mrhopper/)
+- 🐙 GitHub: [GrassHopper12345](https://github.com/GrassHopper12345)
 
 ---
 

@@ -17,7 +17,26 @@ function ProjectCard({ project }) {
         flexDirection: 'column'
       }}
     >
-      <div style={{ marginBottom: '1rem' }}>
+      <div style={{ marginBottom: '1rem', position: 'relative' }}>
+        {project.mostRelevant && (
+          <div style={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            background: 'linear-gradient(135deg, var(--neon-green), var(--neon-cyan))',
+            color: 'var(--space-dark)',
+            padding: '0.4rem 0.8rem',
+            borderRadius: '20px',
+            fontSize: '0.75rem',
+            fontWeight: 'bold',
+            zIndex: 10,
+            boxShadow: '0 0 10px rgba(0, 255, 0, 0.5)',
+            textTransform: 'uppercase',
+            letterSpacing: '0.5px'
+          }}>
+            ⭐ Most Relevant
+          </div>
+        )}
         <a 
           href={project.links.github} 
           target="_blank" 

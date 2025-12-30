@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "primereact/button";
+import RecruiterQuickScan from "../RecruiterQuickScan";
 
 function Hero() {
   const scrollToSection = (sectionId) => {
@@ -56,6 +57,7 @@ function Hero() {
           />
         </div>
       </div>
+      <RecruiterQuickScan />
     </section>
   );
 }

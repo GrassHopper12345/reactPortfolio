@@ -4,7 +4,6 @@ import { scrollToSection } from "../../utils/scrollUtils";
 
 function Navi({ activeSection }) {
   const navItems = [
-    { id: "hero", label: "Home" },
     { id: "projects", label: "Projects" },
     { id: "experience", label: "Experience" },
     { id: "skills", label: "Skills" },
