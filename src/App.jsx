@@ -1,57 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import { PrimeReactProvider } from "primereact/api";
 import Header from "./components/Header";
-import About from "./components/About";
+import Hero from "./components/Hero";
+import Portfolio from "./components/Portfolio";
+import Experience from "./components/Experience";
+import Skills from "./components/Skills";
+import EngineeringExperiments from "./components/EngineeringExperiments";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import Portfolio from "./components/Portfolio";
-import Resume from "./components/Resume";
-import GameNavigation from "./components/GameNavigation";
 import { Helmet } from "react-helmet";
 import "./App.css";
 
 function App() {
-  const [currentTab, handleTabChange] = useState("About");
-  const [gameMode, setGameMode] = useState(false);
-
-  const handleGameNavigate = (section) => {
-    handleTabChange(section);
-    setGameMode(false);
-  };
-
-  const renderTab = () => {
-    if (currentTab === "About") {
-      return <About />;
-    }
-    if (currentTab === "Contact") {
-      return <Contact />;
-    }
-    if (currentTab === "Portfolio") {
-      return <Portfolio />;
-    }
-    if (currentTab === "Resume") {
-      return <Resume />;
-    }
-    return <About />;
-  };
-
   return (
     <PrimeReactProvider>
       <Helmet>
-        <title> Brian Hopper's Portfolio | {currentTab} </title>
+        <title>Brian Hopper's Portfolio | Mid-Level Remote Software Engineer</title>
+        <meta name="description" content="Portfolio of Brian Hopper, Mid-Level Remote Software Engineer specializing in full-stack web development" />
       </Helmet>
 
-      <GameNavigation onNavigate={handleGameNavigate} isActive={gameMode} />
-      
-      <Header 
-        currentTab={currentTab} 
-        handleTabChange={handleTabChange}
-        gameMode={gameMode}
-        setGameMode={setGameMode}
-      />
-      <main>{renderTab()}</main>
-      <Footer></Footer>
+      <Header />
+      <main>
+        <Hero />
+        <Portfolio />
+        <Experience />
+        <Skills />
+        <EngineeringExperiments />
+        <Contact />
+      </main>
+      <Footer />
     </PrimeReactProvider>
   );
 }
+
 export default App;

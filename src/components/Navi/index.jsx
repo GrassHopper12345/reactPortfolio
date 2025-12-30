@@ -1,29 +1,40 @@
 import React from "react";
 import { Button } from "primereact/button";
+import { scrollToSection } from "../../utils/scrollUtils";
 
-function Nav(props) {
-    const { currentTab, handleTabChange } = props;
+function Navi({ activeSection }) {
+  const navItems = [
+    { id: "hero", label: "Home" },
+    { id: "projects", label: "Projects" },
+    { id: "experience", label: "Experience" },
+    { id: "skills", label: "Skills" },
+    { id: "experiments", label: "Experiments" },
+    { id: "contact", label: "Contact" },
+  ];
 
-    const navItems = [
-        { id: "About", label: "About" },
-        { id: "Portfolio", label: "Portfolio" },
-        { id: "Contact", label: "Contact" },
-        { id: "Resume", label: "Resume" },
-    ];
+  const handleNavClick = (sectionId) => {
+    scrollToSection(sectionId);
+  };
 
-        return (
-            <nav style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}>
-                {navItems.map((item) => (
-                    <Button
-                        key={item.id}
-                        label={item.label}
-                        onClick={() => handleTabChange(item.id)}
-                        className={`nav-button game-themed-button ${currentTab === item.id ? 'active' : ''}`}
-                        severity={currentTab === item.id ? "info" : "secondary"}
-                        outlined={currentTab !== item.id}
-                    />
-                ))}
-            </nav>
-        );
+  return (
+    <nav 
+      style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', justifyContent: 'center' }}
+      aria-label="Main navigation"
+    >
+      {navItems.map((item) => (
+        <Button
+          key={item.id}
+          label={item.label}
+          onClick={() => handleNavClick(item.id)}
+          className={`nav-button game-themed-button ${activeSection === item.id ? 'active' : ''}`}
+          severity={activeSection === item.id ? "info" : "secondary"}
+          outlined={activeSection !== item.id}
+          aria-label={`Navigate to ${item.label} section`}
+          aria-current={activeSection === item.id ? 'page' : undefined}
+        />
+      ))}
+    </nav>
+  );
 }
-export default Nav;
+
+export default Navi;

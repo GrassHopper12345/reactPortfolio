@@ -16,7 +16,7 @@ const getGameDimensions = () => ({
 const SHIP_SPEED = 5;
 const PROJECTILE_SPEED = 10;
 
-function GameNavigation({ onNavigate, isActive }) {
+function GameNavigation({ onNavigate, isActive, prefersReducedMotion = false }) {
   const [dimensions, setDimensions] = useState(getGameDimensions());
   
   useEffect(() => {
@@ -338,6 +338,22 @@ function GameNavigation({ onNavigate, isActive }) {
     };
   }, [isActive, isMobile, shoot, isGamePaused, showHighScoreModal, gameStarted]);
 
+  // Handle ESC key for exit
+  useEffect(() => {
+    if (!isActive) return;
+    
+    const handleEsc = (e) => {
+      if (e.key === 'Escape' && isActive) {
+        if (onNavigate) {
+          onNavigate('projects');
+        }
+      }
+    };
+    
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [isActive, onNavigate]);
+
   useEffect(() => {
     if (!isActive) {
       if (animationFrameRef.current) {
@@ -353,6 +369,12 @@ function GameNavigation({ onNavigate, isActive }) {
         return;
       }
 
+      // Respect prefers-reduced-motion
+      if (prefersReducedMotion) {
+        animationFrameRef.current = requestAnimationFrame(gameLoop);
+        return;
+      }
+      
       const deltaTime = Math.min((currentTime - lastTime) / 16.67, 2);
       lastTime = currentTime;
       
@@ -709,28 +731,30 @@ function GameNavigation({ onNavigate, isActive }) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-    }, [isActive, keys, mousePos, shipX, shipY, hitEnemies, enemyHitCounts, decorativeAliens, onNavigate, dimensions, enemies, isGamePaused, showHighScoreModal, gameStarted]);
+    }, [isActive, keys, mousePos, shipX, shipY, hitEnemies, enemyHitCounts, decorativeAliens, onNavigate, dimensions, enemies, isGamePaused, showHighScoreModal, gameStarted, prefersReducedMotion]);
 
   if (!isActive) return null;
 
   const displayWidth = dimensions.width > 0 ? dimensions.width : window.innerWidth;
-  const displayHeight = dimensions.height > 0 ? dimensions.height : window.innerHeight;
+  // Use viewport height but allow for section context
+  const displayHeight = Math.min(dimensions.height > 0 ? dimensions.height : window.innerHeight, window.innerHeight * 0.9);
 
   return (
       <div
         ref={gameContainerRef}
-        className="game-navigation"
+        className="game-navigation game-section"
         style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
+          position: 'relative',
+          width: '100%',
+          minHeight: '600px',
+          height: displayHeight,
+          maxHeight: '90vh',
           backgroundColor: '#000',
-          zIndex: 9998,
+          borderRadius: '10px',
           overflow: 'hidden',
           touchAction: 'none',
-          WebkitOverflowScrolling: 'touch',
+          border: '2px solid var(--neon-cyan)',
+          boxShadow: '0 0 20px rgba(0, 255, 255, 0.3)',
         }}
       >
       <GameCanvas stars={stars} width={displayWidth} height={displayHeight} />
@@ -838,6 +862,9 @@ function GameNavigation({ onNavigate, isActive }) {
             zIndex: 10000,
             textShadow: '0 0 5px #000',
             maxWidth: isMobile ? '90%' : 'auto',
+            background: 'rgba(0, 0, 0, 0.7)',
+            padding: '0.75rem',
+            borderRadius: '5px',
           }}
         >
           <div>{isMobile ? 'Touch to Move & Shoot' : 'Use Arrow Keys or Mouse to Move'}</div>
@@ -845,6 +872,9 @@ function GameNavigation({ onNavigate, isActive }) {
           <div>Shoot navigation enemies 10 times to navigate!</div>
           <div style={{ color: '#00ff00', marginTop: '10px', fontSize: isMobile ? '16px' : '18px', fontWeight: 'bold' }}>
             Score: {score.toLocaleString()}
+          </div>
+          <div style={{ color: '#ffff00', marginTop: '5px', fontSize: isMobile ? '12px' : '14px' }}>
+            Press ESC to exit
           </div>
         </div>
       )}
@@ -856,8 +886,20 @@ function GameNavigation({ onNavigate, isActive }) {
             top: '20px',
             right: '20px',
             zIndex: 10000,
+            display: 'flex',
+            gap: '0.5rem',
+            flexWrap: 'wrap',
           }}
         >
+          <Button
+            icon="pi pi-pause"
+            label={isGamePaused ? "Resume" : "Pause"}
+            onClick={() => setIsGamePaused(!isGamePaused)}
+            className="game-themed-button"
+            size="small"
+            style={{ fontSize: isMobile ? '12px' : '14px', padding: '0.5rem 1rem' }}
+            aria-label={isGamePaused ? "Resume game" : "Pause game"}
+          />
           <Button
             icon="pi pi-trophy"
             label="High Scores"
@@ -865,6 +907,7 @@ function GameNavigation({ onNavigate, isActive }) {
             className="game-themed-button"
             size="small"
             style={{ fontSize: isMobile ? '12px' : '14px', padding: '0.5rem 1rem' }}
+            aria-label="View high scores"
           />
         </div>
       )}

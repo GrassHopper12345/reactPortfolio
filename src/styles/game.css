@@ -253,6 +253,20 @@
   user-select: none;
 }
 
+/* Game section styling (non-overlay) */
+.game-navigation.game-section {
+  position: relative;
+  margin: 2rem auto;
+  max-width: 1400px;
+}
+
+@media screen and (max-width: 768px) {
+  .game-navigation.game-section {
+    margin: 1rem auto;
+    min-height: 500px;
+  }
+}
+
 /* High Score Modal Styling */
 .p-dialog-mask {
   z-index: 10001 !important;

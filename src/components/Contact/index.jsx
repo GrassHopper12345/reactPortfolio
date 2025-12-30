@@ -5,7 +5,8 @@ import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { Message } from "primereact/message";
 import emailjs from '@emailjs/browser';
-import { validateEmail } from "../../utils/helpers"
+import { validateEmail } from "../../utils/helpers";
+import Section from "../Section";
 
 function Contact() {
     const [email, setEmail] = useState("");
@@ -129,10 +130,22 @@ function Contact() {
     };
 
     return (
-        <section id="reach-out" className="contact">
+        <Section id="contact" ariaLabel="Contact section">
+            <section className="contact">
             <div className="flex-row">
-                <h2 className="section-title">Reach Out to Connect</h2>
+                <h2 className="section-title">Contact</h2>
             </div>
+            <p style={{ 
+                color: 'var(--neon-cyan)', 
+                fontSize: '1.1rem', 
+                textAlign: 'center', 
+                marginBottom: '2rem',
+                maxWidth: '700px',
+                marginLeft: 'auto',
+                marginRight: 'auto'
+            }}>
+                Let's connect! I'm open to remote opportunities and collaboration.
+            </p>
 
             <div className="contact-info">
                 <Card className="contact-info-card">
@@ -140,15 +153,43 @@ function Contact() {
                         <div>
                             <h3>Hello {userName || "there"}!</h3>
                             <p>Would you like to Connect?</p>
-                            <address>
+                            <address style={{ fontStyle: 'normal', marginBottom: '1.5rem' }}>
                                 Bossier City, LA <br />
-                                Phone: <a href="tel:318.773.4013">318.773.4013</a>
+                                Phone: <a href="tel:318.773.4013" aria-label="Call 318.773.4013">318.773.4013</a>
                                 <br />
                                 Email:{" "}
-                                <a href="mailto://brian.hopper@live.com">brian.hopper@live.com</a>
+                                <a href="mailto:brian.hopper@live.com" aria-label="Email brian.hopper@live.com">brian.hopper@live.com</a>
                             </address>
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                                <Button
+                                    label="Send Email"
+                                    icon="pi pi-envelope"
+                                    onClick={() => window.open('mailto:brian.hopper@live.com?subject=Portfolio Contact', '_blank')}
+                                    className="game-themed-button"
+                                    style={{ width: '100%' }}
+                                    aria-label="Open email client to send message"
+                                />
+                                <Button
+                                    label="LinkedIn"
+                                    icon="pi pi-linkedin"
+                                    onClick={() => window.open('https://www.linkedin.com/in/mrhopper/', '_blank', 'noopener,noreferrer')}
+                                    className="game-themed-button"
+                                    outlined
+                                    style={{ width: '100%' }}
+                                    aria-label="Visit LinkedIn profile"
+                                />
+                                <Button
+                                    label="GitHub"
+                                    icon="pi pi-github"
+                                    onClick={() => window.open('https://github.com/GrassHopper12345', '_blank', 'noopener,noreferrer')}
+                                    className="game-themed-button"
+                                    outlined
+                                    style={{ width: '100%' }}
+                                    aria-label="Visit GitHub profile"
+                                />
+                            </div>
                         </div>
-                        <p style={{ marginTop: 'auto' }}><strong>I would love to hear from you!</strong></p>
+                        <p style={{ marginTop: '1.5rem' }}><strong>I would love to hear from you!</strong></p>
                     </div>
                 </Card>
 
@@ -208,7 +249,8 @@ function Contact() {
                     )}
                 </Card>
             </div>
-        </section>
+            </section>
+        </Section>
     );
 }
 export default Contact;
