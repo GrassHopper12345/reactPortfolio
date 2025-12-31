@@ -13,7 +13,7 @@ function Header() {
   return (
     <div>
       <section>
-        <header>
+        <header style={{ position: 'relative' }}>
           <div>
             <h1>Brian Hopper's Portfolio</h1>
           </div>

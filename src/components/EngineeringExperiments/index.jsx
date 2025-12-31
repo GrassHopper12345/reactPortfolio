@@ -106,9 +106,19 @@ function EngineeringExperiments() {
             icon="pi pi-play"
             onClick={handlePlayClick}
             className="game-themed-button"
-            style={{ fontSize: '1.1rem', padding: '1rem 2rem' }}
+            style={{ fontSize: '1.1rem', padding: '1rem 2rem', minHeight: '48px' }}
             aria-label="Start Galaga game"
           />
+          <p style={{ 
+            color: '#b0e0e6', 
+            fontSize: '0.85rem', 
+            textAlign: 'center',
+            marginTop: '1rem',
+            textShadow: 'none',
+            opacity: 0.8
+          }}>
+            Best experienced on desktop. Touch controls available on mobile.
+          </p>
         </div>
       )}
 

@@ -68,13 +68,16 @@ function Portfolio() {
       </p>
       
       {/* Filter buttons */}
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        gap: '0.75rem',
-        marginBottom: '2rem'
-      }}>
+      <div 
+        className="portfolio-filters"
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+          gap: '0.75rem',
+          marginBottom: '2rem'
+        }}
+      >
         {filterButtons.map((btn) => (
           <button
             key={btn.id}
@@ -113,12 +116,15 @@ function Portfolio() {
         ))}
       </div>
 
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', 
-        gap: '2rem', 
-        marginTop: '2rem' 
-      }}>
+      <div 
+        className="portfolio-grid"
+        style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', 
+          gap: '2rem', 
+          marginTop: '2rem' 
+        }}
+      >
         {filteredProjects.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}

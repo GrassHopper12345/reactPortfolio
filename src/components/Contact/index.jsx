@@ -215,8 +215,10 @@ function Contact() {
                                 value={userName}
                                 onChange={(e) => handleInputChange(e, "userName")}
                                 id="contact-name"
+                                type="text"
                                 placeholder="Enter your name"
                                 className="w-full"
+                                style={{ fontSize: '16px' }}
                             />
                         </div>
 
@@ -229,6 +231,9 @@ function Contact() {
                                 id="contact-email"
                                 placeholder="Enter your email"
                                 className="w-full"
+                                style={{ fontSize: '16px' }}
+                                inputMode="email"
+                                autoComplete="email"
                             />
                         </div>
 
@@ -241,6 +246,7 @@ function Contact() {
                                 placeholder="Enter your message"
                                 rows={5}
                                 className="w-full"
+                                style={{ fontSize: '16px' }}
                             />
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '1rem', paddingBottom: '1rem' }}>

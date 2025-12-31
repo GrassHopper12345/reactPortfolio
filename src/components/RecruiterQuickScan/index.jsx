@@ -15,7 +15,7 @@ function RecruiterQuickScan() {
   };
 
   return (
-    <div className="recruiter-quick-scan">
+    <div className="recruiter-quick-scan-inner">
       <div className="quick-scan-container">
         <div className="quick-scan-item">
           <span className="quick-scan-label">📍</span>
