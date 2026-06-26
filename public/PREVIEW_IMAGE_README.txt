@@ -3,7 +3,7 @@ PREVIEW IMAGE PLACEHOLDER
 
 This directory should contain a preview.png file (1200x630 pixels) for social media link previews.
 
-Current Status: PLACEHOLDER - Needs to be replaced with actual image
+Current Status: Added preview.png (1200x630) for social media link previews.
 
 To create the preview image:
 1. Create a 1200x630px image showcasing the portfolio

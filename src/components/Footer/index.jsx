@@ -7,16 +7,16 @@ function Footer() {
         <footer>
             <h2> Created by Brian Hopper</h2>
                 <ul>
-                    <a href="https://github.com/GrassHopper12345">
                     <li className="logo">
+                        <a href="https://github.com/GrassHopper12345" aria-label="Visit GitHub profile">
                         <VscGithubAlt />
-                        </li>
-                    </a>
-                    <a href="https://www.linkedin.com/in/mrhopper/">
+                        </a>
+                    </li>
                     <li className="logo">
+                        <a href="https://www.linkedin.com/in/mrhopper/" aria-label="Visit LinkedIn profile">
                         <AiOutlineLinkedin />
-                        </li>
-                    </a>
+                        </a>
+                    </li>
                 </ul>
         </footer>
     );

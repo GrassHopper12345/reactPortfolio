@@ -66,7 +66,8 @@ code {
       gap: 10px;
     }
 
-    header h1 {
+    header h1,
+    header .site-title {
       font-weight: bold;
       margin: 0;
       font-size: clamp(20px, 5vw, 36px);
@@ -1230,7 +1231,8 @@ label {
 
   }
 
-  header h1 {
+  header h1,
+  header .site-title {
     width: 100%;
     text-align: center;
   }
@@ -1372,7 +1374,8 @@ label {
     padding: 8px 10px;
   }
 
-  header h1 {
+  header h1,
+  header .site-title {
     font-size: clamp(16px, 4vw, 24px);
   }
 
@@ -1491,7 +1494,8 @@ button, a, input, .p-button, .nav-button {
     flex-wrap: nowrap;
   }
 
-  header h1 {
+  header h1,
+  header .site-title {
     font-size: clamp(18px, 4.5vw, 28px);
     flex: 1;
     min-width: 0;

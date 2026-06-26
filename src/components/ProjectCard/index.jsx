@@ -92,6 +92,7 @@ function ProjectCard({ project }) {
           <img
             src={project.image}
             alt={project.alt}
+            loading="lazy"
             style={{ 
               width: '100%', 
               height: 'auto', 

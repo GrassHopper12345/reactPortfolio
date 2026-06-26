@@ -5,6 +5,15 @@ function HeroAnimation() {
   const canvasRef = useRef(null);
   const animationFrameRef = useRef(null);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [reduceMotion, setReduceMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updateMotionPreference = () => setReduceMotion(mediaQuery.matches);
+    updateMotionPreference();
+    mediaQuery.addEventListener('change', updateMotionPreference);
+    return () => mediaQuery.removeEventListener('change', updateMotionPreference);
+  }, []);
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -21,7 +30,7 @@ function HeroAnimation() {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas || dimensions.width === 0) return;
+    if (!canvas || dimensions.width === 0 || reduceMotion) return;
 
     const ctx = canvas.getContext('2d');
     canvas.width = dimensions.width;
@@ -171,7 +180,7 @@ function HeroAnimation() {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [dimensions]);
+  }, [dimensions, reduceMotion]);
 
   return (
     <canvas

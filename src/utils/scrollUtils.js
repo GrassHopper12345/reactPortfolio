@@ -20,7 +20,7 @@ export const scrollToSection = (sectionId) => {
  * Track which section is currently visible for active nav highlighting
  */
 export const setupSectionTracking = (setActiveSection) => {
-  const sections = ['hero', 'projects', 'experience', 'skills', 'experiments', 'contact'];
+  const sections = ['hero', 'about-me', 'projects', 'experience', 'skills', 'experiments', 'contact'];
   const observerOptions = {
     root: null,
     rootMargin: '-20% 0px -60% 0px',

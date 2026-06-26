@@ -15,7 +15,7 @@ function Header() {
       <section>
         <header style={{ position: 'relative' }}>
           <div>
-            <h1>Brian Hopper's Portfolio</h1>
+            <p className="site-title">Brian Hopper's Portfolio</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', justifyContent: 'flex-end' }}>
             <Navi activeSection={activeSection} />

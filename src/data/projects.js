@@ -96,7 +96,7 @@ export const projects = [
     relevanceTier: "primary",
     status: "Production-style",
     featured: true,
-    lastUpdated: "2024",
+    lastUpdated: "2026",
     highlights: [
       "RESTful API architecture with Express.js and Sequelize ORM",
       "SQL database design with relational models (products, categories, tags)",
@@ -129,7 +129,7 @@ export const projects = [
     relevanceTier: "primary",
     status: "Production-style",
     featured: true,
-    lastUpdated: "2024",
+    lastUpdated: "2026",
     highlights: [
       "Full-stack MERN application with JWT authentication and password hashing",
       "REST API with MongoDB for product catalog and cart management",
@@ -253,7 +253,7 @@ export const projects = [
     relevanceTier: "primary",
     status: "Production-style",
     featured: true,
-    lastUpdated: "2024",
+    lastUpdated: "2026",
     highlights: [
       "RESTful API with MongoDB and Mongoose ODM for data modeling",
       "CRUD operations for users, thoughts, reactions, and friend relationships",

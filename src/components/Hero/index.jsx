@@ -26,11 +26,11 @@ function Hero() {
         <Card className="hero-main-card">
           <div className="hero-content">
             <h1 className="hero-name">Brian Hopper</h1>
-            <h2 className="hero-title">Mid-Level Remote Software Engineer</h2>
+            <h2 className="hero-title">Full-Stack Software Engineer · Life Sciences & Enterprise SaaS</h2>
             <div className="hero-recruiter-strip">
-              <span>📍 Bossier City, LA</span>
+              <span aria-hidden="true">📍</span> Bossier City, LA
               <span>•</span>
-              <span>🌐 Remote</span>
+              <span aria-hidden="true">🌐</span> Remote
               <span>•</span>
               <span>CityTeleCoin</span>
               <span>•</span>
@@ -40,7 +40,7 @@ function Hero() {
             </div>
             <div className="hero-bullets">
               <div className="hero-bullet">
-                <strong>Outcome:</strong> Building production-ready enterprise web applications with full-stack TypeScript and C# REST APIs
+                <strong>Outcome:</strong> Shipping production enterprise web applications with TypeScript, Next.js, React, and C# REST APIs
               </div>
               <div className="hero-bullet">
                 <strong>Scope:</strong> Frontend architecture, API integration, data modeling, and cross-functional collaboration

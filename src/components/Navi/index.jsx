@@ -17,6 +17,7 @@ function Navi({ activeSection }) {
   }, []);
 
   const navItems = [
+    { id: "about-me", label: "About" },
     { id: "projects", label: "Projects" },
     { id: "experience", label: "Experience" },
     { id: "skills", label: "Skills" },

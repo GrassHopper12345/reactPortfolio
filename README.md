@@ -25,8 +25,12 @@
 - [📱 Mobile & Tablet Support](#-mobile--tablet-support)
 - [🌐 Live Site](#-live-site)
 - [📸 Screenshots](#-screenshots)
+- [💼 Professional Experience](#-professional-experience)
 - [🏗️ Project Structure](#️-project-structure)
 - [📧 Contact](#-contact)
+- [🎓 Education & Certifications](#-education--certifications)
+- [🛠️ Skills & Technologies](#️-skills--technologies)
+- [🔒 Security](#-security)
 - [📄 License](#-license)
 
 ---
@@ -210,25 +214,18 @@ This portfolio uses **static Open Graph and Twitter meta tags** in the HTML head
 ### Preview Image
 
 - **Location:** `/public/preview.png`
-- **Recommended Size:** 1200x630 pixels (Open Graph standard)
-- **Format:** PNG or JPG
-- **Current Status:** Placeholder file (see TODO below)
-
-### TODO: Replace Preview Image
-
-The current `preview.png` is a placeholder. To create a proper preview image:
-
-1. Create a 1200x630px image showcasing your portfolio
-2. Save it as `preview.png` in the `/public` directory
-3. The image will be automatically served at the root URL
+- **Size:** 1200×630 pixels (Open Graph standard)
+- **Status:** Configured — used for LinkedIn, Twitter, and Slack link previews
 
 ### Refreshing LinkedIn Cache
 
-After updating the preview image or meta tags:
+After deploying updates to the preview image or meta tags:
 
 1. Use [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/) to refresh the cache
 2. Enter your site URL: `https://sparkly-cranachan-9f0864.netlify.app`
 3. Click "Inspect" to update LinkedIn's cached preview
+
+> **Tip:** A custom domain (e.g. `brianhopper.dev`) looks more professional than the default Netlify subdomain when sharing your portfolio with recruiters.
 
 ### Meta Tags Included
 
@@ -243,19 +240,23 @@ After updating the preview image or meta tags:
 
 ## 📸 Screenshots
 
-### Game Mode
-```
-🛸 Navigate by shooting alien ships!
-   - Use arrow keys or mouse to move
-   - Spacebar or click to shoot
-   - 5 hits required per navigation target
-```
+| Preview | Description |
+|---------|-------------|
+| ![Social preview](./public/preview.png) | Link preview image (1200×630) for LinkedIn and Twitter |
 
-### Portfolio Sections
-- **About Me** - Personal introduction with profile image
-- **Portfolio** - Showcase of projects with descriptions
-- **Resume** - Downloadable resume and skill proficiencies
-- **Contact** - Interactive contact form with EmailJS integration
+### Portfolio sections
+
+- **Hero** — Recruiter quick-scan with role, stack, and CTAs
+- **About** — Bio, profile photo, and Galaga hero animation
+- **Projects** — Case-study cards with GitHub links and tech stacks
+- **Experience** — Professional work history at CityTeleCoin
+- **Skills** — Current production-focused stack
+- **Experiments** — Optional Galaga game navigation (standard nav always available)
+- **Contact** — EmailJS form with direct email and social links
+
+### Game mode
+
+Galaga-style navigation is **opt-in** via the Experiments section. Standard header navigation is always available for recruiters and mobile users.
 
 ---
 
@@ -307,10 +308,11 @@ reactPortfolio/
 
 - **GameNavigation** - Main game logic and rendering
 - **HeroAnimation** - Animated Galaga scene
-- **About** - Personal introduction section
-- **Portfolio** - Project showcase
-- **Resume** - Skills and resume download
-- **Contact** - Contact form with EmailJS
+- **About** - Personal introduction and domain background
+- **Portfolio** - Project showcase with case-study cards
+- **Experience** - Professional work history
+- **Skills** - Current production-focused technology stack
+- **Contact** - Contact form with EmailJS integration
 
 ---
 
@@ -339,11 +341,28 @@ reactPortfolio/
 
 ---
 
+## 💼 Professional Experience
+
+### Software Engineer — CityTeleCoin
+**Jun 2022 – Present** · Bossier City, LA (Remote)
+
+Full-stack engineer shipping production enterprise web applications.
+
+- Develop and ship features for a commissary web application using **Next.js, TypeScript, React**, and a **C# REST API**
+- Build complex enterprise UI workflows with **PrimeReact** (forms, validation, data tables, state-driven interactions)
+- Integrate frontend features with backend services: API contracts, error handling, loading states, permissions
+- Collaborate with product, QA, and engineering in an agile environment
+- Contribute to frontend architecture: component reuse, readability, maintainability
+
+**Stack:** TypeScript, Next.js, React, PrimeReact, C# (.NET), REST APIs, SQL, AWS
+
+---
+
 ## 📧 Contact
 
 **Brian Hopper**
 
-- 📍 Location: Shreveport, Louisiana
+- 📍 Location: Bossier City, LA
 - 📧 Email: [brian.hopper@live.com](mailto:brian.hopper@live.com)
 - 📱 Phone: [318.773.4013](tel:318.773.4013)
 - 💼 LinkedIn: [Brian Hopper](https://www.linkedin.com/in/mrhopper/)
@@ -365,27 +384,26 @@ reactPortfolio/
 
 ## 🛠️ Skills & Technologies
 
-### Front-End
-- HTML5, CSS3, JavaScript (ES5-ES7)
-- React, RESTful APIs
-- Bootstrap, Materialize, Handlebars
+Skills below reflect **current production and professional work**. This portfolio repo is built with **React, Vite, and JavaScript**; day-to-day engineering uses **TypeScript, Next.js, and C# (.NET)**.
 
-### Back-End
-- Node.js, Express
-- Object-Relational Mapping (ORM)
-- Object-Oriented Programming
-- Sequelize, Jest
-- JSON Web Tokens (JWT), Bcrypt
-- Model-View-Controller (MVC)
-- Webpack
+### Frontend
+- TypeScript, React, Next.js, PrimeReact, JavaScript (ES6+)
 
-### Performance & Modern Frameworks
-- MERN Stack (MongoDB, Express, React, Node.js)
-- MongoDB, Mongoose, NoSQL
-- GraphQL, Apollo
-- State Management
-- Progressive Web Applications (PWA)
-- Git Version Control
+### Backend & APIs
+- C# (.NET), REST API development, Node.js, Express, Golang
+
+### Data
+- SQL, PostgreSQL, MongoDB, data modeling
+
+### Cloud & Tools
+- Docker, AWS (hands-on exposure), Git, Bitbucket, Jira
+
+### Engineering Practices
+- Agile / Scrum, code reviews, debugging, cross-functional collaboration
+- Jest, CI/CD pipelines, continuous learning
+
+### Portfolio site (this repo)
+- React 18, Vite, PrimeReact, Canvas API, EmailJS, ESLint, responsive CSS
 
 ---
 
@@ -411,6 +429,14 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
+
+---
+
+## 🔒 Security
+
+Do not commit `.env` files. Use `.env.example` as a template and set real values locally and in Netlify environment variables.
+
+If credentials were ever exposed in git history, rotate them immediately. See [SECURITY.md](./SECURITY.md) for details.
 
 ---
 

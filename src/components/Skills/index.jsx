@@ -44,6 +44,8 @@ const skills = {
     "Cross-functional Collaboration",
     "Debugging & Troubleshooting",
     "Code Reviews",
+    "Jest",
+    "CI/CD",
     "Continuous Learning"
   ]
 };

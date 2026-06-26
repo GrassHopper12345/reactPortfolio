@@ -17,15 +17,16 @@ function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
+        if (!import.meta.env.DEV) return;
+
         const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
         const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
         const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-        
+
         console.log('EmailJS Environment Check:', {
             publicKey: publicKey ? `${publicKey.substring(0, 5)}... (length: ${publicKey.length})` : 'MISSING',
             serviceId: serviceId || 'MISSING',
             templateId: templateId || 'MISSING',
-            publicKeyFull: publicKey
         });
     }, []);
 
@@ -92,16 +93,7 @@ function Contact() {
                 throw new Error('Missing EmailJS configuration. Please check your .env file.');
             }
 
-            console.log('EmailJS Send Attempt:', {
-                serviceId,
-                templateId,
-                publicKey: publicKey.substring(0, 5) + '...',
-                publicKeyLength: publicKey.length,
-                templateParams
-            });
-
             const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
-            console.log('EmailJS Success:', response);
             
             setSuccessMessage('Thank you! Your message has been sent successfully.');
             

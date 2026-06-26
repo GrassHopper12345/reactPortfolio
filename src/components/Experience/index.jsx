@@ -6,10 +6,10 @@ const experience = [
   {
     company: "CityTeleCoin",
     title: "Software Engineer",
-    dates: "Feb 2023 – Present",
+    dates: "Jun 2022 – Present",
     techStack: ["TypeScript", "Next.js", "React", "PrimeReact", "C# (.NET)", "REST APIs", "SQL", "AWS"],
     bullets: [
-      "Developing a net-new commissary web application using Next.js, TypeScript, and React, backed by a C# REST API, preparing the system for production launch.",
+      "Developing and shipping features for a commissary web application using Next.js, TypeScript, and React, backed by a C# REST API in a production environment.",
       "Implementing complex enterprise UI workflows with PrimeReact, including forms, validation, data tables, and state-driven interactions.",
       "Integrating frontend features with backend services, managing API contracts, error handling, loading states, and permissions.",
       "Collaborating with product, QA, and engineering teams to refine requirements, debug issues, and ship iteratively.",
