@@ -3,84 +3,92 @@ import Section from "../Section";
 import { Card } from "primereact/card";
 import { MdFoundation } from "react-icons/md";
 import { GrTechnology } from "react-icons/gr";
-import { BsCloud, BsTools } from "react-icons/bs";
+import { BsCloud } from "react-icons/bs";
 import { FaDatabase } from "react-icons/fa";
 import { FaCode } from "react-icons/fa";
+import { FaFlask } from "react-icons/fa";
 
-// Production engineering skills
 const skills = {
   frontend: [
     "TypeScript",
     "React",
     "Next.js",
     "PrimeReact",
-    "JavaScript (ES6+)"
+    "Tailwind CSS",
+    "Zustand",
+    "TanStack Query",
+    "TanStack Table",
+    "React Hook Form",
+    "Vite",
+    "Axios",
   ],
   backend: [
-    "C# (.NET)",
-    "REST API Development",
+    ".NET 9",
+    "REST APIs",
+    "OpenAPI / Swagger",
+    "Entity Framework Core",
+    "Hangfire",
     "Node.js",
     "Express",
     "Golang",
-    "MERN Stack",
-    "PHP"
-
   ],
   data: [
-    "SQL",
     "PostgreSQL",
+    "Redis",
     "MongoDB",
-    "Data Modeling"
+    "Multi-tenant Data Modeling",
   ],
-  cloudTools: [
+  devops: [
     "Docker",
-    "AWS (Basic / Hands-on Exposure)",
-    "Git",
+    "Kubernetes",
+    "Jenkins",
     "Bitbucket",
-    "Jira"
-  ],
-  engineeringPractices: [
-    "Agile / Scrum",
-    "Cross-functional Collaboration",
-    "Debugging & Troubleshooting",
-    "Code Reviews",
-    "Jest",
+    "Jira",
+    "AWS",
     "CI/CD",
-    "Continuous Learning"
-  ]
+  ],
+  quality: [
+    "Playwright",
+    "Vitest",
+    "Agile / Scrum",
+    "Sprint Planning",
+    "Code Reviews",
+    "Accessibility",
+    "Technical Leadership",
+  ],
 };
 
 const skillCategories = [
-  { 
-    title: "Frontend", 
-    items: skills.frontend, 
+  {
+    title: "Frontend",
+    items: skills.frontend,
     icon: MdFoundation,
-    color: "var(--neon-cyan)"
+    color: "var(--neon-cyan)",
   },
-  { 
-    title: "Backend", 
-    items: skills.backend, 
+  {
+    title: "Backend & APIs",
+    items: skills.backend,
     icon: GrTechnology,
-    color: "var(--neon-green)"
+    color: "var(--neon-green)",
   },
-  { 
-    title: "Data", 
-    items: skills.data, 
+  {
+    title: "Data & Platform",
+    items: skills.data,
     icon: FaDatabase,
-    color: "var(--neon-cyan)"
+    color: "var(--neon-cyan)",
   },
-  { 
-    title: "Cloud & Engineering Tools", 
-    items: skills.cloudTools, 
+  {
+    title: "DevOps & Process",
+    items: skills.devops,
     icon: BsCloud,
-    color: "var(--neon-green)"
+    color: "var(--neon-green)",
   },
-  { 
-    title: "Engineering Practices", 
-    items: skills.engineeringPractices, 
-    icon: FaCode,
-    color: "var(--neon-cyan)"
-  }
+  {
+    title: "Testing & Leadership",
+    items: skills.quality,
+    icon: FaFlask,
+    color: "var(--neon-cyan)",
+  },
 ];
 
 function Skills() {
@@ -89,49 +97,49 @@ function Skills() {
       <div className="flex-row">
         <h2 className="section-title">Skills</h2>
       </div>
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-        gap: '1.5rem', 
-        marginTop: '2rem' 
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: '1.5rem',
+        marginTop: '2rem'
       }}>
         {skillCategories.map((category, index) => {
           const Icon = category.icon;
           return (
-            <Card 
-              key={index} 
+            <Card
+              key={index}
               className="skills-card"
-              style={{ 
-                background: 'var(--space-dark)', 
-                border: '2px solid rgba(0, 255, 255, 0.8)', 
+              style={{
+                background: 'var(--space-dark)',
+                border: '2px solid rgba(0, 255, 255, 0.8)',
                 borderRadius: '10px',
                 padding: '1.75rem',
                 boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4), 0 0 8px rgba(0, 255, 255, 0.15)'
               }}
             >
-              <div style={{ 
-                display: 'flex', 
-                alignItems: 'center', 
-                gap: '0.75rem', 
-                marginBottom: '1.25rem' 
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem',
+                marginBottom: '1.25rem'
               }}>
                 <Icon style={{ fontSize: '20px', width: '20px', height: '20px', color: category.color, flexShrink: 0 }} />
-                <h3 style={{ 
-                  color: category.color, 
-                  fontSize: '1.2rem', 
+                <h3 style={{
+                  color: category.color,
+                  fontSize: '1.2rem',
                   margin: 0,
                   textShadow: '0 1px 3px rgba(0, 0, 0, 0.5), 0 0 4px rgba(0, 255, 255, 0.3)'
                 }}>
                   {category.title}
                 </h3>
               </div>
-              <div style={{ 
-                display: 'flex', 
-                flexWrap: 'wrap', 
-                gap: '0.6rem' 
+              <div style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                gap: '0.6rem'
               }}>
                 {category.items.map((skill, skillIndex) => (
-                  <span 
+                  <span
                     key={skillIndex}
                     style={{
                       padding: '0.5rem 0.9rem',

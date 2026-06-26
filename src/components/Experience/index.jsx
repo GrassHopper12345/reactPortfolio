@@ -1,22 +1,9 @@
 import React from "react";
 import Section from "../Section";
 import { Card } from "primereact/card";
+import { cityTeleCoinRole } from "../../data/experience";
 
-const experience = [
-  {
-    company: "CityTeleCoin",
-    title: "Software Engineer",
-    dates: "Jun 2022 – Present",
-    techStack: ["TypeScript", "Next.js", "React", "PrimeReact", "C# (.NET)", "REST APIs", "SQL", "AWS"],
-    bullets: [
-      "Developing and shipping features for a commissary web application using Next.js, TypeScript, and React, backed by a C# REST API in a production environment.",
-      "Implementing complex enterprise UI workflows with PrimeReact, including forms, validation, data tables, and state-driven interactions.",
-      "Integrating frontend features with backend services, managing API contracts, error handling, loading states, and permissions.",
-      "Collaborating with product, QA, and engineering teams to refine requirements, debug issues, and ship iteratively.",
-      "Contributing to frontend architecture decisions, improving component reuse, readability, and long-term maintainability."
-    ]
-  }
-];
+const experience = [cityTeleCoinRole];
 
 function Experience() {
   return (
@@ -86,4 +73,3 @@ function Experience() {
 }
 
 export default Experience;
-

@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import RecruiterQuickScan from "../RecruiterQuickScan";
+import { cityTeleCoinRole } from "../../data/experience";
 
 function Hero() {
   const scrollToSection = (sectionId) => {
@@ -32,21 +33,23 @@ function Hero() {
               <span>•</span>
               <span aria-hidden="true">🌐</span> Remote
               <span>•</span>
-              <span>CityTeleCoin</span>
+              <span>{cityTeleCoinRole.company}</span>
               <span>•</span>
-              <span>Jun 2022 – Present</span>
+              <span>{cityTeleCoinRole.title}</span>
               <span>•</span>
-              <span>TypeScript • Next.js • React • C# • REST APIs • SQL</span>
+              <span>{cityTeleCoinRole.dates}</span>
+              <span>•</span>
+              <span>{cityTeleCoinRole.heroStrip}</span>
             </div>
             <div className="hero-bullets">
               <div className="hero-bullet">
-                <strong>Outcome:</strong> Shipping production enterprise web applications with TypeScript, Next.js, React, and C# REST APIs
+                <strong>Outcome:</strong> Leading delivery of a multi-client corrections commissary platform — 4 frontends, shared TypeScript monorepo, .NET 9 API, and kiosk hardware integration
               </div>
               <div className="hero-bullet">
-                <strong>Scope:</strong> Frontend architecture, API integration, data modeling, and cross-functional collaboration
+                <strong>Scope:</strong> Technical lead & project manager — architecture, OpenAPI integration, multi-tenant backend, Docker/K8s deployment, and Playwright E2E quality
               </div>
               <div className="hero-bullet">
-                <strong>Ownership:</strong> Leading feature development from requirements to deployment in agile environment
+                <strong>Ownership:</strong> Jira backlog, sprint planning, Bitbucket PR reviews, Jenkins CI/CD, and cross-team coordination through production launch
               </div>
             </div>
             <div className="hero-cta-group">

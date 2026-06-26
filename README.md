@@ -343,18 +343,19 @@ reactPortfolio/
 
 ## 💼 Professional Experience
 
-### Software Engineer — CityTeleCoin
+### Software Engineer & Project Lead — CityTeleCoin
 **Jun 2022 – Present** · Bossier City, LA (Remote)
 
-Full-stack engineer shipping production enterprise web applications.
+Technical lead and project manager for a multi-client corrections commissary platform — 4 React/Next.js frontends on a shared TypeScript monorepo, backed by a .NET 9 REST API, with kiosk hardware integration and full DevOps delivery.
 
-- Develop and ship features for a commissary web application using **Next.js, TypeScript, React**, and a **C# REST API**
-- Build complex enterprise UI workflows with **PrimeReact** (forms, validation, data tables, state-driven interactions)
-- Integrate frontend features with backend services: API contracts, error handling, loading states, permissions
-- Collaborate with product, QA, and engineering in an agile environment
-- Contribute to frontend architecture: component reuse, readability, maintainability
+- Lead a multi-client commissary platform for correctional facilities — admin dashboard, inmate kiosk, visitation kiosk, and mobile public portal — targeting production launch
+- Serve as technical lead and project manager: Jira backlog prioritization, sprint planning, stakeholder alignment, Bitbucket PR reviews, Jenkins CI/CD, and cross-team coordination
+- Build enterprise UI with **PrimeReact**, **TanStack Query/Table**, **React Hook Form**, and **Zustand** across desktop admin and touch-first kiosk form factors
+- Integrate frontends via **OpenAPI-generated TypeScript clients**, facility-scoped permissions, and multi-tenant data access
+- Contribute to platform architecture: **PostgreSQL**, **Entity Framework Core**, **Redis**, **Hangfire**, **Docker/Kubernetes** deployment
+- Drive release readiness with **Playwright** E2E tests, **Vitest** unit tests, accessibility work, and **Node.js** kiosk daemon integration for on-site hardware
 
-**Stack:** TypeScript, Next.js, React, PrimeReact, C# (.NET), REST APIs, SQL, AWS
+**Stack:** TypeScript · Next.js · React · PrimeReact · Tailwind CSS · Zustand · TanStack Query · .NET 9 · PostgreSQL · Redis · Docker · Kubernetes · Jenkins · Bitbucket · Jira · AWS · Playwright
 
 ---
 
@@ -384,23 +385,22 @@ Full-stack engineer shipping production enterprise web applications.
 
 ## 🛠️ Skills & Technologies
 
-Skills below reflect **current production and professional work**. This portfolio repo is built with **React, Vite, and JavaScript**; day-to-day engineering uses **TypeScript, Next.js, and C# (.NET)**.
+Skills below reflect **current production and professional work** on the Commissary platform. This portfolio repo is built with **React, Vite, and JavaScript**; day-to-day engineering uses **TypeScript, Next.js, and .NET 9**.
 
 ### Frontend
-- TypeScript, React, Next.js, PrimeReact, JavaScript (ES6+)
+- TypeScript, React, Next.js, PrimeReact, Tailwind CSS, Zustand, TanStack Query/Table, React Hook Form, Vite, Axios
 
 ### Backend & APIs
-- C# (.NET), REST API development, Node.js, Express, Golang
+- .NET 9, REST APIs, OpenAPI/Swagger, Entity Framework Core, Hangfire, Node.js (kiosk daemon)
 
-### Data
-- SQL, PostgreSQL, MongoDB, data modeling
+### Data & Platform
+- PostgreSQL, Redis, multi-tenant data modeling, MongoDB
 
-### Cloud & Tools
-- Docker, AWS (hands-on exposure), Git, Bitbucket, Jira
+### DevOps & Process
+- Docker, Kubernetes, Jenkins, Bitbucket, Jira, AWS, CI/CD
 
-### Engineering Practices
-- Agile / Scrum, code reviews, debugging, cross-functional collaboration
-- Jest, CI/CD pipelines, continuous learning
+### Testing & Leadership
+- Playwright, Vitest, Agile/Scrum, sprint planning, code reviews, technical leadership, accessibility
 
 ### Portfolio site (this repo)
 - React 18, Vite, PrimeReact, Canvas API, EmailJS, ESLint, responsive CSS
