@@ -34,7 +34,7 @@ function Hero() {
               <span>•</span>
               <span>CityTeleCoin</span>
               <span>•</span>
-              <span>Feb 2023 – Present</span>
+              <span>Jun 2022 – Present</span>
               <span>•</span>
               <span>TypeScript • Next.js • React • C# • REST APIs • SQL</span>
             </div>

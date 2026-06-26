@@ -5,7 +5,7 @@ function RecruiterQuickScan() {
   const quickScanData = {
     location: "Bossier City, LA",
     remote: "Remote Available",
-    yearsExperience: "2+ years (production software, enterprise systems)",
+    yearsExperience: "3+ years (production software, enterprise systems)",
     primaryStack: "TypeScript • Next.js • React • PrimeReact • C# (.NET) • REST APIs • SQL • AWS",
     highlights: [
       "Building a net-new commissary web application using Next.js, TypeScript, and React, backed by a C# REST API, preparing the system for production launch.",
