@@ -1,0 +1,69 @@
+Brian Hopper
+Bossier City, LA | Open to Remote | Remote-First & Hybrid
+brian.hopper@live.com | 318.773.4013
+https://www.linkedin.com/in/mrhopper/ | https://github.com/GrassHopper12345
+Portfolio: https://sparkly-cranachan-9f0864.netlify.app
+
+
+PROFESSIONAL SUMMARY
+
+Full-Stack Software Engineer and Technical Project Lead with experience delivering production-ready platforms in regulated environments. Currently leading development and delivery for a multi-client corrections commissary platform — four React/Next.js frontends on a shared TypeScript monorepo, backed by a .NET 9 REST API — approaching production launch. Strong background in React, Next.js, TypeScript, PrimeReact, and C# (.NET) APIs, with hands-on experience in Agile delivery, Jira backlog management, sprint planning, Bitbucket/Jenkins CI/CD, Docker/Kubernetes deployment, and cross-functional stakeholder alignment. Brings a rare combination of life sciences education, operations expertise (Lean Six Sigma, Scrum), and hands-on software delivery. Seeking a remote or hybrid role combining software engineering and technical project leadership.
+
+
+CORE COMPETENCIES
+
+Full-Stack Development | Technical Project Management | Multi-Client Platform Architecture | Remote Team Collaboration | Distributed Agile Teams | Sprint Planning & Backlog Grooming | Stakeholder Communication | Requirements Translation | OpenAPI / REST API Integration | CI/CD & Version Control | Regulated Systems Delivery | Kiosk & Hardware Integration
+
+
+TECHNICAL SKILLS
+
+Frontend: TypeScript, React, Next.js, JavaScript (ES6+), PrimeReact, Tailwind CSS, Zustand, TanStack Query, TanStack Table, React Hook Form, Vite, Axios, HTML5, CSS3
+
+Backend & Data: C#, .NET 9, REST APIs, OpenAPI / Swagger, Entity Framework Core, PostgreSQL, Redis, Hangfire, SQL, Node.js
+
+DevOps & Tools: Docker, Kubernetes, Jenkins, Bitbucket, Jira, Git, AWS, CI/CD, Playwright, Vitest
+
+Methodologies: Agile, Scrum, Iterative Delivery, Code Reviews, Accessibility, Continuous Improvement
+
+
+PROFESSIONAL EXPERIENCE
+
+CityTeleCoin — Software Engineer & Project Lead                    Jun 2022 – Present
+Bossier City, LA (Remote)
+
+    • Lead a multi-client commissary platform for correctional facilities — admin dashboard, inmate kiosk, visitation kiosk, and mobile public portal — on a shared TypeScript monorepo, backed by a .NET 9 REST API, targeting production launch.
+
+    • Serve as technical lead and project manager: Jira backlog prioritization, sprint planning, stakeholder alignment, Bitbucket PR reviews, Jenkins CI/CD delivery, and cross-team coordination with product and QA.
+
+    • Build enterprise UI with PrimeReact, TanStack Query/Table, React Hook Form, and Zustand — complex forms, validation, permissions, and data tables across desktop admin and touch-first kiosk form factors.
+
+    • Integrate frontends with backend via OpenAPI-generated TypeScript clients, typed API contracts, facility-scoped permissions, and multi-tenant data access with TanStack Query caching patterns.
+
+    • Contribute to platform architecture: PostgreSQL + Entity Framework Core, Redis sessions/caching, Hangfire background jobs, and Docker/Kubernetes deployment.
+
+    • Drive release readiness with Playwright E2E tests, Vitest unit tests, accessibility work, and kiosk deployment via a Node.js daemon for on-site hardware peripherals.
+
+
+Ochsner LSU Health Shreveport — Technical & Operational Leadership   2019 – 2023
+Shreveport, LA
+
+    • Led cross-functional operational improvement initiatives in a highly regulated healthcare environment.
+
+    • Coordinated multidisciplinary teams to improve workflow efficiency and compliance.
+
+    • Utilized data-driven decision-making to support performance improvements.
+
+    • Worked within strict regulatory and quality assurance frameworks.
+
+
+EDUCATION
+
+MBA, Project Management — Louisiana State University Shreveport
+Master of Health Science — Louisiana State University Shreveport
+B.A., Cellular & Molecular Biology — Louisiana State University Shreveport
+MERN Full Stack Web Developer Bootcamp — University of Central Florida
+
+
+CERTIFICATIONS
+
+Scrum Master Certified (2024) | Lean Six Sigma Green Belt | Lean Practitioner | Six Sigma Black Belt
