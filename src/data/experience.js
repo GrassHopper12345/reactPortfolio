@@ -22,7 +22,7 @@ export const cityTeleCoinRole = {
     "Playwright",
   ],
   bullets: [
-    "Lead a multi-client commissary platform for correctional facilities — 4 React/Next.js frontends (admin dashboard, inmate kiosk, visitation kiosk, mobile public portal) on a shared TypeScript monorepo, backed by a .NET 9 REST API, targeting production launch.",
+    "Lead a multi-client administrative platform for correctional facilities — 4 React/Next.js frontends (admin dashboard, inmate kiosk, visitation kiosk, mobile public portal) on a shared TypeScript monorepo, backed by a .NET 9 REST API, targeting production launch.",
     "Serve as technical lead and project manager: Jira backlog prioritization, sprint planning, stakeholder alignment, Bitbucket PR reviews, Jenkins CI/CD delivery, and cross-team coordination with product and QA.",
     "Build enterprise UI with PrimeReact, TanStack Query/Table, React Hook Form, and Zustand — complex forms, validation, permissions, and data tables across desktop admin and touch-first kiosk form factors.",
     "Integrate frontends with backend via OpenAPI-generated TypeScript clients, typed API contracts, facility-scoped permissions, and multi-tenant data access with TanStack Query caching patterns.",
@@ -30,9 +30,9 @@ export const cityTeleCoinRole = {
     "Drive release readiness with Playwright E2E tests, Vitest unit tests, accessibility work, and kiosk deployment via a Node.js daemon for on-site hardware peripherals.",
   ],
   heroStrip:
-    "Multi-client commissary platform · .NET 9 · PostgreSQL · K8s",
+    "Multi-client administrative platform · .NET 9 · PostgreSQL · K8s",
   quickScanHighlights: [
-    "Lead a 4-client commissary platform (admin, inmate kiosk, visitation kiosk, public portal) on a shared TypeScript monorepo + .NET 9 API.",
+    "Lead a 4-client administrative platform (admin, inmate kiosk, visitation kiosk, public portal) on a shared TypeScript monorepo + .NET 9 API.",
     "Technical lead & PM: Jira backlog, sprint planning, Bitbucket/Jenkins delivery, and cross-team coordination.",
     "Full-stack delivery: TanStack Query/Table, OpenAPI codegen, PostgreSQL, Redis, Docker/K8s, Playwright E2E.",
   ],

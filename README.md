@@ -346,9 +346,9 @@ reactPortfolio/
 ### Software Engineer & Project Lead — CityTeleCoin
 **Jun 2022 – Present** · Bossier City, LA (Remote)
 
-Technical lead and project manager for a multi-client corrections commissary platform — 4 React/Next.js frontends on a shared TypeScript monorepo, backed by a .NET 9 REST API, with kiosk hardware integration and full DevOps delivery.
+Technical lead and project manager for a multi-client corrections administrative platform — 4 React/Next.js frontends on a shared TypeScript monorepo, backed by a .NET 9 REST API, with kiosk hardware integration and full DevOps delivery.
 
-- Lead a multi-client commissary platform for correctional facilities — admin dashboard, inmate kiosk, visitation kiosk, and mobile public portal — targeting production launch
+- Lead a multi-client administrative platform for correctional facilities — admin dashboard, inmate kiosk, visitation kiosk, and mobile public portal — targeting production launch
 - Serve as technical lead and project manager: Jira backlog prioritization, sprint planning, stakeholder alignment, Bitbucket PR reviews, Jenkins CI/CD, and cross-team coordination
 - Build enterprise UI with **PrimeReact**, **TanStack Query/Table**, **React Hook Form**, and **Zustand** across desktop admin and touch-first kiosk form factors
 - Integrate frontends via **OpenAPI-generated TypeScript clients**, facility-scoped permissions, and multi-tenant data access
@@ -385,7 +385,7 @@ Technical lead and project manager for a multi-client corrections commissary pla
 
 ## 🛠️ Skills & Technologies
 
-Skills below reflect **current production and professional work** on the Commissary platform. This portfolio repo is built with **React, Vite, and JavaScript**; day-to-day engineering uses **TypeScript, Next.js, and .NET 9**.
+Skills below reflect **current production and professional work** on the administrative platform. This portfolio repo is built with **React, Vite, and JavaScript**; day-to-day engineering uses **TypeScript, Next.js, and .NET 9**.
 
 ### Frontend
 - TypeScript, React, Next.js, PrimeReact, Tailwind CSS, Zustand, TanStack Query/Table, React Hook Form, Vite, Axios

@@ -43,7 +43,7 @@ function Hero() {
             </div>
             <div className="hero-bullets">
               <div className="hero-bullet">
-                <strong>Outcome:</strong> Leading delivery of a multi-client corrections commissary platform — 4 frontends, shared TypeScript monorepo, .NET 9 API, and kiosk hardware integration
+                <strong>Outcome:</strong> Leading delivery of a multi-client corrections administrative platform — 4 frontends, shared TypeScript monorepo, .NET 9 API, and kiosk hardware integration
               </div>
               <div className="hero-bullet">
                 <strong>Scope:</strong> Technical lead & project manager — architecture, OpenAPI integration, multi-tenant backend, Docker/K8s deployment, and Playwright E2E quality

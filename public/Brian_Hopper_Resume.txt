@@ -7,7 +7,7 @@ Portfolio: https://sparkly-cranachan-9f0864.netlify.app
 
 PROFESSIONAL SUMMARY
 
-Full-Stack Software Engineer and Technical Project Lead with experience delivering production-ready platforms in regulated environments. Currently leading development and delivery for a multi-client corrections commissary platform — four React/Next.js frontends on a shared TypeScript monorepo, backed by a .NET 9 REST API — approaching production launch. Strong background in React, Next.js, TypeScript, PrimeReact, and C# (.NET) APIs, with hands-on experience in Agile delivery, Jira backlog management, sprint planning, Bitbucket/Jenkins CI/CD, Docker/Kubernetes deployment, and cross-functional stakeholder alignment. Brings a rare combination of life sciences education, operations expertise (Lean Six Sigma, Scrum), and hands-on software delivery. Seeking a remote or hybrid role combining software engineering and technical project leadership.
+Full-Stack Software Engineer and Technical Project Lead with experience delivering production-ready platforms in regulated environments. Currently leading development and delivery for a multi-client corrections administrative platform — four React/Next.js frontends on a shared TypeScript monorepo, backed by a .NET 9 REST API — approaching production launch. Strong background in React, Next.js, TypeScript, PrimeReact, and C# (.NET) APIs, with hands-on experience in Agile delivery, Jira backlog management, sprint planning, Bitbucket/Jenkins CI/CD, Docker/Kubernetes deployment, and cross-functional stakeholder alignment. Brings a rare combination of life sciences education, operations expertise (Lean Six Sigma, Scrum), and hands-on software delivery. Seeking a remote or hybrid role combining software engineering and technical project leadership.
 
 
 CORE COMPETENCIES
@@ -31,7 +31,7 @@ PROFESSIONAL EXPERIENCE
 CityTeleCoin — Software Engineer & Project Lead                    Jun 2022 – Present
 Bossier City, LA (Remote)
 
-    • Lead a multi-client commissary platform for correctional facilities — admin dashboard, inmate kiosk, visitation kiosk, and mobile public portal — on a shared TypeScript monorepo, backed by a .NET 9 REST API, targeting production launch.
+    • Lead a multi-client administrative platform for correctional facilities — admin dashboard, inmate kiosk, visitation kiosk, and mobile public portal — on a shared TypeScript monorepo, backed by a .NET 9 REST API, targeting production launch.
 
     • Serve as technical lead and project manager: Jira backlog prioritization, sprint planning, stakeholder alignment, Bitbucket PR reviews, Jenkins CI/CD delivery, and cross-team coordination with product and QA.
 
