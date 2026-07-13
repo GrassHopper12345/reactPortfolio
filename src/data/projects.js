@@ -1,4 +1,5 @@
 // Project data for case studies
+import cityTeleCoinInmateTablet from "../assets/projectPics/cityTeleCoinInmateTablet.svg";
 import cityTeleCoinPhoneManager from "../assets/projectPics/cityTeleCoinPhoneManager.png";
 import cliLogoGen from "../assets/projectPics/cliLogoGenerator.png";
 import codeQuiz from "../assets/projectPics/CodeQuiz.png";
@@ -12,6 +13,56 @@ import weatherApp from "../assets/projectPics/weatherApp.png";
 import weatherWays from "../assets/projectPics/WeatherWays.png";
 
 export const projects = [
+  {
+    id: "citytelecoin-inmate-tablet",
+    title: "City Tele Coin — Inmate Tablet (Android Kiosk)",
+    roleLabel: "Production · Android UI & Accessibility",
+    shortPitch:
+      "Native Android (Kotlin) kiosk app deployed on locked-down tablets inside correctional facilities — the sole interface inmates use for VoIP calls, video visits, messaging, commissary, biometric login, and prepaid apps. Modernized the UI layer and improved accessibility for assistive-technology and Spanish-speaking users.",
+    problem:
+      "Mission-critical kiosk app needed Android UI modernization, bilingual support, and production bug fixes across VoIP calling, biometric login, billing services, and three generations of facility tablet hardware — all without standard Android navigation.",
+    whatIBuilt: [
+      "Modernized main menu and free apps screens from legacy GridView to RecyclerView + ViewHolder, eliminating visual rendering bugs on facility tablets",
+      "Migrated 6+ major screens from findViewById to type-safe View Binding, reducing view lookup errors across Menu, FreeApps, AdminOptions, and related flows",
+      "Implemented full English/Spanish localization with runtime language toggle via LanguageHelper — fixed locale propagation bugs across Activities and background Services (notifications, inactivity timer)",
+      "Added Android accessibility support: TalkBack-ready contentDescription labels on phone dialer and app-wide interactive elements, plus focus management on key screens",
+      "Resolved production bugs on multi-generation tablet hardware, including gen-2 VoIP audio routing, context/locale regressions after login, and anti-fraud session integrity (rapid app-switching detection)",
+      "Improved kiosk UX with custom WebView navigation controls so users can return to the main menu without system navigation bar access",
+    ],
+    techStack: [
+      "Kotlin",
+      "Android SDK",
+      "RecyclerView",
+      "View Binding",
+      "Material Design",
+      "CameraX",
+      "Android SIP/VoIP",
+      "WebView",
+      "Volley",
+      "Kotlin Coroutines",
+      "Foreground Services",
+      "TalkBack",
+      "i18n",
+    ],
+    impact: [
+      "Maintained and improved a mission-critical kiosk app serving incarcerated users in correctional facilities nationwide",
+      "Modernized UI layer across menu, apps, and WebView-based features (video visits, messaging, commissary, education)",
+      "Improved accessibility for Spanish-speaking users and assistive-technology users in a locked-down kiosk environment",
+    ],
+    links: { github: null, live: null },
+    image: cityTeleCoinInmateTablet,
+    alt: "Generic Android kiosk tablet interface illustration for Inmate Tablet app",
+    proprietary: true,
+    relevanceTier: "primary",
+    status: "Production",
+    featured: true,
+    lastUpdated: "2025",
+    highlights: [
+      "Migrated legacy GridView layouts to RecyclerView + View Binding across 6+ major screens",
+      "Built English/Spanish i18n with runtime toggle and locale fixes across Activities and Services",
+      "Added TalkBack labels and focus management; resolved multi-generation hardware production bugs",
+    ],
+  },
   {
     id: "citytelecoin-phone-manager",
     title: "City Tele Coin — Phone Manager (Customer Portal)",
@@ -52,7 +103,7 @@ export const projects = [
     relevanceTier: "primary",
     status: "Production",
     featured: true,
-    lastUpdated: "2024",
+    lastUpdated: "2023",
     highlights: [
       "Led WCAG remediation across 15+ customer-facing PHP pages with Lighthouse 100% accessibility scores",
       "Stabilized 3 multi-step payment flows processing real financial transactions",

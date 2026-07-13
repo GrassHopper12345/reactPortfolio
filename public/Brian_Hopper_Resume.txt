@@ -7,7 +7,7 @@ Portfolio: https://sparkly-cranachan-9f0864.netlify.app
 
 PROFESSIONAL SUMMARY
 
-Full-Stack Software Engineer and Technical Project Lead with experience delivering production-ready platforms in regulated environments. Currently leading development and delivery for a multi-client corrections administrative platform — four React/Next.js frontends on a shared TypeScript monorepo, backed by a .NET 9 REST API — approaching production launch. Strong background in React, Next.js, TypeScript, PrimeReact, and C# (.NET) APIs, with hands-on experience in Agile delivery, Jira backlog management, sprint planning, Bitbucket/Jenkins CI/CD, Docker/Kubernetes deployment, and cross-functional stakeholder alignment. Brings a rare combination of life sciences education, operations expertise (Lean Six Sigma, Scrum), and hands-on software delivery. Seeking a remote or hybrid role combining software engineering and technical project leadership.
+Full-Stack Software Engineer and Technical Project Lead with experience delivering production-ready platforms in regulated correctional and healthcare environments. Currently leading development and delivery for a multi-client corrections administrative platform — four React/Next.js frontends on a shared TypeScript monorepo, backed by a .NET 9 REST API — approaching production launch. Prior production work includes a native Android (Kotlin) inmate kiosk app and a legacy PHP customer payment portal. Strong background in React, Next.js, TypeScript, Android UI, and C# (.NET) APIs, with hands-on experience in Agile delivery, Jira backlog management, sprint planning, Bitbucket/Jenkins CI/CD, Docker/Kubernetes deployment, and cross-functional stakeholder alignment. Brings a rare combination of life sciences education, operations expertise (Lean Six Sigma, Scrum), and hands-on software delivery. Seeking a remote or hybrid role combining software engineering and technical project leadership.
 
 
 CORE COMPETENCIES
@@ -17,13 +17,13 @@ Full-Stack Development | Technical Project Management | Multi-Client Platform Ar
 
 TECHNICAL SKILLS
 
-Frontend: TypeScript, React, Next.js, JavaScript (ES6+), PrimeReact, Tailwind CSS, Zustand, TanStack Query, TanStack Table, React Hook Form, Vite, Axios, HTML5, CSS3
+Frontend: TypeScript, React, Next.js, JavaScript (ES6+), PrimeReact, Tailwind CSS, Zustand, TanStack Query, TanStack Table, React Hook Form, Vite, Axios, HTML5, CSS3, Kotlin, Android SDK, RecyclerView, View Binding
 
 Backend & Data: C#, .NET 9, REST APIs, OpenAPI / Swagger, Entity Framework Core, PostgreSQL, Redis, Hangfire, SQL, Node.js, PHP
 
 DevOps & Tools: Docker, Kubernetes, Jenkins, Bitbucket, Jira, Git, AWS, CI/CD, Playwright, Vitest
 
-Methodologies: Agile, Scrum, Iterative Delivery, Code Reviews, WCAG 2.1, ARIA, Lighthouse, Accessibility, Continuous Improvement
+Methodologies: Agile, Scrum, Iterative Delivery, Code Reviews, WCAG 2.1, ARIA, Lighthouse, Android Accessibility (TalkBack), i18n/Localization, Continuous Improvement
 
 
 PROFESSIONAL EXPERIENCE
@@ -38,6 +38,8 @@ Bossier City, LA (Remote)
     • Build enterprise UI with PrimeReact, TanStack Query/Table, React Hook Form, and Zustand — complex forms, validation, permissions, and data tables across desktop admin and touch-first kiosk form factors.
 
     • Integrate frontends with backend via OpenAPI-generated TypeScript clients, typed API contracts, facility-scoped permissions, and multi-tenant data access with TanStack Query caching patterns.
+
+    • Modernized a production Android (Kotlin) inmate kiosk app — migrated legacy GridView to RecyclerView + View Binding, built English/Spanish i18n with runtime locale switching, added TalkBack accessibility labels and focus management, and resolved production bugs across VoIP calling, biometric login, and multi-generation tablet hardware.
 
     • Led WCAG accessibility remediation across 15+ customer-facing PHP pages for a correctional telecom payment portal — ARIA labeling, WCAG AA contrast, keyboard navigation, semantic HTML — validated with Lighthouse (100% accessibility) and WAVE.
 

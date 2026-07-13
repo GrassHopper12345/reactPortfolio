@@ -346,16 +346,17 @@ reactPortfolio/
 ### Software Engineer & Project Lead — CityTeleCoin
 **Jun 2022 – Present** · Bossier City, LA (Remote)
 
-Technical lead and project manager for a multi-client corrections administrative platform — 4 React/Next.js frontends on a shared TypeScript monorepo, backed by a .NET 9 REST API, with kiosk hardware integration and full DevOps delivery.
+Technical lead and project manager for a multi-client corrections administrative platform — 4 React/Next.js frontends on a shared TypeScript monorepo, backed by a .NET 9 REST API, with kiosk hardware integration and full DevOps delivery. Earlier production work at CityTeleCoin includes a native Android inmate kiosk app and a legacy PHP customer payment portal.
 
 - Lead a multi-client administrative platform for correctional facilities — admin dashboard, inmate kiosk, visitation kiosk, and mobile public portal — targeting production launch
 - Serve as technical lead and project manager: Jira backlog prioritization, sprint planning, stakeholder alignment, Bitbucket PR reviews, Jenkins CI/CD, and cross-team coordination
 - Build enterprise UI with **PrimeReact**, **TanStack Query/Table**, **React Hook Form**, and **Zustand** across desktop admin and touch-first kiosk form factors
 - Integrate frontends via **OpenAPI-generated TypeScript clients**, facility-scoped permissions, and multi-tenant data access
-- Led WCAG accessibility remediation across **15+ customer-facing PHP pages** for a correctional telecom payment portal — ARIA labeling, WCAG AA contrast, keyboard navigation — validated with **Lighthouse (100% accessibility)** and **WAVE**
+- Modernized a production **Android (Kotlin) inmate kiosk app** — RecyclerView + View Binding migration, English/Spanish i18n, **TalkBack** accessibility, and multi-generation hardware bug fixes
+- Led WCAG accessibility remediation across **15+ customer-facing PHP pages** for a correctional telecom payment portal — validated with **Lighthouse (100% accessibility)** and **WAVE**
 - Drive release readiness with **Playwright** E2E tests, **Vitest** unit tests, and **Node.js** kiosk daemon integration; earlier, resolved production payment-flow bugs in multi-step checkout for a system processing real financial transactions
 
-**Stack:** TypeScript · Next.js · React · PrimeReact · Tailwind CSS · Zustand · TanStack Query · .NET 9 · PostgreSQL · Redis · Docker · Kubernetes · Jenkins · Bitbucket · Jira · AWS · Playwright · PHP · WCAG 2.1 · ARIA
+**Stack:** TypeScript · Next.js · React · Kotlin · Android SDK · PrimeReact · TanStack Query · .NET 9 · PostgreSQL · Redis · Docker · Kubernetes · Jenkins · Bitbucket · Jira · AWS · Playwright · PHP · TalkBack · i18n
 
 ---
 
@@ -388,7 +389,7 @@ Technical lead and project manager for a multi-client corrections administrative
 Skills below reflect **current production and professional work** on the administrative platform. This portfolio repo is built with **React, Vite, and JavaScript**; day-to-day engineering uses **TypeScript, Next.js, and .NET 9**.
 
 ### Frontend
-- TypeScript, React, Next.js, PrimeReact, Tailwind CSS, Zustand, TanStack Query/Table, React Hook Form, Vite, Axios
+- TypeScript, React, Next.js, PrimeReact, Tailwind CSS, Zustand, TanStack Query/Table, React Hook Form, Vite, Axios, Kotlin, Android SDK, RecyclerView, View Binding
 
 ### Backend & APIs
 - .NET 9, REST APIs, OpenAPI/Swagger, Entity Framework Core, Hangfire, Node.js (kiosk daemon), PHP, jQuery
@@ -400,7 +401,7 @@ Skills below reflect **current production and professional work** on the adminis
 - Docker, Kubernetes, Jenkins, Bitbucket, Jira, AWS, CI/CD
 
 ### Testing & Leadership
-- Playwright, Vitest, Agile/Scrum, sprint planning, code reviews, WCAG 2.1, ARIA, Lighthouse, technical leadership, accessibility
+- Playwright, Vitest, Agile/Scrum, sprint planning, code reviews, WCAG 2.1, ARIA, Lighthouse, TalkBack, i18n/localization, technical leadership, accessibility
 
 ### Portfolio site (this repo)
 - React 18, Vite, PrimeReact, Canvas API, EmailJS, ESLint, responsive CSS
