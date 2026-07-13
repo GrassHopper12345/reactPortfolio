@@ -5,6 +5,24 @@ import { Star } from "lucide-react";
 
 function ProjectCard({ project }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const hasGithubLink = Boolean(project.links?.github);
+  const imageStyle = {
+    width: '100%',
+    height: 'auto',
+    borderRadius: '8px',
+    marginBottom: '1rem',
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 6px rgba(0, 255, 255, 0.15)',
+    cursor: hasGithubLink ? 'pointer' : 'default',
+  };
+
+  const projectImage = (
+    <img
+      src={project.image}
+      alt={project.alt}
+      loading="lazy"
+      style={imageStyle}
+    />
+  );
 
   return (
     <Card 
@@ -82,27 +100,35 @@ function ProjectCard({ project }) {
               {project.status === "Legacy" ? "Legacy" : "Updating"}
             </div>
           )}
+          {project.proprietary && (
+            <div style={{
+              background: 'rgba(128, 128, 128, 0.2)',
+              color: '#d0d0d0',
+              padding: '0.4rem 0.8rem',
+              borderRadius: '20px',
+              fontSize: '0.7rem',
+              fontWeight: '600',
+              border: '1px solid rgba(200, 200, 200, 0.4)',
+              boxShadow: '0 2px 6px rgba(0, 0, 0, 0.2)',
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px'
+            }}>
+              Proprietary
+            </div>
+          )}
         </div>
-        <a 
-          href={project.links.github} 
-          target="_blank" 
-          rel="noreferrer noopener"
-          aria-label={`View ${project.title} on GitHub`}
-        >
-          <img
-            src={project.image}
-            alt={project.alt}
-            loading="lazy"
-            style={{ 
-              width: '100%', 
-              height: 'auto', 
-              borderRadius: '8px', 
-              marginBottom: '1rem', 
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3), 0 0 6px rgba(0, 255, 255, 0.15)',
-              cursor: 'pointer'
-            }}
-          />
-        </a>
+        {hasGithubLink ? (
+          <a
+            href={project.links.github}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label={`View ${project.title} on GitHub`}
+          >
+            {projectImage}
+          </a>
+        ) : (
+          projectImage
+        )}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
           <h3 style={{ 
             color: 'var(--neon-green)', 
@@ -230,6 +256,22 @@ function ProjectCard({ project }) {
               ))}
             </ul>
           </div>
+
+          {project.proprietary && (
+            <p style={{
+              color: 'rgba(176, 224, 230, 0.85)',
+              fontSize: '0.9rem',
+              lineHeight: '1.6',
+              fontStyle: 'italic',
+              margin: 0,
+              padding: '0.75rem 1rem',
+              background: 'rgba(128, 128, 128, 0.1)',
+              borderRadius: '8px',
+              border: '1px solid rgba(200, 200, 200, 0.2)',
+            }}>
+              Internal enterprise application — code not publicly available. Screenshots from public-facing customer portal pages; PII redacted.
+            </p>
+          )}
         </div>
       )}
 
@@ -283,15 +325,27 @@ function ProjectCard({ project }) {
           style={{ flex: 1, minWidth: '120px' }}
           aria-label={isExpanded ? "Collapse project details" : "Expand project details"}
         />
-        <Button
-          label="GitHub"
-          icon="pi pi-github"
-          onClick={() => window.open(project.links.github, '_blank', 'noopener,noreferrer')}
-          className="game-themed-button"
-          outlined
-          style={{ flex: 1, minWidth: '120px' }}
-          aria-label={`View ${project.title} on GitHub`}
-        />
+        {hasGithubLink ? (
+          <Button
+            label="GitHub"
+            icon="pi pi-github"
+            onClick={() => window.open(project.links.github, '_blank', 'noopener,noreferrer')}
+            className="game-themed-button"
+            outlined
+            style={{ flex: 1, minWidth: '120px' }}
+            aria-label={`View ${project.title} on GitHub`}
+          />
+        ) : project.proprietary ? (
+          <Button
+            label="Internal Only"
+            icon="pi pi-lock"
+            disabled
+            className="game-themed-button"
+            outlined
+            style={{ flex: 1, minWidth: '120px', opacity: 0.7 }}
+            aria-label={`${project.title} is an internal enterprise application with no public repository`}
+          />
+        ) : null}
         {project.links.live && (
           <Button
             label="Live Demo"

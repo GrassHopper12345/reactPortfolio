@@ -30,6 +30,8 @@ const skills = {
     "Hangfire",
     "Node.js",
     "Express",
+    "PHP",
+    "jQuery",
     "Golang",
   ],
   data: [
@@ -53,6 +55,9 @@ const skills = {
     "Agile / Scrum",
     "Sprint Planning",
     "Code Reviews",
+    "WCAG 2.1",
+    "ARIA",
+    "Lighthouse",
     "Accessibility",
     "Technical Leadership",
   ],

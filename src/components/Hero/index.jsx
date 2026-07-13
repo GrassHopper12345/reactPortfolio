@@ -51,6 +51,9 @@ function Hero() {
               <div className="hero-bullet">
                 <strong>Ownership:</strong> Jira backlog, sprint planning, Bitbucket PR reviews, Jenkins CI/CD, and cross-team coordination through production launch
               </div>
+              <div className="hero-bullet">
+                <strong>Production:</strong> Earlier, led WCAG remediation across 15+ customer-facing PHP pages (Lighthouse 100%) and stabilized payment flows on a legacy telecom portal processing real financial transactions
+              </div>
             </div>
             <div className="hero-cta-group">
               <Button

@@ -20,20 +20,25 @@ export const cityTeleCoinRole = {
     "Jira",
     "AWS",
     "Playwright",
+    "PHP",
+    "jQuery",
+    "WCAG 2.1",
+    "ARIA",
   ],
   bullets: [
     "Lead a multi-client administrative platform for correctional facilities — 4 React/Next.js frontends (admin dashboard, inmate kiosk, visitation kiosk, mobile public portal) on a shared TypeScript monorepo, backed by a .NET 9 REST API, targeting production launch.",
     "Serve as technical lead and project manager: Jira backlog prioritization, sprint planning, stakeholder alignment, Bitbucket PR reviews, Jenkins CI/CD delivery, and cross-team coordination with product and QA.",
     "Build enterprise UI with PrimeReact, TanStack Query/Table, React Hook Form, and Zustand — complex forms, validation, permissions, and data tables across desktop admin and touch-first kiosk form factors.",
     "Integrate frontends with backend via OpenAPI-generated TypeScript clients, typed API contracts, facility-scoped permissions, and multi-tenant data access with TanStack Query caching patterns.",
-    "Contribute to platform architecture: PostgreSQL + Entity Framework Core, Redis sessions/caching, Hangfire background jobs, and Docker/Kubernetes deployment.",
-    "Drive release readiness with Playwright E2E tests, Vitest unit tests, accessibility work, and kiosk deployment via a Node.js daemon for on-site hardware peripherals.",
+    "Led WCAG accessibility remediation across 15+ customer-facing PHP pages for a correctional telecom payment portal — ARIA labeling, WCAG AA contrast, keyboard navigation, semantic HTML — validated with Lighthouse (100% accessibility) and WAVE.",
+    "Drive release readiness with Playwright E2E tests, Vitest unit tests, and kiosk deployment via a Node.js daemon for on-site hardware peripherals; earlier, resolved production payment-flow bugs in multi-step checkout (calling cards, account funding, messaging/tablet time) for a system processing real financial transactions via NMI/Heartland gateways.",
   ],
   heroStrip:
-    "Multi-client administrative platform · .NET 9 · PostgreSQL · K8s",
+    "Enterprise corrections SaaS · React/Next.js · PostgreSQL · K8s",
   quickScanHighlights: [
     "Lead a 4-client administrative platform (admin, inmate kiosk, visitation kiosk, public portal) on a shared TypeScript monorepo + .NET 9 API.",
     "Technical lead & PM: Jira backlog, sprint planning, Bitbucket/Jenkins delivery, and cross-team coordination.",
     "Full-stack delivery: TanStack Query/Table, OpenAPI codegen, PostgreSQL, Redis, Docker/K8s, Playwright E2E.",
+    "Earlier: WCAG remediation + production payment UX on legacy customer portal (15+ pages, Lighthouse 100%).",
   ],
 };

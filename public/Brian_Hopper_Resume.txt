@@ -19,11 +19,11 @@ TECHNICAL SKILLS
 
 Frontend: TypeScript, React, Next.js, JavaScript (ES6+), PrimeReact, Tailwind CSS, Zustand, TanStack Query, TanStack Table, React Hook Form, Vite, Axios, HTML5, CSS3
 
-Backend & Data: C#, .NET 9, REST APIs, OpenAPI / Swagger, Entity Framework Core, PostgreSQL, Redis, Hangfire, SQL, Node.js
+Backend & Data: C#, .NET 9, REST APIs, OpenAPI / Swagger, Entity Framework Core, PostgreSQL, Redis, Hangfire, SQL, Node.js, PHP
 
 DevOps & Tools: Docker, Kubernetes, Jenkins, Bitbucket, Jira, Git, AWS, CI/CD, Playwright, Vitest
 
-Methodologies: Agile, Scrum, Iterative Delivery, Code Reviews, Accessibility, Continuous Improvement
+Methodologies: Agile, Scrum, Iterative Delivery, Code Reviews, WCAG 2.1, ARIA, Lighthouse, Accessibility, Continuous Improvement
 
 
 PROFESSIONAL EXPERIENCE
@@ -39,9 +39,9 @@ Bossier City, LA (Remote)
 
     • Integrate frontends with backend via OpenAPI-generated TypeScript clients, typed API contracts, facility-scoped permissions, and multi-tenant data access with TanStack Query caching patterns.
 
-    • Contribute to platform architecture: PostgreSQL + Entity Framework Core, Redis sessions/caching, Hangfire background jobs, and Docker/Kubernetes deployment.
+    • Led WCAG accessibility remediation across 15+ customer-facing PHP pages for a correctional telecom payment portal — ARIA labeling, WCAG AA contrast, keyboard navigation, semantic HTML — validated with Lighthouse (100% accessibility) and WAVE.
 
-    • Drive release readiness with Playwright E2E tests, Vitest unit tests, accessibility work, and kiosk deployment via a Node.js daemon for on-site hardware peripherals.
+    • Drive release readiness with Playwright E2E tests, Vitest unit tests, and kiosk deployment via a Node.js daemon for on-site hardware peripherals; earlier, resolved production payment-flow bugs in multi-step checkout (calling cards, account funding, messaging/tablet time) for a system processing real financial transactions via NMI/Heartland gateways.
 
 
 Ochsner LSU Health Shreveport — Technical & Operational Leadership   2019 – 2023

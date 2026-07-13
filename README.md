@@ -352,10 +352,10 @@ Technical lead and project manager for a multi-client corrections administrative
 - Serve as technical lead and project manager: Jira backlog prioritization, sprint planning, stakeholder alignment, Bitbucket PR reviews, Jenkins CI/CD, and cross-team coordination
 - Build enterprise UI with **PrimeReact**, **TanStack Query/Table**, **React Hook Form**, and **Zustand** across desktop admin and touch-first kiosk form factors
 - Integrate frontends via **OpenAPI-generated TypeScript clients**, facility-scoped permissions, and multi-tenant data access
-- Contribute to platform architecture: **PostgreSQL**, **Entity Framework Core**, **Redis**, **Hangfire**, **Docker/Kubernetes** deployment
-- Drive release readiness with **Playwright** E2E tests, **Vitest** unit tests, accessibility work, and **Node.js** kiosk daemon integration for on-site hardware
+- Led WCAG accessibility remediation across **15+ customer-facing PHP pages** for a correctional telecom payment portal — ARIA labeling, WCAG AA contrast, keyboard navigation — validated with **Lighthouse (100% accessibility)** and **WAVE**
+- Drive release readiness with **Playwright** E2E tests, **Vitest** unit tests, and **Node.js** kiosk daemon integration; earlier, resolved production payment-flow bugs in multi-step checkout for a system processing real financial transactions
 
-**Stack:** TypeScript · Next.js · React · PrimeReact · Tailwind CSS · Zustand · TanStack Query · .NET 9 · PostgreSQL · Redis · Docker · Kubernetes · Jenkins · Bitbucket · Jira · AWS · Playwright
+**Stack:** TypeScript · Next.js · React · PrimeReact · Tailwind CSS · Zustand · TanStack Query · .NET 9 · PostgreSQL · Redis · Docker · Kubernetes · Jenkins · Bitbucket · Jira · AWS · Playwright · PHP · WCAG 2.1 · ARIA
 
 ---
 
@@ -391,7 +391,7 @@ Skills below reflect **current production and professional work** on the adminis
 - TypeScript, React, Next.js, PrimeReact, Tailwind CSS, Zustand, TanStack Query/Table, React Hook Form, Vite, Axios
 
 ### Backend & APIs
-- .NET 9, REST APIs, OpenAPI/Swagger, Entity Framework Core, Hangfire, Node.js (kiosk daemon)
+- .NET 9, REST APIs, OpenAPI/Swagger, Entity Framework Core, Hangfire, Node.js (kiosk daemon), PHP, jQuery
 
 ### Data & Platform
 - PostgreSQL, Redis, multi-tenant data modeling, MongoDB
@@ -400,7 +400,7 @@ Skills below reflect **current production and professional work** on the adminis
 - Docker, Kubernetes, Jenkins, Bitbucket, Jira, AWS, CI/CD
 
 ### Testing & Leadership
-- Playwright, Vitest, Agile/Scrum, sprint planning, code reviews, technical leadership, accessibility
+- Playwright, Vitest, Agile/Scrum, sprint planning, code reviews, WCAG 2.1, ARIA, Lighthouse, technical leadership, accessibility
 
 ### Portfolio site (this repo)
 - React 18, Vite, PrimeReact, Canvas API, EmailJS, ESLint, responsive CSS

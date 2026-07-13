@@ -1,4 +1,5 @@
 // Project data for case studies
+import cityTeleCoinPhoneManager from "../assets/projectPics/cityTeleCoinPhoneManager.png";
 import cliLogoGen from "../assets/projectPics/cliLogoGenerator.png";
 import codeQuiz from "../assets/projectPics/CodeQuiz.png";
 import eCommerce from "../assets/projectPics/E-Commerce-Back-End.png";
@@ -11,6 +12,53 @@ import weatherApp from "../assets/projectPics/weatherApp.png";
 import weatherWays from "../assets/projectPics/WeatherWays.png";
 
 export const projects = [
+  {
+    id: "citytelecoin-phone-manager",
+    title: "City Tele Coin — Phone Manager (Customer Portal)",
+    roleLabel: "Production · Accessibility & UX",
+    shortPitch:
+      "Internal enterprise telecom portal where facility visitors fund inmate phone accounts, purchase calling cards, and buy messaging/tablet time. Led WCAG remediation and payment-flow reliability across 15+ production PHP pages.",
+    problem:
+      "Legacy customer portal needed WCAG compliance and payment-flow stability for real financial transactions serving visitors nationwide.",
+    whatIBuilt: [
+      "Led accessibility remediation across 15+ customer-facing pages — ARIA labeling, WCAG AA contrast fixes, keyboard navigation, semantic HTML, and alt text",
+      "Validated compliance with Google Lighthouse (100% accessibility scores) and WAVE accessibility checker",
+      "Modernized UI with Materialize CSS — responsive layout, typography, mobile navigation, and Google Translate integration",
+      "Resolved production payment-flow bugs in multi-step checkout (calling cards, account funding, messaging/tablet time) including null facility IDs, session/redirect issues, and declined-payment handling",
+      "Added PayPal vs. credit card payment option UI and rebranded Tablet Time to Messaging & Tablet Time across flows",
+    ],
+    techStack: [
+      "PHP",
+      "PostgreSQL",
+      "jQuery",
+      "Materialize CSS",
+      "WCAG 2.1",
+      "ARIA",
+      "Lighthouse",
+      "WAVE",
+      "NMI/Heartland",
+      "Docker",
+      "Ansible",
+    ],
+    impact: [
+      "15+ pages brought to WCAG accessibility compliance with 100% Lighthouse accessibility scores",
+      "114+ production commits across customer payment flows",
+      "3 multi-step payment flows stabilized (account funding, calling cards, messaging/tablet time)",
+    ],
+    links: { github: null, live: null },
+    image: cityTeleCoinPhoneManager,
+    alt: "City Tele Coin customer portal landing page",
+    proprietary: true,
+    relevanceTier: "primary",
+    status: "Production",
+    featured: true,
+    lastUpdated: "2024",
+    highlights: [
+      "Led WCAG remediation across 15+ customer-facing PHP pages with Lighthouse 100% accessibility scores",
+      "Stabilized 3 multi-step payment flows processing real financial transactions",
+      "Modernized legacy portal UX with Materialize CSS, mobile fixes, and Google Translate",
+    ],
+  },
   {
     id: "cli-logo-generator",
     title: "CLI Logo Generator",
