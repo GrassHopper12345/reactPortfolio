@@ -52,7 +52,7 @@ function Hero() {
                 <strong>Ownership:</strong> Jira backlog, sprint planning, Bitbucket PR reviews, Jenkins CI/CD, and cross-team coordination through production launch
               </div>
               <div className="hero-bullet">
-                <strong>Production:</strong> Earlier roles on correctional production systems — Android kiosk UI modernization (RecyclerView, EN/ES i18n, TalkBack) and WCAG remediation on a legacy PHP payment portal (Lighthouse 100%)
+                <strong>Production:</strong> Shipped enterprise features on correctional production systems — React staff admin dashboard (tablet management, Direct Pay, SIP/VoIP), Android kiosk modernization, and WCAG remediation on the public PHP payment portal
               </div>
             </div>
             <div className="hero-cta-group">

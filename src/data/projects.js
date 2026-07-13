@@ -1,5 +1,6 @@
 // Project data for case studies
 import cityTeleCoinInmateTablet from "../assets/projectPics/cityTeleCoinInmateTablet.svg";
+import cityTeleCoinPhoneManagerAdmin from "../assets/projectPics/cityTeleCoinPhoneManagerAdmin.svg";
 import cityTeleCoinPhoneManager from "../assets/projectPics/cityTeleCoinPhoneManager.png";
 import fairShakeEstimateEngine from "../assets/projectPics/fairShakeEstimateEngine.svg";
 import labReferenceFlagApi from "../assets/projectPics/labReferenceFlagApi.svg";
@@ -64,6 +65,50 @@ export const projects = [
       "Migrated legacy GridView layouts to RecyclerView + View Binding across 6+ major screens",
       "Built English/Spanish i18n with runtime toggle and locale fixes across Activities and Services",
       "Added TalkBack labels and focus management; resolved multi-generation hardware production bugs",
+    ],
+  },
+  {
+    id: "citytelecoin-phone-manager-admin",
+    title: "City Tele Coin — Phone Manager (Internal Admin)",
+    roleLabel: "Production · React Enterprise UI",
+    shortPitch:
+      "Staff-facing React admin dashboard for correctional facility operations — tablet app management, website allowlists, 3rd-party APK configuration, Direct Pay tooling, and SIP/VoIP utilities. Built and extended production modules on an existing enterprise codebase.",
+    problem:
+      "Facility administrators need centralized control over inmate tablet apps, website access, payment transactions, and telecom infrastructure — all within a role-protected enterprise dashboard serving staff nationwide.",
+    whatIBuilt: [
+      "Built tablet app management suite: tabbed hub for facility-scoped app config, website allowlists, 3rd-party APK upload/edit, category CRUD, and religious books content per facility",
+      "Implemented global enable/disable workflows with confirmation modals for 3rd-party apps and websites across all facilities",
+      "Delivered Direct Pay admin modules — online customer account search with CSV export and transaction edit/void flows with payment and transaction-type mapping",
+      "Built SIP registration search and Kamailio trusted-IP CRUD pages for corrections VoIP infrastructure troubleshooting",
+      "Extended shared components (Search, AddEdit, file uploader) and wired lazy-loaded routes into existing role-based routing (RouteManager.js)",
+      "Shipped admin UX improvements: phone on/off confirmation modals, message attachment image zoom, facility form escalation logic, and printable commission report styling",
+    ],
+    techStack: [
+      "React 18",
+      "JavaScript",
+      "Axios",
+      "React Router v5",
+      "Create React App",
+      "Docker",
+      "nginx",
+    ],
+    impact: [
+      "~99 commits across production modules (Feb 2024 – Dec 2025) serving correctional facility staff nationwide",
+      "Tablet management modules control what incarcerated users access on facility kiosk hardware",
+      "Direct Pay tools support real financial transaction administration in a production payment system",
+    ],
+    links: { github: null, live: null },
+    image: cityTeleCoinPhoneManagerAdmin,
+    alt: "CTC Phone Manager internal admin dashboard illustration",
+    proprietary: true,
+    relevanceTier: "primary",
+    status: "Production",
+    featured: true,
+    lastUpdated: "2025",
+    highlights: [
+      "Built tablet app management suite — facility apps, website allowlists, 3rd-party APKs, and categories",
+      "Delivered Direct Pay account search and transaction edit/void for live financial transactions",
+      "SIP/Kamailio admin pages, role-based routing, and confirmation modals for destructive actions",
     ],
   },
   {
