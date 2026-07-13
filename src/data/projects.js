@@ -1,6 +1,9 @@
 // Project data for case studies
 import cityTeleCoinInmateTablet from "../assets/projectPics/cityTeleCoinInmateTablet.svg";
 import cityTeleCoinPhoneManager from "../assets/projectPics/cityTeleCoinPhoneManager.png";
+import fairShakeEstimateEngine from "../assets/projectPics/fairShakeEstimateEngine.svg";
+import labReferenceFlagApi from "../assets/projectPics/labReferenceFlagApi.svg";
+import wellnessProtocolTracker from "../assets/projectPics/wellnessProtocolTracker.svg";
 import cliLogoGen from "../assets/projectPics/cliLogoGenerator.png";
 import codeQuiz from "../assets/projectPics/CodeQuiz.png";
 import eCommerce from "../assets/projectPics/E-Commerce-Back-End.png";
@@ -108,6 +111,152 @@ export const projects = [
       "Led WCAG remediation across 15+ customer-facing PHP pages with Lighthouse 100% accessibility scores",
       "Stabilized 3 multi-step payment flows processing real financial transactions",
       "Modernized legacy portal UX with Materialize CSS, mobile fixes, and Google Translate",
+    ],
+  },
+  {
+    id: "lab-reference-flag-api",
+    title: "Lab Reference Flag API",
+    roleLabel: "Backend · Healthcare",
+    shortPitch:
+      "REST API for clinical lab value interpretation — accepts panel results and returns reference ranges, abnormal flags (Low/Normal/High/Critical), and clinical context across CBC, CMP, lipid, thyroid, and vitamin panels. Built on .NET 9 with a real healthcare data domain.",
+    problem:
+      "Lab results need consistent interpretation against evidence-based reference ranges with age/sex adjustments, unit conversion, and actionable flagging — a natural fit for structured API design in a regulated data domain.",
+    whatIBuilt: [
+      "ASP.NET Core REST API with single and batch lab result interpretation endpoints",
+      "Domain models and seed data for 30+ biomarkers across CBC, CMP, lipid, thyroid, inflammatory, and vitamin/mineral panels",
+      "Entity Framework Core migrations with PostgreSQL for biomarker and reference range persistence",
+      "Flag logic (Low, Normal, High, Critical) with age/sex-based range adjustments and conventional/SI unit conversion",
+      "FluentValidation for request models, xUnit tests for interpretation and validation services, and Scalar API documentation",
+      "Docker Compose setup for local PostgreSQL development",
+    ],
+    techStack: [
+      ".NET 9",
+      "ASP.NET Core",
+      "C#",
+      "Entity Framework Core",
+      "PostgreSQL",
+      "FluentValidation",
+      "OpenAPI",
+      "Scalar",
+      "xUnit",
+      "Docker",
+    ],
+    impact: [
+      "Demonstrates clean .NET 9 API architecture with a healthcare/life-sciences domain model",
+      "Covers common clinical panels with evidence-based reference ranges and critical value flagging",
+      "Production-ready patterns: validation, migrations, tests, and interactive API docs",
+    ],
+    links: {
+      github: "https://github.com/GrassHopper12345/Lab-Reference-Flag-API",
+      live: null,
+    },
+    image: labReferenceFlagApi,
+    alt: "Lab Reference Flag API — lab result interpretation interface illustration",
+    relevanceTier: "primary",
+    status: "Production-style",
+    featured: true,
+    lastUpdated: "2026",
+    highlights: [
+      "REST API interprets 30+ biomarkers with Low/Normal/High/Critical flagging",
+      ".NET 9 + EF Core + PostgreSQL with seeded reference ranges and unit conversion",
+      "FluentValidation, xUnit tests, and Scalar interactive API documentation",
+    ],
+  },
+  {
+    id: "wellness-protocol-tracker",
+    title: "Wellness Protocol Tracker",
+    roleLabel: "Full-stack · HealthTech",
+    shortPitch:
+      "Full-stack longitudinal health tracking app for supplement protocols, symptom logs, lab values, and medical documents — built for individuals with complex medical histories who need structured, evidence-based health records over time.",
+    problem:
+      "People managing multi-stage supplement protocols, lab panels, and medical records need a single system to track stages, dosing, daily symptoms, lab trends, and private document storage — not a generic wellness app.",
+    whatIBuilt: [
+      "Next.js 14 App Router application with TypeScript, Tailwind CSS, and shadcn/ui components",
+      "Protocol management with sequential stages, supplement schedules (dosage, frequency, timing), and dashboard overview",
+      "Lab value tracking with custom reference ranges, out-of-range flagging, and Recharts line visualizations over time",
+      "Symptom and daily log entries tied to protocol stages with timeline views for trend identification",
+      "Private medical document storage via Google Cloud Storage with signed URL access (15-minute expiry)",
+      "Prisma ORM + PostgreSQL schema, TanStack Query for server state, React Hook Form + Zod validation, and Vitest unit tests",
+    ],
+    techStack: [
+      "Next.js 14",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "TanStack Query",
+      "React Hook Form",
+      "Zod",
+      "Recharts",
+      "Prisma",
+      "PostgreSQL",
+      "Google Cloud Storage",
+      "Vitest",
+      "Docker",
+    ],
+    impact: [
+      "End-to-end full-stack app aligning with current production stack (Next.js, TypeScript, TanStack Query, PostgreSQL)",
+      "Structured health record keeping for complex protocols, lab panels, and medical documents",
+      "Private document storage with signed URLs — no publicly accessible medical files",
+    ],
+    links: {
+      github: "https://github.com/GrassHopper12345/Wellness-Protocol-Tracker",
+      live: null,
+    },
+    image: wellnessProtocolTracker,
+    alt: "Wellness Protocol Tracker dashboard illustration",
+    relevanceTier: "primary",
+    status: "Production-style",
+    featured: true,
+    lastUpdated: "2026",
+    highlights: [
+      "Next.js 14 full-stack app: protocols, stages, supplements, lab charts, and document storage",
+      "Prisma + PostgreSQL, TanStack Query, React Hook Form + Zod, and GCS signed URLs",
+      "Longitudinal health tracking for complex medical histories and VA disability documentation",
+    ],
+  },
+  {
+    id: "fairshake-estimate-engine",
+    title: "FairShake Estimate Engine",
+    roleLabel: "Backend · Microservice",
+    shortPitch:
+      "REST API microservice design for generating structured cost estimates for home repair and construction projects — itemized material/labor breakdowns and PDF quote generation for FairShake Construction LLC.",
+    problem:
+      "Handyman and home repair businesses need repeatable, itemized estimates from project inputs (dimensions, materials, labor rates) — delivered as structured API responses and client-ready PDF quotes.",
+    whatIBuilt: [
+      "API specification for project estimation across drywall, painting, bathroom remodel, water damage repair, and hourly handyman scope",
+      "Structured cost breakdown model: materials, labor, waste factors, and configurable regional rate management",
+      "PDF quote generation design with itemized line items, scope summary, contractor info, and signature line",
+      "FastAPI + Pydantic v2 + SQLAlchemy + PostgreSQL + ReportLab tech stack architecture documented for implementation",
+    ],
+    techStack: [
+      "Python",
+      "FastAPI",
+      "Pydantic",
+      "SQLAlchemy",
+      "PostgreSQL",
+      "ReportLab",
+      "pytest",
+      "Docker",
+      "Uvicorn",
+    ],
+    impact: [
+      "Demonstrates cross-language API design (Python/FastAPI) with real business logic for construction estimating",
+      "Structured estimate and PDF quote workflow for a live handyman business",
+      "API-first microservice architecture with admin rate management endpoints",
+    ],
+    links: {
+      github: "https://github.com/GrassHopper12345/FairShake-Estimate-Engine",
+      live: null,
+    },
+    image: fairShakeEstimateEngine,
+    alt: "FairShake Estimate Engine API illustration",
+    relevanceTier: "secondary",
+    status: "Updating",
+    lastUpdated: "2026",
+    highlights: [
+      "FastAPI microservice design for itemized construction cost estimates",
+      "Supports drywall, painting, remodel, and water damage project types",
+      "PDF quote generation and admin rate/material management endpoints",
     ],
   },
   {

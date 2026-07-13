@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="Lab Reference Flag API illustration">
+  <defs>
+    <linearGradient id="labBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1628"/>
+      <stop offset="100%" stop-color="#12243d"/>
+    </linearGradient>
+    <linearGradient id="labAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ff88"/>
+      <stop offset="100%" stop-color="#00ffff"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#labBg)"/>
+  <rect x="80" y="50" width="480" height="300" rx="12" fill="#1a2f4a" stroke="#00ffff" stroke-width="2"/>
+  <rect x="100" y="75" width="200" height="24" rx="4" fill="url(#labAccent)" opacity="0.9"/>
+  <text x="200" y="92" text-anchor="middle" fill="#0a1628" font-family="sans-serif" font-size="12" font-weight="700">POST /api/results/interpret</text>
+  <rect x="100" y="115" width="440" height="100" rx="6" fill="#0f1f33" stroke="#00ff8844"/>
+  <text x="120" y="140" fill="#b0e0e6" font-family="monospace" font-size="11">Hemoglobin: 10.2 g/dL</text>
+  <text x="120" y="162" fill="#8899aa" font-family="monospace" font-size="11">Ref: 12.015.5 g/dL</text>
+  <rect x="120" y="175" width="70" height="22" rx="11" fill="#ff664422" stroke="#ff6644"/>
+  <text x="155" y="190" text-anchor="middle" fill="#ff9988" font-family="sans-serif" font-size="10" font-weight="600">LOW</text>
+  <rect x="100" y="235" width="130" height="80" rx="6" fill="#00ffff15" stroke="#00ffff66"/>
+  <rect x="250" y="235" width="130" height="80" rx="6" fill="#00ffff15" stroke="#00ffff66"/>
+  <rect x="400" y="235" width="140" height="80" rx="6" fill="#00ffff15" stroke="#00ffff66"/>
+  <text x="165" y="265" text-anchor="middle" fill="#00ff88" font-family="sans-serif" font-size="11">CBC</text>
+  <text x="315" y="265" text-anchor="middle" fill="#00ff88" font-family="sans-serif" font-size="11">CMP</text>
+  <text x="470" y="265" text-anchor="middle" fill="#00ff88" font-family="sans-serif" font-size="11">Lipids</text>
+  <text x="320" y="385" text-anchor="middle" fill="#8899aa" font-family="sans-serif" font-size="12">Lab Reference Flag API · .NET 9</text>
+</svg>

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-label="FairShake Estimate Engine illustration">
+  <defs>
+    <linearGradient id="fairBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1628"/>
+      <stop offset="100%" stop-color="#12243d"/>
+    </linearGradient>
+    <linearGradient id="fairAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ff88"/>
+      <stop offset="100%" stop-color="#00ffff"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="400" fill="url(#fairBg)"/>
+  <rect x="100" y="50" width="440" height="300" rx="12" fill="#1a2f4a" stroke="#00ffff" stroke-width="2"/>
+  <rect x="120" y="75" width="180" height="24" rx="4" fill="url(#fairAccent)" opacity="0.9"/>
+  <text x="210" y="92" text-anchor="middle" fill="#0a1628" font-family="sans-serif" font-size="11" font-weight="700">Estimate Engine API</text>
+  <rect x="120" y="115" width="180" height="90" rx="6" fill="#0f1f33" stroke="#00ff8844"/>
+  <text x="135" y="140" fill="#b0e0e6" font-family="sans-serif" font-size="11">Drywall Repair</text>
+  <text x="135" y="160" fill="#8899aa" font-family="sans-serif" font-size="10">120 sq ft</text>
+  <text x="135" y="185" fill="#00ff88" font-family="sans-serif" font-size="10">Materials + Labor</text>
+  <rect x="320" y="115" width="200" height="200" rx="6" fill="#0f1f33" stroke="#00ffff44"/>
+  <text x="335" y="140" fill="#b0e0e6" font-family="sans-serif" font-size="11">Line Items</text>
+  <rect x="335" y="155" width="170" height="18" rx="3" fill="#00ffff15"/>
+  <rect x="335" y="182" width="170" height="18" rx="3" fill="#00ffff15"/>
+  <rect x="335" y="209" width="170" height="18" rx="3" fill="#00ffff15"/>
+  <rect x="335" y="250" width="100" height="22" rx="4" fill="url(#fairAccent)" opacity="0.6"/>
+  <text x="385" y="265" text-anchor="middle" fill="#0a1628" font-family="sans-serif" font-size="10" font-weight="600">PDF Quote</text>
+  <text x="320" y="385" text-anchor="middle" fill="#8899aa" font-family="sans-serif" font-size="12">FairShake Estimate Engine · FastAPI</text>
+</svg>
